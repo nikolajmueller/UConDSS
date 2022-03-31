@@ -67,20 +67,28 @@ public class LoginViewController implements Initializable {
     public void symptomsPaneShow() {
         .setVisible(true);
         .setVisible(false);
+        .setVisible(false);
+        .setVisible(false);
     }
 
     public void treatmentPaneShow() {
         .setVisible(true);
+        .setVisible(false);
+        .setVisible(false);
         .setVisible(false);
     }
     
     public void effectPaneShow() {
         .setVisible(true);
         .setVisible(false);
+        .setVisible(false);
+        .setVisible(false);
     }
     
     public void evaluationPaneShow() {
         .setVisible(true);
+        .setVisible(false);
+        .setVisible(false);
         .setVisible(false);
     }
 */
