@@ -15,8 +15,6 @@ public class DashboardSymptomEvaluationController implements Initializable {
         // TODO
     }    
 
-    void initialize(DashboardMainViewController aThis) {
-        
-    }
+ 
     
 }

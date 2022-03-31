@@ -15,8 +15,6 @@ public class DashboardEffectivenessScoreController implements Initializable {
         // TODO
     }    
 
-    void initialize(DashboardMainViewController aThis) {
-     
-    }
+
     
 }

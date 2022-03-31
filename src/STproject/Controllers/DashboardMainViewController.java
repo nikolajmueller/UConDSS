@@ -1,24 +1,27 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package STproject.Controllers;
 
-import javafx.fxml.FXML;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
 
+/**
+ * FXML Controller class
+ *
+ * @author mathi
+ */
+public class DashboardMainViewController implements Initializable {
 
-public class DashboardMainViewController {
-
-    @FXML public DashboardEffectivenessScoreController dashboardEffectivenessScoreController;
-    @FXML public DashboardPatientStatisticTreatmentController dashboardPatientStatisticTreatmentController;
-    @FXML public DashboardSymptomEvaluationController dashboardSymptomEvaluationController;
-    @FXML public DashboardTreatmentStrategyController dashboardTreatmentStrategyController;
-    @FXML public DashboardUconDataVisualizationController dashboardUconDataVisualizationController;
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
     
-    @FXML private void initialize(){
-        dashboardEffectivenessScoreController.initialize(this);
-        dashboardPatientStatisticTreatmentController.initialize(this);
-        dashboardSymptomEvaluationController.initialize(this);
-        dashboardTreatmentStrategyController.initialize(this);
-        dashboardUconDataVisualizationController.initialize(this);
-        
-}
-
 }

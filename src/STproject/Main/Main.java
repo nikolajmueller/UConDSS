@@ -23,10 +23,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/ressources/LoginView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/ressources/LoginView.fxml")); // /ressources/LoginView.fxml
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        stage.setTitle("UConDSS");   // satter titel
+        stage.setResizable(false);   // Denne linje gør at man ikke kan udvide skærm manuelt
+        
+        
     }
 
     public void readClasses() {

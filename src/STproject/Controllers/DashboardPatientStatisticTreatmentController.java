@@ -15,8 +15,6 @@ public class DashboardPatientStatisticTreatmentController implements Initializab
         // TODO
     }    
 
-    void initialize(DashboardMainViewController aThis) {
-        
-    }
+
     
 }

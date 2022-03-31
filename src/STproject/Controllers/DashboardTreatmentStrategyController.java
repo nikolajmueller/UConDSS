@@ -15,8 +15,6 @@ public class DashboardTreatmentStrategyController implements Initializable {
         // TODO
     }    
 
-    void initialize(DashboardMainViewController aThis) {
-       
-    }
+    
     
 }

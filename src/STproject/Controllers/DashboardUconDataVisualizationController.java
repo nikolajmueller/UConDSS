@@ -15,8 +15,6 @@ public class DashboardUconDataVisualizationController implements Initializable {
         // TODO
     }    
 
-    void initialize(DashboardMainViewController aThis) {
-        
-    }
+
     
 }
