@@ -2,13 +2,53 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="STproject.Controllers.DashboardSymptomEvaluationController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardSymptomEvaluationController">
     <stylesheets>
         <URL value="@DashboardSymptomEvaluationCss.css" />
     </stylesheets>
    <children>
-      <Button layoutX="255.0" layoutY="179.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="504.0" layoutY="338.0" mnemonicParsing="false" text="Save" />
+      <Text layoutX="33.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bladder capacity:" textAlignment="RIGHT" wrappingWidth="142.07894897460938">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="12.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IEs per day:" textAlignment="RIGHT" wrappingWidth="162.87893676757812">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="12.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UEs per day:" textAlignment="RIGHT" wrappingWidth="162.87893676757812">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="12.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Urination per day:" textAlignment="RIGHT" wrappingWidth="162.87893676757812">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="12.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nocturia episodes:" textAlignment="RIGHT" wrappingWidth="162.87893676757812">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="bladderCapacityComboBox" layoutX="194.0" layoutY="20.0" prefWidth="150.0" promptText="Select" />
+      <TextField fx:id="IEsTextField" layoutX="194.0" layoutY="57.0" />
+      <TextField fx:id="UEsTextField" layoutX="195.0" layoutY="95.0" />
+      <TextField fx:id="urinationTextField" layoutX="195.0" layoutY="132.0" />
+      <TextField fx:id="nocturiaTextfield" layoutX="195.0" layoutY="167.0" />
+      <Text layoutX="12.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Other:" textAlignment="RIGHT" wrappingWidth="162.87893676757812">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="otherComboBox" layoutX="194.0" layoutY="206.0" prefWidth="150.0" promptText="Select" />
    </children>
 </AnchorPane>
