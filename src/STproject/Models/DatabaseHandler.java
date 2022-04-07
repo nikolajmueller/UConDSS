@@ -56,6 +56,11 @@ public class DatabaseHandler {
     public static void saveSymptonsToDb(String patientCPR, String a, int b, int c, int d, int e, String f) {
         try {
             Connection conn = DatabaseHandler.getConnection();
+
+// TO DO: send query til DB for at tjekke om CPR er i databasen.
+// hvis ja, send fejlmeddelelse
+// hvis nej, udfør INSERT INTO query
+
             PreparedStatement ps = conn.prepareStatement(""
                     + "INSERT INTO SymptomsBaseline"
                     + " (patientCPR, bladderCapacity, IEsPerDay,"
