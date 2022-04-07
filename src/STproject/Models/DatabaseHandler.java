@@ -7,6 +7,7 @@ package STproject.Models;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -51,4 +52,27 @@ public class DatabaseHandler {
         }
         return null;
     }
+
+    public static void saveSymptonsToDb(String a, int b, int c, int d, int e, String f) {
+        try {
+            Connection conn = DatabaseHandler.getConnection();
+            PreparedStatement ps = conn.prepareStatement(""
+                    + "INSERT INTO SymptomsBaseline"
+                    + " (bladderCapacity, IEsPerDay,"
+                    + " UEsPerDay, UrinationPerDay, NocturiaEpisodes, Other)"
+                    + " VALUES (?,?,?,?,?,?)");
+            ps.setString(1, a);
+            ps.setInt(2, b);
+            ps.setInt(3, c);
+            ps.setInt(4, d);
+            ps.setInt(5, e);
+            ps.setString(6, f);
+            ps.execute();
+            conn.close();
+        } catch (SQLException p) {
+            System.err.println("Cannot connect to database server");
+        }
+
+    }
+
 }

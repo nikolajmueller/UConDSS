@@ -13,7 +13,7 @@
         <URL value="@DashboardSymptomEvaluationCss.css" />
     </stylesheets>
    <children>
-      <Button layoutX="504.0" layoutY="338.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="btnSave" layoutX="473.0" layoutY="317.0" mnemonicParsing="false" onAction="#btnSaveFunc" prefHeight="38.0" prefWidth="72.0" text="Save" />
       <Text layoutX="33.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bladder capacity:" textAlignment="RIGHT" wrappingWidth="142.07894897460938">
          <font>
             <Font size="18.0" />
@@ -39,16 +39,21 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <ComboBox fx:id="bladderCapacityComboBox" layoutX="194.0" layoutY="20.0" prefWidth="150.0" promptText="Select" />
-      <TextField fx:id="IEsTextField" layoutX="194.0" layoutY="57.0" />
-      <TextField fx:id="UEsTextField" layoutX="195.0" layoutY="95.0" />
-      <TextField fx:id="urinationTextField" layoutX="195.0" layoutY="132.0" />
-      <TextField fx:id="nocturiaTextfield" layoutX="195.0" layoutY="167.0" />
+      <ComboBox fx:id="bladderCapacityComboBox" layoutX="194.0" layoutY="20.0" prefHeight="26.0" prefWidth="132.0" promptText="Select" />
+      <TextField fx:id="IEsTextField" layoutX="194.0" layoutY="57.0" prefHeight="26.0" prefWidth="47.0" />
+      <TextField fx:id="UEsTextField" layoutX="195.0" layoutY="95.0" prefHeight="26.0" prefWidth="47.0" />
+      <TextField fx:id="urinationTextField" layoutX="195.0" layoutY="132.0" prefHeight="26.0" prefWidth="47.0" />
+      <TextField fx:id="nocturiaTextfield" layoutX="195.0" layoutY="167.0" prefHeight="26.0" prefWidth="47.0" />
       <Text layoutX="12.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Other:" textAlignment="RIGHT" wrappingWidth="162.87893676757812">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <ComboBox fx:id="otherComboBox" layoutX="194.0" layoutY="206.0" prefWidth="150.0" promptText="Select" />
+      <ComboBox fx:id="otherComboBox" layoutX="194.0" layoutY="206.0" prefHeight="26.0" prefWidth="132.0" promptText="Select" />
+      <Text fx:id="saveTextVerify" layoutX="490.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
