@@ -53,20 +53,21 @@ public class DatabaseHandler {
         return null;
     }
 
-    public static void saveSymptonsToDb(String a, int b, int c, int d, int e, String f) {
+    public static void saveSymptonsToDb(String patientCPR, String a, int b, int c, int d, int e, String f) {
         try {
             Connection conn = DatabaseHandler.getConnection();
             PreparedStatement ps = conn.prepareStatement(""
                     + "INSERT INTO SymptomsBaseline"
-                    + " (bladderCapacity, IEsPerDay,"
+                    + " (patientCPR, bladderCapacity, IEsPerDay,"
                     + " UEsPerDay, UrinationPerDay, NocturiaEpisodes, Other)"
-                    + " VALUES (?,?,?,?,?,?)");
-            ps.setString(1, a);
-            ps.setInt(2, b);
-            ps.setInt(3, c);
-            ps.setInt(4, d);
-            ps.setInt(5, e);
-            ps.setString(6, f);
+                    + " VALUES (?,?,?,?,?,?,?)");
+            ps.setString(1, patientCPR);
+            ps.setString(2, a);
+            ps.setInt(3, b);
+            ps.setInt(4, c);
+            ps.setInt(5, d);
+            ps.setInt(6, e);
+            ps.setString(7, f);
             ps.execute();
             conn.close();
         } catch (SQLException p) {

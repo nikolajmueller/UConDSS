@@ -1,8 +1,8 @@
 package STproject.Models;
 
-public class symptoms {
+public class Symptoms {
 
-    private int patientCPR;
+    private String patientCPR;
     private String bladderCapacity;
     private int IEsPerDay;
     private int UEsPerDay;
@@ -10,7 +10,7 @@ public class symptoms {
     private int nocturiaEpisodes;
     private String other;
 
-    public symptoms(int patientCPR, String bladderCapacity, int IEsPerDay, int UEsPerDay, int urinationPerDay, int nocturiaEpisodes, String other) {
+    public Symptoms(String patientCPR, String bladderCapacity, int IEsPerDay, int UEsPerDay, int urinationPerDay, int nocturiaEpisodes, String other) {
         this.patientCPR = patientCPR;
         this.bladderCapacity = bladderCapacity;
         this.IEsPerDay = IEsPerDay;
@@ -20,7 +20,7 @@ public class symptoms {
         this.other = other;
     }
 
-    public int getPatientCPR() {
+    public String getPatientCPR() {
         return patientCPR;
     }
 
@@ -48,7 +48,7 @@ public class symptoms {
         return other;
     }
 
-    public void setPatientCPR(int patientCPR) {
+    public void setPatientCPR(String patientCPR) {
         this.patientCPR = patientCPR;
     }
 
