@@ -86,7 +86,7 @@ public class DatabaseHandler {
 
 // hvis DO EXISTS, send fejlmeddelelse
             } else {
-                JOptionPane.showMessageDialog(null, "PATIENT ALREADY REGISTERED BASELINE SYMPTOMS");
+                JOptionPane.showMessageDialog(null, "PATIENT IS ALREADY REGISTERED WITH BASELINE SYMPTOMS");
                 //System.out.println("PATIENT ALREADY REGISTERED BASELINE SYMPTOMS");
             }
         } catch (SQLException p) {
