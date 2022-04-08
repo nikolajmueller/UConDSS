@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public static PatientsCprList patient = new PatientsCprList();
+    public static PatientsCprList patient = new PatientsCprList("1008751337");
 
     public static void main(String[] args) {
         launch(args);

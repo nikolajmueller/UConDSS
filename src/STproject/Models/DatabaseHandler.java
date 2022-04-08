@@ -5,15 +5,18 @@
  */
 package STproject.Models;
 
+import STproject.Main.Main;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javax.swing.JOptionPane;
 
 public class DatabaseHandler {
 
@@ -57,28 +60,38 @@ public class DatabaseHandler {
         try {
             Connection conn = DatabaseHandler.getConnection();
 
-// TO DO: send query til DB for at tjekke om CPR er i databasen.
-// hvis ja, send fejlmeddelelse
-// hvis nej, udfør INSERT INTO query
+// check om CPR allerede har registeret baseline symptoms
+            PreparedStatement psCheckIfExists = conn.prepareStatement("SELECT COUNT(*) FROM SymptomsBaseline AS countrow WHERE patientCPR = ?");
+            psCheckIfExists.setString(1, Main.patient.getCprNumber());
+            ResultSet rsIfExists = psCheckIfExists.executeQuery();
+            rsIfExists.next();
+            int countrow = rsIfExists.getInt(1);
+            System.out.println(countrow);
 
-            PreparedStatement ps = conn.prepareStatement(""
-                    + "INSERT INTO SymptomsBaseline"
-                    + " (patientCPR, bladderCapacity, IEsPerDay,"
-                    + " UEsPerDay, UrinationPerDay, NocturiaEpisodes, Other)"
-                    + " VALUES (?,?,?,?,?,?,?)");
-            ps.setString(1, patientCPR);
-            ps.setString(2, a);
-            ps.setInt(3, b);
-            ps.setInt(4, c);
-            ps.setInt(5, d);
-            ps.setInt(6, e);
-            ps.setString(7, f);
-            ps.execute();
-            conn.close();
+// hvis NOT EXISTS, gem symptomer til DB
+            if (countrow == 0) {
+                PreparedStatement ps = conn.prepareStatement(""
+                        + "INSERT INTO SymptomsBaseline"
+                        + " (patientCPR, bladderCapacity, IEsPerDay,"
+                        + " UEsPerDay, UrinationPerDay, NocturiaEpisodes, Other)"
+                        + " VALUES (?,?,?,?,?,?,?)");
+                ps.setString(1, Main.patient.getCprNumber());
+                ps.setString(2, a);
+                ps.setInt(3, b);
+                ps.setInt(4, c);
+                ps.setInt(5, d);
+                ps.setInt(6, e);
+                ps.setString(7, f);
+                ps.execute();
+                conn.close();
+
+// hvis DO EXISTS, send fejlmeddelelse
+            } else {
+                JOptionPane.showMessageDialog(null, "PATIENT ALREADY REGISTERED BASELINE SYMPTOMS");
+                //System.out.println("PATIENT ALREADY REGISTERED BASELINE SYMPTOMS");
+            }
         } catch (SQLException p) {
             System.err.println("Cannot connect to database server");
         }
-
     }
-
 }
