@@ -66,7 +66,6 @@ public class DatabaseHandler {
             ResultSet rsIfExists = psCheckIfExists.executeQuery();
             rsIfExists.next();
             int countrow = rsIfExists.getInt(1);
-            System.out.println(countrow);
 
 // hvis NOT EXISTS, gem symptomer til DB
             if (countrow == 0) {
