@@ -14,12 +14,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public static PatientsCprList patient = new PatientsCprList("1008751337");
+    public static PatientsCprList patient = new PatientsCprList("0104690420");
+    public static Symptoms symptoms = new Symptoms();
 
     public static void main(String[] args) {
         launch(args);
     }
-
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -27,10 +27,9 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        stage.setTitle("UConDSS");   // satter titel
+        stage.setTitle("UConDSS");   // sætter titel
         stage.setResizable(false);   // Denne linje gør at man ikke kan udvide skærm manuelt
-        
-        
+
     }
 
     public void readClasses() {

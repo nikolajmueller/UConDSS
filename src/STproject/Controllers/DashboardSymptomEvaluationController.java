@@ -1,6 +1,7 @@
 package STproject.Controllers;
 
 import STproject.Main.Main;
+import static STproject.Main.Main.symptoms;
 import STproject.Models.*;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,20 +32,23 @@ public class DashboardSymptomEvaluationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         bladderCapacityComboBox.getItems().addAll("<200 ml", "200-400 ml", "400-500 ml", ">500 ml");
         otherComboBox.getItems().addAll("None", "Stroke", "Sclerosis");
-        
+
     }
 
     public void btnSaveFunc() {
-        
-        try {
-            String a = bladderCapacityComboBox.getValue().toString();
-            int b = Integer.parseInt(IEsTextField.getText());
-            int c = Integer.parseInt(UEsTextField.getText());
-            int d = Integer.parseInt(urinationTextField.getText());
-            int e = Integer.parseInt(nocturiaTextfield.getText());
-            String f = otherComboBox.getValue().toString();
 
-            DatabaseHandler.saveSymptonsToDb(Main.patient.getCprNumber(), a, b, c, d, e, f);
+        try {
+            symptoms.setBladderCapacity(bladderCapacityComboBox.getValue().toString());
+            symptoms.setIEsPerDay(Integer.parseInt(IEsTextField.getText()));
+            symptoms.setUEsPerDay(Integer.parseInt(UEsTextField.getText()));
+            symptoms.setUrinationPerDay(Integer.parseInt(urinationTextField.getText()));
+            symptoms.setNocturiaEpisodes(Integer.parseInt(nocturiaTextfield.getText()));
+            symptoms.setOther(otherComboBox.getValue().toString());
+
+            DatabaseHandler.saveSymptonsToDb(Main.patient.getCprNumber(), symptoms.getBladderCapacity(),
+                    symptoms.getIEsPerDay(), symptoms.getUEsPerDay(), symptoms.getUrinationPerDay(),
+                    symptoms.getNocturiaEpisodes(), symptoms.getOther());
+
             saveTextVerify.setText("Saved!");
         } catch (Exception g) {
             System.out.println("Error btnSaveFunc");
