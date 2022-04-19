@@ -43,7 +43,7 @@ public class DashboardSymptomEvaluationController implements Initializable {
     }
 
 // funktion når man trykker på knappen "Save"
-    public void btnSaveFunc() {
+    public void btnSaveFunc(ActionEvent event) {
 
         try {
 // gem værdier i @FXML bokse i klassen Symptoms
@@ -59,22 +59,18 @@ public class DashboardSymptomEvaluationController implements Initializable {
                     symptoms.getIEsPerDay(), symptoms.getUEsPerDay(), symptoms.getUrinationPerDay(),
                     symptoms.getNocturiaEpisodes(), symptoms.getOther());
 
-// skriv "Saved" under Save-knappen når trykket på - skal rettes
-            saveTextVerify.setText("Saved!");
+            Parent toTreatmentParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardTreatmentStrategy.fxml"));
+            Scene toTreatmentScene = new Scene(toTreatmentParent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(toTreatmentScene);
+            window.show();
+            window.setX(300);    // De her to linjer gor at næste scene ikke starter uden for windows skærmen
+            window.setY(100);
+
         } catch (Exception g) {
             System.out.println("Error btnSaveFunc");
         }
 
     }
 
-    public void btnToSceneTreatmentStrategy(ActionEvent event) throws IOException {
-        Parent toToNewSceneParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardTreatmentStrategy.fxml"));
-        Scene toToNewSceneScene = new Scene(toToNewSceneParent);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(toToNewSceneScene);
-        window.show();
-        window.setX(300);    // De her to linjer gor at næste scene ikke starter uden for windows skærmen
-        window.setY(100);
-
-    }
 }

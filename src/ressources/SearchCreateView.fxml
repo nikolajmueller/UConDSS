@@ -18,6 +18,6 @@
           <TableColumn fx:id="col_CPR" prefWidth="329.0" text="CPR" />
         </columns>
       </TableView>
-      <Button focusTraversable="false" layoutX="255.0" layoutY="360.0" mnemonicParsing="false" text="Select CPR" />
+      <Button focusTraversable="false" layoutX="255.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnToDashboard" text="Select CPR" />
    </children>
 </AnchorPane>

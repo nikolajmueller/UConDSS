@@ -3,6 +3,7 @@ package STproject.Controllers;
 import STproject.Main.Main;
 import STproject.Models.DatabaseHandler;
 import STproject.Models.PatientsCprList;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,13 +15,19 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class SearchCreateViewController implements Initializable {
 
@@ -88,6 +95,16 @@ public class SearchCreateViewController implements Initializable {
             keywordTextField.setText(Main.patient.getCprNumber());
         }
         
+    }
+    
+    @FXML
+    public void btnToDashboard(ActionEvent event) throws IOException {
+        Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardSymptomEvaluation.fxml"));
+        Scene toDashboardScene = new Scene(toDashboardParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(toDashboardScene);
+        window.centerOnScreen();
+        window.show();
     }
 
 }
