@@ -33,14 +33,6 @@ public class DashboardTreatmentStrategyController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-// DUMMY SYMPTOMS
-        symptoms.setBladderCapacity(">500 ml");
-        symptoms.setIEsPerDay(5);
-        symptoms.setUEsPerDay(9);
-        symptoms.setUrinationPerDay(750);
-        symptoms.setNocturiaEpisodes(3);
-        symptoms.setOther("None");
-
 // opdater symptoms liste
         textPatientBladderCapacity.setText(symptoms.getBladderCapacity());
         textPatientIEsPerDay.setText(Integer.toString(symptoms.getIEsPerDay()));
