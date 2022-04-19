@@ -63,8 +63,7 @@ public class DashboardUconDataVisualizationController implements Initializable {
                         
                         listView_Urge.getItems().add(trimmedData1);
                         
-                        //average_Urge.setText("" + trimmedData1.length());   // Den her tager det forkerte gennemsnit lige nu
-                        average_Urge.setText("" + trimmedData1.length());
+                        average_Urge.setText("" + trimmedData1.length());      // Den her tager det forkerte gennemsnit lige nu
                     }
                 }
             }
