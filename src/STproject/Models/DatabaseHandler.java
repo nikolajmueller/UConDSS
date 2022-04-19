@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -105,39 +106,50 @@ public class DatabaseHandler {
             rsIfExists.next();
             int countrow = rsIfExists.getInt(1);
 
+            String currentDate = LocalDate.now().toString();
+
             if (countrow == 0) {
                 countrow = 1;
                 PreparedStatement ps = conn.prepareStatement(""
                         + "INSERT INTO `patientTreatment`(`CPR`, `treatmentNumber`, `timeLimitedSetting`,"
-                        + " `timeLimitedIntensity`, `urgeSetting`, `urgeIntensity`)"
-                        + " VALUES (?,?,?,?,?,?)");
+                        + " `timeLimitedIntensity`, `urgeSetting`, `urgeIntensity`, `dateSaved`)"
+                        + " VALUES (?,?,?,?,?,?,?)");
                 ps.setString(1, Main.patient.getCprNumber());
                 ps.setInt(2, countrow);
                 ps.setString(3, treatmentSetting.getTimeLimitedSetting());
                 ps.setInt(4, treatmentSetting.getTimeLimitedIntensity());
                 ps.setString(5, treatmentSetting.getUrgeSetting());
                 ps.setInt(6, treatmentSetting.getUrgeIntensity());
+                ps.setString(7, currentDate);
 
                 ps.execute();
                 conn.close();
             } else {
-                countrow++;
-                PreparedStatement ps = conn.prepareStatement(""
-                        + "INSERT INTO `patientTreatment`(`CPR`, `treatmentNumber`, `timeLimitedSetting`,"
-                        + " `timeLimitedIntensity`, `urgeSetting`, `urgeIntensity`)"
-                        + " VALUES (?,?,?,?,?,?)");
-                ps.setString(1, Main.patient.getCprNumber());
-                ps.setInt(2, countrow);
-                ps.setString(3, treatmentSetting.getTimeLimitedSetting());
-                ps.setInt(4, treatmentSetting.getTimeLimitedIntensity());
-                ps.setString(5, treatmentSetting.getUrgeSetting());
-                ps.setInt(6, treatmentSetting.getUrgeIntensity());
+                PreparedStatement psCheckDate = conn.prepareStatement(
+                        "SELECT COUNT(*) FROM patientTreatment WHERE dateSaved = ?");
+                psCheckDate.setString(1, currentDate);
+                ResultSet dateExistsSQL = psCheckDate.executeQuery();
+                dateExistsSQL.next();
+                int dateExists = dateExistsSQL.getInt(1);
+                if (dateExists == 0) {
+                    countrow++;
+                    PreparedStatement ps = conn.prepareStatement(""
+                            + "INSERT INTO `patientTreatment`(`CPR`, `treatmentNumber`, `timeLimitedSetting`,"
+                            + " `timeLimitedIntensity`, `urgeSetting`, `urgeIntensity`)"
+                            + " VALUES (?,?,?,?,?,?)");
+                    ps.setString(1, Main.patient.getCprNumber());
+                    ps.setInt(2, countrow);
+                    ps.setString(3, treatmentSetting.getTimeLimitedSetting());
+                    ps.setInt(4, treatmentSetting.getTimeLimitedIntensity());
+                    ps.setString(5, treatmentSetting.getUrgeSetting());
+                    ps.setInt(6, treatmentSetting.getUrgeIntensity());
 
-                ps.execute();
-                conn.close();
-
+                    ps.execute();
+                    conn.close();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Patient already has treatment registered with current date.");
+                }
             }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error");
         }
