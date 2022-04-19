@@ -1,21 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.LoginViewController">
+<AnchorPane id="AnchorPane" prefHeight="402.0" prefWidth="456.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.LoginViewController">
     <stylesheets>
-        <URL value="@loginview.css" />
+        <URL value="@LoginViewCss.css" />
     </stylesheets>
    <children>
-      <TableView fx:id="table_Patient" layoutX="200.0" layoutY="91.0" prefHeight="200.0" prefWidth="200.0">
-        <columns>
-          <TableColumn fx:id="col_cprNumber" prefWidth="144.0" text="C1" />
-        </columns>
-      </TableView>
-      <Button layoutX="474.0" layoutY="330.0" mnemonicParsing="false" onAction="#btnToNewSceneFunc" text="toNextScene" />
+      <HBox layoutX="-4.0" prefHeight="100.0" prefWidth="456.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#loginPaneShow" prefHeight="41.0" prefWidth="125.0" text="Login" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="90.0" top="30.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#signupPaneShow" prefHeight="41.0" prefWidth="125.0" text="Sign up" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="30.0" top="30.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <AnchorPane fx:id="pane_login" layoutY="91.0" prefHeight="306.0" prefWidth="450.0">
+         <children>
+            <Label layoutX="150.0" prefHeight="47.0" prefWidth="187.0" text="Login details" textFill="#2a5058">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <TextField fx:id="username_lg" layoutX="151.0" layoutY="67.0" promptText="Username" />
+            <FontAwesomeIconView fill="#2a5058" glyphName="USER" layoutX="115.0" layoutY="91.0" size="25" wrappingWidth="20.00000174343586" />
+            <PasswordField fx:id="password_lg" layoutX="151.0" layoutY="130.0" promptText="Password" />
+            <FontAwesomeIconView fill="#2a5058" glyphName="KEY" layoutX="113.0" layoutY="154.0" size="25" />
+            <Button fx:id="btnLogin" layoutX="150.0" layoutY="185.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="187.0" text="Login" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pane_signup" layoutY="101.0" prefHeight="306.0" prefWidth="456.0" visible="false">
+         <children>
+            <Label layoutX="128.0" layoutY="-9.0" prefHeight="47.0" prefWidth="223.0" text="Sign up details" textFill="#2a5058">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <TextField fx:id="username_up" layoutX="139.0" layoutY="52.0" prefHeight="38.0" prefWidth="201.0" promptText="Enter your username" />
+            <TextField fx:id="password_up" layoutX="139.0" layoutY="118.0" prefHeight="38.0" prefWidth="201.0" promptText="Enter your password" />
+            <TextField fx:id="email_up" layoutX="139.0" layoutY="183.0" prefHeight="38.0" prefWidth="201.0" promptText="Enter your e-mail" />
+            <Button layoutX="139.0" layoutY="239.0" mnemonicParsing="false" onAction="#addUsers" prefHeight="31.0" prefWidth="201.0" text="Sign up" textFill="WHITE" />
+            <FontAwesomeIconView fill="#2a5058" glyphName="USER" layoutX="107.0" layoutY="79.0" size="25" wrappingWidth="20.00000174343586" />
+            <FontAwesomeIconView fill="#2a5058" glyphName="KEY" layoutX="108.0" layoutY="145.0" size="25" />
+            <FontAwesomeIconView fill="#2a5058" glyphName="ENVELOPE" layoutX="108.0" layoutY="210.0" size="25" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
