@@ -3,12 +3,19 @@ package STproject.Controllers;
 import STproject.Main.Main;
 import static STproject.Main.Main.symptoms;
 import STproject.Models.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class DashboardSymptomEvaluationController implements Initializable {
 
@@ -35,9 +42,11 @@ public class DashboardSymptomEvaluationController implements Initializable {
 
     }
 
+// funktion når man trykker på knappen "Save"
     public void btnSaveFunc() {
 
         try {
+// gem værdier i @FXML bokse i klassen Symptoms
             symptoms.setBladderCapacity(bladderCapacityComboBox.getValue().toString());
             symptoms.setIEsPerDay(Integer.parseInt(IEsTextField.getText()));
             symptoms.setUEsPerDay(Integer.parseInt(UEsTextField.getText()));
@@ -45,13 +54,27 @@ public class DashboardSymptomEvaluationController implements Initializable {
             symptoms.setNocturiaEpisodes(Integer.parseInt(nocturiaTextfield.getText()));
             symptoms.setOther(otherComboBox.getValue().toString());
 
+// kald metode fra DatabaseHandler; gemmer værdier til databasen
             DatabaseHandler.saveSymptonsToDb(Main.patient.getCprNumber(), symptoms.getBladderCapacity(),
                     symptoms.getIEsPerDay(), symptoms.getUEsPerDay(), symptoms.getUrinationPerDay(),
                     symptoms.getNocturiaEpisodes(), symptoms.getOther());
 
+// skriv "Saved" under Save-knappen når trykket på - skal rettes
             saveTextVerify.setText("Saved!");
         } catch (Exception g) {
             System.out.println("Error btnSaveFunc");
         }
+
+    }
+
+    public void btnToSceneTreatmentStrategy(ActionEvent event) throws IOException {
+        Parent toToNewSceneParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardTreatmentStrategy.fxml"));
+        Scene toToNewSceneScene = new Scene(toToNewSceneParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(toToNewSceneScene);
+        window.show();
+        window.setX(300);    // De her to linjer gor at næste scene ikke starter uden for windows skærmen
+        window.setY(100);
+
     }
 }

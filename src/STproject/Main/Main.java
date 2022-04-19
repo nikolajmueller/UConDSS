@@ -14,8 +14,9 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public static PatientsCprList patient = new PatientsCprList("0104690420");
+    public static PatientsCprList patient = new PatientsCprList("2403921143");
     public static Symptoms symptoms = new Symptoms();
+    public static TreatmentSetting treatmentSetting = new TreatmentSetting();
 
     public static void main(String[] args) {
         launch(args);
@@ -23,7 +24,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/ressources/DashboardSymptomEvaluation.fxml")); // /ressources/LoginView.fxml
+        Parent root = FXMLLoader.load(getClass().getResource("/ressources/DashboardTreatmentStrategy.fxml")); // /ressources/LoginView.fxml
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

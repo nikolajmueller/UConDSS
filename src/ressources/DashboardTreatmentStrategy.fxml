@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardTreatmentStrategyController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="STproject.Controllers.DashboardTreatmentStrategyController">
     <stylesheets>
-        <URL value="@DashboardTreatmentStrategy.css"/>
+        <URL value="@DashboardTreatmentStrategy.css" />
     </stylesheets>
+   <children>
+      <Text layoutX="26.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time Limited">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="238.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Urge">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Line endX="9.79998779296875" endY="266.0" layoutX="166.0" layoutY="134.0" startX="9.79998779296875" startY="-134.0" />
+      <Line endX="-26.20001220703125" endY="226.0999755859375" layoutX="371.0" layoutY="174.0" startX="-26.20001220703125" startY="-175.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" height="159.0" layoutX="353.0" layoutY="6.0" opacity="0.2" stroke="BLACK" strokeType="INSIDE" width="237.0" />
+      <Text layoutX="444.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Symptoms">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="369.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bladder capacity:" textAlignment="RIGHT" />
+      <Text layoutX="399.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IEs per day:" textAlignment="RIGHT" />
+      <Text layoutX="393.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UEs per day:" textAlignment="RIGHT" />
+      <Text layoutX="362.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Urination per day:" textAlignment="RIGHT" />
+      <Text layoutX="358.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nocturia episodes:" textAlignment="RIGHT" />
+      <Text layoutX="422.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Other:" textAlignment="RIGHT" />
+      <Text fx:id="textPatientBladderCapacity" layoutX="518.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="placeholder" textAlignment="RIGHT" visible="false" />
+      <Text fx:id="textPatientIEsPerDay" layoutX="518.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="placeholder" textAlignment="RIGHT" visible="false" />
+      <Text fx:id="textPatientUEsPerDay" layoutX="518.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="placeholder" textAlignment="RIGHT" visible="false" />
+      <Text fx:id="textPatientUrinationPerDay" layoutX="518.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="placeholder" textAlignment="RIGHT" visible="false" />
+      <Text fx:id="textPatientNocturiaEpisodes" layoutX="518.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="placeholder" textAlignment="RIGHT" visible="false" />
+      <Text fx:id="textPatientOther" layoutX="518.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="placeholder" textAlignment="RIGHT" visible="false" />
+      <CheckBox fx:id="TLContinuous" layoutX="19.0" layoutY="81.0" mnemonicParsing="false" onAction="#clickTLContinuous" text="Continuous *" />
+      <CheckBox fx:id="TL4Hours" layoutX="19.0" layoutY="105.0" mnemonicParsing="false" onAction="#clickTL4Hours" text="4 hours" />
+      <CheckBox fx:id="TL15Minutes" layoutX="19.0" layoutY="154.0" mnemonicParsing="false" onAction="#clickTL15Minutes" text="15 minutes" />
+      <CheckBox fx:id="TL30Minutes" layoutX="19.0" layoutY="129.0" mnemonicParsing="false" onAction="#clickTL30Minutes" text="30 minutes" />
+      <CheckBox fx:id="TLDeactivated" layoutX="19.0" layoutY="179.0" mnemonicParsing="false" onAction="#clickTLDeactivated" text="Deactivated" />
+      <Text layoutX="28.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Session time:" />
+      <Text layoutX="200.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Session time:" />
+      <CheckBox fx:id="Urge60Seconds" layoutX="191.0" layoutY="81.0" mnemonicParsing="false" onAction="#clickUrge60Seconds" text="60 seconds" />
+      <CheckBox fx:id="TL5" layoutX="19.0" layoutY="248.0" mnemonicParsing="false" onAction="#clickTL5" text="5 (High) *" />
+      <CheckBox fx:id="TL4" layoutX="19.0" layoutY="272.0" mnemonicParsing="false" onAction="#clickTL4" text="4" />
+      <CheckBox fx:id="TL2" layoutX="19.0" layoutY="321.0" mnemonicParsing="false" onAction="#clickTL2" text="2" />
+      <CheckBox fx:id="TL3" layoutX="19.0" layoutY="296.0" mnemonicParsing="false" onAction="#clickTL3" text="3" />
+      <CheckBox fx:id="TL1" layoutX="19.0" layoutY="346.0" mnemonicParsing="false" onAction="#clickTL1" text="1 (Low)" />
+      <Text layoutX="28.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max intensity:" />
+      <CheckBox fx:id="Urge5" layoutX="194.0" layoutY="250.0" mnemonicParsing="false" onAction="#clickUrge5" text="5 (High) *" />
+      <CheckBox fx:id="Urge4" layoutX="194.0" layoutY="274.0" mnemonicParsing="false" onAction="#clickUrge4" text="4" />
+      <CheckBox fx:id="Urge2" layoutX="194.0" layoutY="323.0" mnemonicParsing="false" onAction="#clickUrge2" text="2" />
+      <CheckBox fx:id="Urge3" layoutX="194.0" layoutY="298.0" mnemonicParsing="false" onAction="#clickUrge3" text="3" />
+      <CheckBox fx:id="Urge1" layoutX="194.0" layoutY="348.0" mnemonicParsing="false" onAction="#clickUrge1" text="1 (Low)" />
+      <Text layoutX="203.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max intensity:" />
+      <CheckBox fx:id="UrgeDeactivated" layoutX="191.0" layoutY="105.0" mnemonicParsing="false" onAction="#clickUrgeDeactivated" text="Deactivated *" />
+      <Button fx:id="btnSave" layoutX="451.0" layoutY="344.0" mnemonicParsing="false" onAction="#clickBtnSave" text="Save" />
+   </children>
 </AnchorPane>

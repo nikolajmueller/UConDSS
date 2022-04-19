@@ -6,6 +6,7 @@
 package STproject.Models;
 
 import STproject.Main.Main;
+import static STproject.Main.Main.treatmentSetting;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -67,7 +68,7 @@ public class DatabaseHandler {
             rsIfExists.next();
             int countrow = rsIfExists.getInt(1);
 
-// hvis NOT EXISTS, gem symptomer til DB
+// hvis NOT EXISTS (0), gem symptomer til DB
             if (countrow == 0) {
                 PreparedStatement ps = conn.prepareStatement(""
                         + "INSERT INTO SymptomsBaseline"
@@ -84,7 +85,7 @@ public class DatabaseHandler {
                 ps.execute();
                 conn.close();
 
-// hvis DO EXISTS, send fejlmeddelelse
+// hvis DO EXISTS (1), send fejlmeddelelse
             } else {
                 JOptionPane.showMessageDialog(null, "PATIENT IS ALREADY REGISTERED WITH BASELINE SYMPTOMS");
             }
@@ -92,4 +93,54 @@ public class DatabaseHandler {
             System.err.println("Cannot connect to database server");
         }
     }
+
+    public static void saveTreatmentToDb() {
+        try {
+            Connection conn = DatabaseHandler.getConnection();
+
+            PreparedStatement psCheckIfExists = conn.prepareStatement(
+                    "SELECT DISTINCT COUNT(treatmentNumber) FROM patientTreatment WHERE CPR = ?");
+            psCheckIfExists.setString(1, Main.patient.getCprNumber());
+            ResultSet rsIfExists = psCheckIfExists.executeQuery();
+            rsIfExists.next();
+            int countrow = rsIfExists.getInt(1);
+
+            if (countrow == 0) {
+                countrow = 1;
+                PreparedStatement ps = conn.prepareStatement(""
+                        + "INSERT INTO `patientTreatment`(`CPR`, `treatmentNumber`, `timeLimitedSetting`,"
+                        + " `timeLimitedIntensity`, `urgeSetting`, `urgeIntensity`)"
+                        + " VALUES (?,?,?,?,?,?)");
+                ps.setString(1, Main.patient.getCprNumber());
+                ps.setInt(2, countrow);
+                ps.setString(3, treatmentSetting.getTimeLimitedSetting());
+                ps.setInt(4, treatmentSetting.getTimeLimitedIntensity());
+                ps.setString(5, treatmentSetting.getUrgeSetting());
+                ps.setInt(6, treatmentSetting.getUrgeIntensity());
+
+                ps.execute();
+                conn.close();
+            } else {
+                countrow++;
+                PreparedStatement ps = conn.prepareStatement(""
+                        + "INSERT INTO `patientTreatment`(`CPR`, `treatmentNumber`, `timeLimitedSetting`,"
+                        + " `timeLimitedIntensity`, `urgeSetting`, `urgeIntensity`)"
+                        + " VALUES (?,?,?,?,?,?)");
+                ps.setString(1, Main.patient.getCprNumber());
+                ps.setInt(2, countrow);
+                ps.setString(3, treatmentSetting.getTimeLimitedSetting());
+                ps.setInt(4, treatmentSetting.getTimeLimitedIntensity());
+                ps.setString(5, treatmentSetting.getUrgeSetting());
+                ps.setInt(6, treatmentSetting.getUrgeIntensity());
+
+                ps.execute();
+                conn.close();
+
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error");
+        }
+    }
+
 }
