@@ -7,6 +7,7 @@ package STproject.Controllers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import static java.lang.Math.log;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -40,7 +41,7 @@ public class DashboardUconDataVisualizationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        String fileName = "C:\\jar-files\\files\\UConDataLog.txt";
+        String fileName = "C:\\jar-files\\files\\log_2021-04-09.txt";
         File file = new File(fileName);
 
         try {
