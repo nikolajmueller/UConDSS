@@ -89,7 +89,7 @@ public class LoginViewController implements Initializable {
                 // parse inputType to "FXMLFrontpageController.java"  
                 
                 // De næste 5 linjer skifter scene
-                Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardMainView.fxml"));
+                Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/SearchCreateView.fxml"));
                 Scene toDashboardScene = new Scene(toDashboardParent);
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(toDashboardScene);
