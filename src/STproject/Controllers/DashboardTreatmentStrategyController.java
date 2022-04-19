@@ -12,9 +12,9 @@ import javafx.scene.text.Text;
 public class DashboardTreatmentStrategyController implements Initializable {
 
     @FXML
-    private Text textPatientBladderCapacity, textPatientIEsPerDay,
-            textPatientUEsPerDay, textPatientUrinationPerDay, textPatientNocturiaEpisodes,
-            textPatientOther;
+    private Label lbPatientBladderCapacity, lbPatientIEsPerDay,
+            lbPatientUEsPerDay, lbPatientUrinationPerDay, lbPatientNocturiaEpisodes,
+                lbPatientOther;
 
     @FXML // stimulation paradigm checkboxes
     private CheckBox TLContinuous, TL4Hours, TL30Minutes,
@@ -34,20 +34,15 @@ public class DashboardTreatmentStrategyController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
 // opdater symptoms liste
-        textPatientBladderCapacity.setText(symptoms.getBladderCapacity());
-        textPatientIEsPerDay.setText(Integer.toString(symptoms.getIEsPerDay()));
-        textPatientUEsPerDay.setText(Integer.toString(symptoms.getUEsPerDay()));
-        textPatientUrinationPerDay.setText(Integer.toString(symptoms.getUrinationPerDay()));
-        textPatientNocturiaEpisodes.setText(Integer.toString(symptoms.getNocturiaEpisodes()));
-        textPatientOther.setText(symptoms.getOther());
+        lbPatientBladderCapacity.setText(symptoms.getBladderCapacity());
+        lbPatientIEsPerDay.setText(Integer.toString(symptoms.getIEsPerDay()));
+        lbPatientUEsPerDay.setText(Integer.toString(symptoms.getUEsPerDay()));
+        lbPatientUrinationPerDay.setText(Integer.toString(symptoms.getUrinationPerDay()));
+        lbPatientNocturiaEpisodes.setText(Integer.toString(symptoms.getNocturiaEpisodes()));
+        lbPatientOther.setText(symptoms.getOther());
 
 // sæt symptoms visible(true)
-        textPatientBladderCapacity.setVisible(true);
-        textPatientIEsPerDay.setVisible(true);
-        textPatientUEsPerDay.setVisible(true);
-        textPatientUrinationPerDay.setVisible(true);
-        textPatientNocturiaEpisodes.setVisible(true);
-        textPatientOther.setVisible(true);
+        
     }
 
     public void clickBtnSave() {

@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
@@ -32,18 +33,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <Text layoutX="369.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bladder capacity:" textAlignment="RIGHT" />
-      <Text layoutX="399.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IEs per day:" textAlignment="RIGHT" />
-      <Text layoutX="393.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UEs per day:" textAlignment="RIGHT" />
-      <Text layoutX="362.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Urination per day:" textAlignment="RIGHT" />
-      <Text layoutX="358.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nocturia episodes:" textAlignment="RIGHT" />
-      <Text layoutX="422.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Other:" textAlignment="RIGHT" />
-      <Text fx:id="textPatientBladderCapacity" layoutX="502.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="placeholder" textAlignment="RIGHT" visible="false" />
-      <Text fx:id="textPatientIEsPerDay" layoutX="518.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="placeholder" textAlignment="RIGHT" visible="false" />
-      <Text fx:id="textPatientUEsPerDay" layoutX="518.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="placeholder" textAlignment="RIGHT" visible="false" />
-      <Text fx:id="textPatientUrinationPerDay" layoutX="518.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="placeholder" textAlignment="RIGHT" visible="false" />
-      <Text fx:id="textPatientNocturiaEpisodes" layoutX="518.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="placeholder" textAlignment="RIGHT" visible="false" />
-      <Text fx:id="textPatientOther" layoutX="518.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="placeholder" textAlignment="RIGHT" visible="false" />
       <CheckBox fx:id="TLContinuous" layoutX="19.0" layoutY="81.0" mnemonicParsing="false" onAction="#clickTLContinuous" text="Continuous *" />
       <CheckBox fx:id="TL4Hours" layoutX="19.0" layoutY="105.0" mnemonicParsing="false" onAction="#clickTL4Hours" text="4 hours" />
       <CheckBox fx:id="TL15Minutes" layoutX="19.0" layoutY="154.0" mnemonicParsing="false" onAction="#clickTL15Minutes" text="15 minutes" />
@@ -66,5 +55,17 @@
       <Text layoutX="203.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max intensity:" />
       <CheckBox fx:id="UrgeDeactivated" layoutX="191.0" layoutY="105.0" mnemonicParsing="false" onAction="#clickUrgeDeactivated" text="Deactivated *" />
       <Button fx:id="btnSave" layoutX="451.0" layoutY="344.0" mnemonicParsing="false" onAction="#clickBtnSave" text="Save" />
+      <Label layoutX="365.0" layoutY="29.0" text="Bladder capacity:" />
+      <Label layoutX="394.0" layoutY="46.0" text="IEs per day:" />
+      <Label layoutX="388.0" layoutY="63.0" text="UEs per day:" />
+      <Label layoutX="358.0" layoutY="80.0" text="Urination per day:" />
+      <Label layoutX="361.0" layoutY="97.0" text="Nocutira per day:" />
+      <Label layoutX="419.0" layoutY="116.0" text="Other:" />
+      <Label fx:id="lbPatientBladderCapacity" layoutX="487.0" layoutY="30.0" text="placeholder" />
+      <Label fx:id="lbPatientIEsPerDay" layoutX="487.0" layoutY="46.0" text="placeholder" />
+      <Label fx:id="lbPatientUEsPerDay" layoutX="487.0" layoutY="63.0" text="placeholder" />
+      <Label fx:id="lbPatientUrinationPerDay" layoutX="487.0" layoutY="81.0" text="placeholder" />
+      <Label fx:id="lbPatientNocturiaEpisodes" layoutX="487.0" layoutY="97.0" text="placeholder" />
+      <Label fx:id="lbPatientOther" layoutX="487.0" layoutY="116.0" text="placeholder" />
    </children>
 </AnchorPane>
