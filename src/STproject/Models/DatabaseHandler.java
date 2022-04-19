@@ -45,7 +45,7 @@ public class DatabaseHandler {
     public static PatientsCprList readPatient() {
 
         try {
-            String sqlQuery = "select * from Patient";
+            String sqlQuery = "select * from TestPatient";
             ResultSet rs_patient = getConnection().createStatement().executeQuery(sqlQuery);
 
             while (rs_patient.next()) {
