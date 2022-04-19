@@ -1,20 +1,29 @@
 package STproject.Controllers;
 
+import STproject.Main.Main;
 import static STproject.Main.Main.*;
 import STproject.Models.DatabaseHandler;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javax.swing.Action;
+import javax.swing.JOptionPane;
 
 public class DashboardTreatmentStrategyController implements Initializable {
 
     @FXML
     private Label lbPatientBladderCapacity, lbPatientIEsPerDay,
             lbPatientUEsPerDay, lbPatientUrinationPerDay, lbPatientNocturiaEpisodes,
-                lbPatientOther;
+            lbPatientOther;
 
     @FXML // stimulation paradigm checkboxes
     private CheckBox TLContinuous, TL4Hours, TL30Minutes,
@@ -42,12 +51,29 @@ public class DashboardTreatmentStrategyController implements Initializable {
         lbPatientOther.setText(symptoms.getOther());
 
 // sæt symptoms visible(true)
-        
     }
 
-    public void clickBtnSave() {
-        DatabaseHandler.saveTreatmentToDb();
+    
+    public void clickBtnSave(ActionEvent event) {
+
+        try {
+            DatabaseHandler.saveTreatmentToDb();
+
+            Parent toTreatmentParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardUconDataVisualization.fxml"));
+            Scene toTreatmentScene = new Scene(toTreatmentParent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(toTreatmentScene);
+            window.show();
+            window.centerOnScreen();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
     }
+    
+    
+    
 
 // TIME LIMITED PARADIGM START
     public void clickTLContinuous() {
