@@ -64,8 +64,7 @@ public class DashboardSymptomEvaluationController implements Initializable {
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(toTreatmentScene);
             window.show();
-            window.setX(300);    // De her to linjer gor at næste scene ikke starter uden for windows skærmen
-            window.setY(100);
+            window.centerOnScreen();
 
         } catch (Exception g) {
             System.out.println("Error btnSaveFunc");
