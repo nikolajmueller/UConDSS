@@ -35,34 +35,30 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 public class SearchCreateViewController implements Initializable {
-    
+
     @FXML
     private TextField keywordTextField;
-    
+
     @FXML
     private TableView<PatientsCprList> tableView_CPR;
-    
+
     @FXML
     private TableColumn<PatientsCprList, String> col_CPR;
-    
-    @FXML
-    private CheckBox checkBox_Male, checkBox_Female;
-    
+
     @FXML
     private Button btnSavePatient, button_logout;
-    
+
     @FXML
     private TextField field_cpr, field_name;
-    
-    @FXML
-    private Label label_toSavePatientFillInBlancFields;
+
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
+        determineGender();
         DatabaseHandler.readPatient();
         ObservableList<PatientsCprList> ob = DatabaseHandler.ob;
 
@@ -73,16 +69,16 @@ public class SearchCreateViewController implements Initializable {
 
         //Initial filtered list
         FilteredList<PatientsCprList> filteredData = new FilteredList<>(ob, b -> true);
-        
+
         keywordTextField.textProperty().addListener((Observable, oldValue, newValue) -> {
             filteredData.setPredicate(PatientsCprList -> {
                 // If no search value then display all records or whatever records it current have. No change
                 if (newValue.isEmpty() || newValue == null) {  // den gider ikke:   || newValue.isBlank()
                     return true;
                 }
-                
+
                 String searchKeyword = newValue.toLowerCase();
-                
+
                 if (PatientsCprList.getCprNumber().toLowerCase().indexOf(searchKeyword) > -1) {
                     return true; // Means we found a match in CPR
                 } else {
@@ -90,14 +86,14 @@ public class SearchCreateViewController implements Initializable {
                 }
             });
         });
-        
+
         SortedList<PatientsCprList> sortedData = new SortedList<>(filteredData);
 
         // Bind sorted result with TableView
         sortedData.comparatorProperty().bind(tableView_CPR.comparatorProperty());
-        
+
         tableView_CPR.setItems(sortedData);
-        
+
 // Sikre at der kun kan indtastes tal i CPR felt
         field_cpr.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -108,7 +104,7 @@ public class SearchCreateViewController implements Initializable {
                 }
             }
         });
-        
+
 // sikre at der ikke kommer mere end 10 tal i CPR felt
         field_cpr.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -120,22 +116,22 @@ public class SearchCreateViewController implements Initializable {
                 }
             }
         });
-        
+
     }
 
     // select row in tableView_patientID and display selected value in txtField_series
     public void displaySelectedCprNumber(MouseEvent event) {
-        
+
         Main.patient = tableView_CPR.getSelectionModel().getSelectedItem();
-        
+
         if (Main.patient == null) {
-            
+
         } else {
             keywordTextField.setText(Main.patient.getCprNumber());
         }
-        
+
     }
-    
+
     public void btnToDashboard(ActionEvent event) throws IOException {
         Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardSymptomEvaluation.fxml"));
         Scene toDashboardScene = new Scene(toDashboardParent);
@@ -151,14 +147,8 @@ public class SearchCreateViewController implements Initializable {
             patient.setCprNumber(field_cpr.getText());
             patient.setName(field_name.getText());
             patient.setAge(calculateAge(patient.getCprNumber()));
+            determineGender();
 
-            // if-else statment sørger for, at der kun kan vælges enten Male eller Female
-            if (checkBox_Male.isSelected()) {
-                patient.setGender("Male");
-            } else if (checkBox_Female.isSelected()) {
-                patient.setGender("Female");
-            }
-            
             if (!field_cpr.getText().matches("\\d{10}")) {
                 JOptionPane.showMessageDialog(null, "Invalid CPR number.");
             } else if (field_name.getText().isEmpty()) {
@@ -166,9 +156,9 @@ public class SearchCreateViewController implements Initializable {
             } else {
                 if (patient.getAge() != 0) {
                     DatabaseHandler.savePatientToDb(patient.getCprNumber(),
-                        patient.getName(),
-                        patient.getAge(),
-                        patient.getGender());
+                            patient.getName(),
+                            patient.getAge(),
+                            patient.getGender());
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid CPR");
                 }
@@ -177,19 +167,7 @@ public class SearchCreateViewController implements Initializable {
             JOptionPane.showMessageDialog(null, f);
         }
     }
-    
-    public void checkBoxGenderMale() {    // vælger køn = male vha. checkBox
-        if (checkBox_Male.isSelected()) {
-            checkBox_Female.setSelected(false);
-        }
-    }
-    
-    public void checkBoxGenderFemale() {    // vælger køn = female vha. checkBox
-        if (checkBox_Female.isSelected()) {
-            checkBox_Male.setSelected(false);
-        }
-    }
-    
+
     public int calculateAge(String cpr) {
         int patientAge = 0;
         try {
@@ -210,15 +188,24 @@ public class SearchCreateViewController implements Initializable {
             String patientBirthYearStr = patientBirthYear
                     + "-" + cpr.substring(2, 4)
                     + "-" + cpr.substring(0, 2);
-            
+
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate dateTime = LocalDate.parse(patientBirthYearStr, dtf);
-            
+
             patientAge = Period.between(dateTime, currentDate).getYears();
         } catch (Exception e) {
             //JOptionPane.showMessageDialog(null, "Invalid CPR number.");
         }
         return patientAge;
     }
-    
+
+// funktion til at bestemme køn ud fra sidste cifer i CPR
+    public void determineGender() {
+        if (Integer.parseInt(patient.getCprNumber().substring(9, 10)) % 2 == 0) {
+            patient.setGender("Female");
+        } else {
+            patient.setGender("Male");
+        }
+    }
+
 }
