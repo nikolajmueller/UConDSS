@@ -49,17 +49,3 @@
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em; 
 }
-
-.check-box .box {
-    -fx-background-color: white;
-    -fx-border-color:grey;
-    -fx-border-radius:3px; 
-}
-
-.check-box:selected .mark {
-    -fx-background-color: white;
-}
-
-.check-box:selected .box {
-    -fx-background-color: #28a3f4;
-}
