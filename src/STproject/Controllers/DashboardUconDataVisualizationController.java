@@ -74,6 +74,11 @@ public class DashboardUconDataVisualizationController implements Initializable {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+    
+    
+    
+    
+    
 
 
 }

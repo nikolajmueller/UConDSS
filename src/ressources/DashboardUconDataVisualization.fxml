@@ -5,17 +5,27 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="643.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardUconDataVisualizationController">
+<AnchorPane id="AnchorPane" prefHeight="744.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardUconDataVisualizationController">
     <stylesheets>
         <URL value="@DashboardUconDataVisualizationCss.css" />
     </stylesheets>
    <children>
-      <ListView fx:id="listView_Urge" focusTraversable="false" layoutX="35.0" layoutY="93.0" mouseTransparent="true" prefHeight="374.0" prefWidth="450.0" />
-      <ListView fx:id="listView_TimeLimited" focusTraversable="false" layoutX="513.0" layoutY="93.0" mouseTransparent="true" prefHeight="374.0" prefWidth="450.0" />
-      <Label layoutX="178.0" layoutY="56.0" text="Urge activations" />
-      <Label layoutX="675.0" layoutY="56.0" text="Time limited" />
+      <ListView fx:id="listView_Urge" focusTraversable="false" layoutX="36.0" layoutY="66.0" mouseTransparent="true" prefHeight="374.0" prefWidth="450.0" />
+      <ListView fx:id="listView_TimeLimited" focusTraversable="false" layoutX="514.0" layoutY="66.0" mouseTransparent="true" prefHeight="374.0" prefWidth="450.0" />
+      <Label layoutX="179.0" layoutY="29.0" text="Urge activations" />
+      <Label layoutX="676.0" layoutY="29.0" text="Time limited" />
       <Label layoutX="62.0" layoutY="493.0" text="Average urge activations:" />
       <TextField fx:id="average_Urge" editable="false" focusTraversable="false" layoutX="336.0" layoutY="493.0" mouseTransparent="true" prefHeight="31.0" prefWidth="57.0" />
+      <TextField editable="false" focusTraversable="false" layoutX="45.0" layoutY="449.0" mouseTransparent="true" prefHeight="35.0" prefWidth="432.0" promptText="MSG_BUTTON_FUNCTION_RELEASED = On-demand button has been pressed">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </TextField>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" height="176.0" layoutX="36.0" layoutY="547.0" opacity="0.2" stroke="BLACK" strokeType="INSIDE" width="450.0" />
+      <Label layoutX="209.0" layoutY="553.0" text="Treatment" />
+      <Label layoutX="190.0" layoutY="611.0" text="213" />
    </children>
 </AnchorPane>

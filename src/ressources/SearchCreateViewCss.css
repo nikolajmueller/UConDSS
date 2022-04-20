@@ -27,11 +27,8 @@
     -fx-background-color: transparent;
 }
 
-/* Spaltenköpfe
-    Struktur column-header-background -> column-header */
-
 .table-view .column-header-background{
-    -fx-background-color: linear-gradient(#131313 0%, #424141 100%);
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
 }
 
 .table-view .column-header-background .label{
@@ -44,11 +41,11 @@
 }
 
 .table-view .table-cell{
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .table-row-cell{
-    -fx-background-color: -fx-table-cell-border-color, #616161;
+    -fx-background-color: -fx-table-cell-border-color, transparent;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em; 
 }
