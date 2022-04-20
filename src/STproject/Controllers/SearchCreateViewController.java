@@ -1,6 +1,7 @@
 package STproject.Controllers;
 
 import STproject.Main.Main;
+import static STproject.Main.Main.patient;
 import STproject.Models.DatabaseHandler;
 import STproject.Models.PatientsCprList;
 import java.io.IOException;
@@ -8,10 +9,15 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.Observable;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -29,25 +35,25 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 public class SearchCreateViewController implements Initializable {
-
+    
     @FXML
     private TextField keywordTextField;
-
+    
     @FXML
     private TableView<PatientsCprList> tableView_CPR;
-
+    
     @FXML
     private TableColumn<PatientsCprList, String> col_CPR;
-
+    
     @FXML
     private CheckBox checkBox_Male, checkBox_Female;
-
+    
     @FXML
     private Button btnSavePatient, button_logout;
-
+    
     @FXML
-    private TextField field_cpr, field_name, field_age;
-
+    private TextField field_cpr, field_name;
+    
     @FXML
     private Label label_toSavePatientFillInBlancFields;
 
@@ -56,7 +62,7 @@ public class SearchCreateViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
         DatabaseHandler.readPatient();
         ObservableList<PatientsCprList> ob = DatabaseHandler.ob;
 
@@ -67,16 +73,16 @@ public class SearchCreateViewController implements Initializable {
 
         //Initial filtered list
         FilteredList<PatientsCprList> filteredData = new FilteredList<>(ob, b -> true);
-
+        
         keywordTextField.textProperty().addListener((Observable, oldValue, newValue) -> {
             filteredData.setPredicate(PatientsCprList -> {
                 // If no search value then display all records or whatever records it current have. No change
                 if (newValue.isEmpty() || newValue == null) {  // den gider ikke:   || newValue.isBlank()
                     return true;
                 }
-
+                
                 String searchKeyword = newValue.toLowerCase();
-
+                
                 if (PatientsCprList.getCprNumber().toLowerCase().indexOf(searchKeyword) > -1) {
                     return true; // Means we found a match in CPR
                 } else {
@@ -84,31 +90,52 @@ public class SearchCreateViewController implements Initializable {
                 }
             });
         });
-
+        
         SortedList<PatientsCprList> sortedData = new SortedList<>(filteredData);
 
         // Bind sorted result with TableView
         sortedData.comparatorProperty().bind(tableView_CPR.comparatorProperty());
-
+        
         tableView_CPR.setItems(sortedData);
-
+        
+// Sikre at der kun kan indtastes tal i CPR felt
+        field_cpr.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                    String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    field_cpr.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+        
+// sikre at der ikke kommer mere end 10 tal i CPR felt
+        field_cpr.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                    String newValue) {
+                if (field_cpr.getText().length() > 10) {
+                    String s = field_cpr.getText().substring(0, 10);
+                    field_cpr.setText(s);
+                }
+            }
+        });
+        
     }
 
     // select row in tableView_patientID and display selected value in txtField_series
-    @FXML
     public void displaySelectedCprNumber(MouseEvent event) {
-
+        
         Main.patient = tableView_CPR.getSelectionModel().getSelectedItem();
-
+        
         if (Main.patient == null) {
-
+            
         } else {
             keywordTextField.setText(Main.patient.getCprNumber());
         }
-
+        
     }
-
-    @FXML
+    
     public void btnToDashboard(ActionEvent event) throws IOException {
         Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardSymptomEvaluation.fxml"));
         Scene toDashboardScene = new Scene(toDashboardParent);
@@ -119,60 +146,79 @@ public class SearchCreateViewController implements Initializable {
     }
 
     // CREATE PATIENT
-    @FXML
-    public void btnSavePatientFunc(String cprNumber) {      //funktion til knappen save patient
+    public void btnSavePatientFunc() {      //funktion til knappen save patient
         try {  // gemmer værdier i @FXML-boksene i patient
-            // DatabaseHandler.savePatientToDb("181250007", "Name", 0, "Gender"); // Bruges kun til at tjekke forbindelsen til DB
-            Main.patient.setCprNumber(field_cpr.getText());
-            Main.patient.setName(field_name.getText());
-            // Main.patient.setAge(Integer.parseInt(field_age.getText()));
-            // Main.patient.setAge(calculateAge(Integer.parseInt(field_cpr.getText()));    // undersøg hvordan den kan regne alder - evt. ny funk.
-            //Main.patient.setAge(convertCPRtoAge(field_cpr.setText(patientAge)));
+            patient.setCprNumber(field_cpr.getText());
+            patient.setName(field_name.getText());
+            patient.setAge(calculateAge(patient.getCprNumber()));
 
             // if-else statment sørger for, at der kun kan vælges enten Male eller Female
             if (checkBox_Male.isSelected()) {
-                Main.patient.setGender("Male");
+                patient.setGender("Male");
             } else if (checkBox_Female.isSelected()) {
-                Main.patient.setGender("Female");
+                patient.setGender("Female");
             }
-            /*
-            if (field_cpr.getText().isEmpty() == false
-                    && field_name.getText().isEmpty() == false
-                    && cprNumber.matches("\\d{10}") == true) {
-                        Main.patient.setCprNumber(Integer.parseInt(field_cpr.getText()));
-                    }
-            else if (cprNumber.matches("\\d{10}") == false) {
-                label_toSavePatientFillInBlancFields.setText("Incorrect CPR");
-            }
-            /* if (validateCprLength = true) {
-
-                    } else {
-                        validateCprLength = false;
-                        label_toSavePatientFillInBlancFields.setText("Incorrect CPR");
+            
+            if (!field_cpr.getText().matches("\\d{10}")) {
+                JOptionPane.showMessageDialog(null, "Invalid CPR number.");
+            } else if (field_name.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Fill in name");
             } else {
-                label_toSavePatientFillInBlancFields.setText("Fill in blanc fields");
-            } */
-
-            DatabaseHandler.savePatientToDb(Main.patient.getCprNumber(),
-                    Main.patient.getName(),
-                    Main.patient.getAge(),
-                    Main.patient.getGender());
-
+                if (patient.getAge() != 0) {
+                    /*DatabaseHandler.savePatientToDb(patient.getCprNumber(),
+                        patient.getName(),
+                        patient.getAge(),
+                        patient.getGender());*/
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid CPR");
+                }
+            }
         } catch (Exception f) {
             JOptionPane.showMessageDialog(null, f);
         }
     }
-
+    
     public void checkBoxGenderMale() {    // vælger køn = male vha. checkBox
         if (checkBox_Male.isSelected()) {
             checkBox_Female.setSelected(false);
         }
     }
-
+    
     public void checkBoxGenderFemale() {    // vælger køn = female vha. checkBox
         if (checkBox_Female.isSelected()) {
             checkBox_Male.setSelected(false);
         }
     }
+    
+    public int calculateAge(String cpr) {
+        int patientAge = 0;
+        try {
+            String CPRInput = cpr.substring(4, 6);
+            int CPR = Integer.parseInt(CPRInput);
+            int patientBirthYear = CPR;
+            LocalDate currentDate = LocalDate.now();
+            int currentYear = (currentDate.getYear() - 2000);
 
+// find birthYear (MAX 100 år)
+            if (CPR <= currentYear) {
+                patientBirthYear = CPR + 2000;
+            } else if (CPR > currentYear) {
+                patientBirthYear = CPR + 1900;
+            }
+
+// FORMAT yyyy-MM-dd:  eksempel 1964-02-05
+            String patientBirthYearStr = patientBirthYear
+                    + "-" + cpr.substring(2, 4)
+                    + "-" + cpr.substring(0, 2);
+            
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate dateTime = LocalDate.parse(patientBirthYearStr, dtf);
+            
+            patientAge = Period.between(dateTime, currentDate).getYears();
+        } catch (Exception e) {
+            //JOptionPane.showMessageDialog(null, "Invalid CPR number.");
+        }
+        return patientAge;
+    }
+    
 }
