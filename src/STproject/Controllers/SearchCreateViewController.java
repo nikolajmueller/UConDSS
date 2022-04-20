@@ -165,10 +165,10 @@ public class SearchCreateViewController implements Initializable {
                 JOptionPane.showMessageDialog(null, "Fill in name");
             } else {
                 if (patient.getAge() != 0) {
-                    /*DatabaseHandler.savePatientToDb(patient.getCprNumber(),
+                    DatabaseHandler.savePatientToDb(patient.getCprNumber(),
                         patient.getName(),
                         patient.getAge(),
-                        patient.getGender());*/
+                        patient.getGender());
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid CPR");
                 }
