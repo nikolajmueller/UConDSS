@@ -59,13 +59,18 @@ public class DashboardUconDataVisualizationController implements Initializable {
 
                     String trimmedData = splitted[i].substring(18, 75);
                     String trimmedData1 = trimmedData.trim();  // trim() fjerner alle "whitespace" tilsidst i hver String
-
+                    
                     if (trimmedData1.endsWith("MSG_BUTTON_FUNCTION_RELEASED")) {
                         
                         listView_Urge.getItems().add(trimmedData1);
                         
-                        average_Urge.setText("" + trimmedData1.length());      // Den her tager det forkerte gennemsnit lige nu
+                        
+                        //average_Urge.setText();      // Den her tager det forkerte gennemsnit lige nu
                     }
+                    
+                    
+                    
+                    
                 }
             }
 

@@ -6,18 +6,16 @@
     -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 }
 
-
 .text-field {
     -fx-background-color:   transparent;
     -fx-border-color:  linear-gradient(#61a2b1, #2A5058);
-    -fx-border-width:  2px 2px 2px 2px;
+    -fx-border-width:  0px 0px 2px 0px;
 }
 
-.list-cell { -fx-text-fill: black; /* 5 */ }
+.list-cell { 
+    -fx-text-fill: black;
+}
 
-.list-cell:odd { -fx-background-color:transparent;}
-
-.list-cell:filled:hover { 
-    -fx-background-color: #00f; /* 2 */
-    -fx-text-fill: white; /* 5 */
+.list-cell:odd { 
+    -fx-background-color:transparent;
 }

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="557.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardUconDataVisualizationController">
     <stylesheets>
@@ -18,10 +19,10 @@
       <Label layoutX="676.0" layoutY="29.0" text="Time limited" />
       <Label layoutX="62.0" layoutY="493.0" text="Average urge activations:" />
       <TextField fx:id="average_Urge" editable="false" focusTraversable="false" layoutX="336.0" layoutY="493.0" mouseTransparent="true" prefHeight="31.0" prefWidth="57.0" />
-      <TextField editable="false" focusTraversable="false" layoutX="45.0" layoutY="449.0" mouseTransparent="true" prefHeight="35.0" prefWidth="432.0" promptText="MSG_BUTTON_FUNCTION_RELEASED = On-demand button has been pressed">
+      <Text layoutX="55.0" layoutY="459.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MSG_BUTTON_FUNCTION_RELEASED = On-demand button has been pressed">
          <font>
             <Font size="12.0" />
          </font>
-      </TextField>
+      </Text>
    </children>
 </AnchorPane>
