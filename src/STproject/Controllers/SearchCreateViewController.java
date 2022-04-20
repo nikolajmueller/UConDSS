@@ -46,9 +46,6 @@ public class SearchCreateViewController implements Initializable {
     private TableColumn<PatientsCprList, String> col_CPR;
     
     @FXML
-    private CheckBox checkBox_Male, checkBox_Female;
-    
-    @FXML
     private Button btnSavePatient, button_logout;
     
     @FXML
@@ -152,12 +149,6 @@ public class SearchCreateViewController implements Initializable {
             patient.setName(field_name.getText());
             patient.setAge(calculateAge(patient.getCprNumber()));
 
-            // if-else statment sørger for, at der kun kan vælges enten Male eller Female
-            if (checkBox_Male.isSelected()) {
-                patient.setGender("Male");
-            } else if (checkBox_Female.isSelected()) {
-                patient.setGender("Female");
-            }
             
             if (!field_cpr.getText().matches("\\d{10}")) {
                 JOptionPane.showMessageDialog(null, "Invalid CPR number.");
@@ -178,17 +169,6 @@ public class SearchCreateViewController implements Initializable {
         }
     }
     
-    public void checkBoxGenderMale() {    // vælger køn = male vha. checkBox
-        if (checkBox_Male.isSelected()) {
-            checkBox_Female.setSelected(false);
-        }
-    }
-    
-    public void checkBoxGenderFemale() {    // vælger køn = female vha. checkBox
-        if (checkBox_Female.isSelected()) {
-            checkBox_Male.setSelected(false);
-        }
-    }
     
     public int calculateAge(String cpr) {
         int patientAge = 0;
