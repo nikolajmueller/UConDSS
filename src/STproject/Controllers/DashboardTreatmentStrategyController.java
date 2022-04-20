@@ -59,7 +59,7 @@ public class DashboardTreatmentStrategyController implements Initializable {
         try {
             DatabaseHandler.saveTreatmentToDb();
 
-            Parent toTreatmentParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardUconDataVisualization.fxml"));
+            Parent toTreatmentParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardTreatmentEvaluation.fxml"));
             Scene toTreatmentScene = new Scene(toTreatmentParent);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(toTreatmentScene);

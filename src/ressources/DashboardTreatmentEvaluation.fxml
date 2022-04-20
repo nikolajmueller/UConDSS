@@ -25,10 +25,10 @@
       <Label layoutX="291.0" layoutY="182.0" text="Max intensity:" />
       <Label layoutX="298.0" layoutY="138.0" />
       <Label layoutX="50.0" layoutY="183.0" text="Max intensity:" />
-      <TextField editable="false" focusTraversable="false" layoutX="49.0" layoutY="204.0" mouseTransparent="true" prefHeight="35.0" prefWidth="202.0" />
-      <TextField editable="false" focusTraversable="false" layoutX="49.0" layoutY="145.0" mouseTransparent="true" prefHeight="35.0" prefWidth="202.0" />
-      <TextField editable="false" focusTraversable="false" layoutX="291.0" layoutY="203.0" mouseTransparent="true" prefHeight="35.0" prefWidth="202.0" />
-      <TextField editable="false" focusTraversable="false" layoutX="291.0" layoutY="144.0" mouseTransparent="true" prefHeight="35.0" prefWidth="202.0" />
+      <TextField fx:id="textField_TL_MaxIntensity" editable="false" focusTraversable="false" layoutX="49.0" layoutY="204.0" mouseTransparent="true" prefHeight="35.0" prefWidth="202.0" />
+      <TextField fx:id="textField_TL_SessionTime" editable="false" focusTraversable="false" layoutX="49.0" layoutY="145.0" mouseTransparent="true" prefHeight="35.0" prefWidth="202.0" />
+      <TextField fx:id="textField_Urge_MaxIntensity" editable="false" focusTraversable="false" layoutX="291.0" layoutY="203.0" mouseTransparent="true" prefHeight="35.0" prefWidth="202.0" />
+      <TextField fx:id="textField_Urge_SessionTime" editable="false" focusTraversable="false" layoutX="291.0" layoutY="144.0" mouseTransparent="true" prefHeight="35.0" prefWidth="202.0" />
       <Label layoutX="291.0" layoutY="123.0" text="Session Time:" />
       <Button layoutX="609.0" layoutY="177.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="202.0" text="Save correct/incorret use" />
       <Label layoutX="609.0" layoutY="57.0" prefHeight="27.0" prefWidth="183.0" text="Correct use of UCon?:">
@@ -48,7 +48,7 @@
       </Text>
       <Line layoutX="276.0" layoutY="257.0" startY="-172.0" />
       <Line endX="375.0" layoutX="141.0" layoutY="84.0" startX="-105.0" />
-      <RadioButton layoutX="610.0" layoutY="135.0" mnemonicParsing="false" text="Used incorret" />
-      <RadioButton layoutX="609.0" layoutY="95.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="118.0" text="Used corret" />
+      <RadioButton fx:id="radioBtn_UsedIncorrect" layoutX="610.0" layoutY="135.0" mnemonicParsing="false" onAction="#clickRadioBtnIncorret" text="Used incorret" />
+      <RadioButton fx:id="radioBtn_UsedCorrect" layoutX="609.0" layoutY="95.0" mnemonicParsing="false" onAction="#clickRadioBtnCorret" prefHeight="21.0" prefWidth="118.0" text="Used corret" />
    </children>
 </AnchorPane>
