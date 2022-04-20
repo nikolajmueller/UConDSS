@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public static PatientsCprList patient = new PatientsCprList();
+    public static Patient patient = new Patient();
     public static Symptoms symptoms = new Symptoms();
     public static TreatmentSetting treatmentSetting = new TreatmentSetting();
 
