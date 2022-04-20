@@ -5,10 +5,9 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="744.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardUconDataVisualizationController">
+<AnchorPane id="AnchorPane" prefHeight="557.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardUconDataVisualizationController">
     <stylesheets>
         <URL value="@DashboardUconDataVisualizationCss.css" />
     </stylesheets>
@@ -24,8 +23,5 @@
             <Font size="12.0" />
          </font>
       </TextField>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" height="176.0" layoutX="36.0" layoutY="547.0" opacity="0.2" stroke="BLACK" strokeType="INSIDE" width="450.0" />
-      <Label layoutX="209.0" layoutY="553.0" text="Treatment" />
-      <Label layoutX="190.0" layoutY="611.0" text="213" />
    </children>
 </AnchorPane>
