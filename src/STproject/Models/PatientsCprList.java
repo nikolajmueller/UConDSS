@@ -8,6 +8,9 @@ package STproject.Models;
 public class PatientsCprList {
 
     private String cprNumber;
+    private String name;
+    private int age;
+    private String gender;
 
     public PatientsCprList(String cprNumber) {
         this.cprNumber = cprNumber;
@@ -20,8 +23,32 @@ public class PatientsCprList {
         return cprNumber;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
     public void setCprNumber(String cprNumber) {
         this.cprNumber = cprNumber;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
 }

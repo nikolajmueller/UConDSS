@@ -10,39 +10,40 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.SearchCreateViewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.SearchCreateViewController">
     <stylesheets>
         <URL value="@SearchCreateView.css" />
     </stylesheets>
    <children>
       <AnchorPane prefHeight="398.0" prefWidth="305.0">
          <children>
-            <Label fx:id="label_search" layoutX="86.0" layoutY="58.0" text="Search for patient">
+            <Label layoutX="86.0" layoutY="58.0" text="Search for patient">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></Label>
-            <TextField fx:id="searchField" layoutX="72.0" layoutY="101.0" promptText="Enter patient CPR" />
-            <TableView fx:id="tableview_patient" layoutX="38.0" layoutY="139.0" prefHeight="200.0" prefWidth="230.0">
+            <TextField fx:id="keywordTextField" layoutX="72.0" layoutY="101.0" promptText="Enter patient CPR" />
+            <TableView fx:id="tableView_CPR" layoutX="38.0" layoutY="139.0" prefHeight="200.0" prefWidth="230.0">
               <columns>
-                <TableColumn fx:id="col_cpr" prefWidth="227.0" text="CPR" />
+                <TableColumn fx:id="col_CPR" prefWidth="227.0" text="CPR" />
               </columns>
             </TableView>
+            <Button layoutX="121.0" layoutY="359.0" mnemonicParsing="false" onAction="#btnToDashboard" text="KNAP" />
          </children>
       </AnchorPane>
     <AnchorPane layoutX="309.0" minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="292.0">
          <children>
-            <Button fx:id="button_savePatient" layoutX="192.0" layoutY="357.0" mnemonicParsing="false" onAction="#btnSavePatient" text="Save patient" />
-            <Label fx:id="label_newPatient" layoutX="69.0" layoutY="62.0" text="Register new patient">
+            <Button fx:id="btnSavePatient" layoutX="192.0" layoutY="357.0" mnemonicParsing="false" text="Save patient" />
+            <Label layoutX="69.0" layoutY="62.0" text="Register new patient">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font></Label>
             <CheckBox fx:id="checkBox_Male" layoutX="95.0" layoutY="258.0" mnemonicParsing="false" onAction="#checkBoxGenderMale" text="Male" />
             <CheckBox fx:id="checkBox_Female" layoutX="174.0" layoutY="258.0" mnemonicParsing="false" onAction="#checkBoxGenderFemale" text="Female" />
-            <Label fx:id="label_cpr" layoutX="28.0" layoutY="123.0" text="CPR:" />
+            <Label layoutX="28.0" layoutY="123.0" text="CPR:" />
             <TextField fx:id="field_cpr" layoutX="86.0" layoutY="118.0" />
-            <Label fx:id="label_name" layoutX="24.0" layoutY="169.0" text="Name:" />
-            <Label fx:id="lable_age" layoutX="29.0" layoutY="215.0" text="Age:" />
-            <Label fx:id="label_gender" layoutX="20.0" layoutY="258.0" text="Gender:" />
+            <Label layoutX="24.0" layoutY="169.0" text="Name:" />
+            <Label layoutX="29.0" layoutY="215.0" text="Age:" />
+            <Label layoutX="20.0" layoutY="258.0" text="Gender:" />
             <TextField fx:id="field_name" layoutX="86.0" layoutY="164.0" />
             <TextField fx:id="field_age" layoutX="86.0" layoutY="210.0" />
             <Button fx:id="button_logout" layoutX="223.0" layoutY="14.0" mnemonicParsing="false" text="Log out" />

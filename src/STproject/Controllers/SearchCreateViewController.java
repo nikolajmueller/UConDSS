@@ -22,12 +22,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 public class SearchCreateViewController implements Initializable {
 
@@ -39,6 +38,18 @@ public class SearchCreateViewController implements Initializable {
 
     @FXML
     private TableColumn<PatientsCprList, String> col_CPR;
+
+    @FXML
+    private CheckBox checkBox_Male, checkBox_Female;
+
+    @FXML
+    private Button btnSavePatient, button_logout;
+
+    @FXML
+    private TextField field_cpr, field_name, field_age;
+
+    @FXML
+    private Label label_toSavePatientFillInBlancFields;
 
     /**
      * Initializes the controller class.
@@ -94,9 +105,9 @@ public class SearchCreateViewController implements Initializable {
         } else {
             keywordTextField.setText(Main.patient.getCprNumber());
         }
-        
+
     }
-    
+
     @FXML
     public void btnToDashboard(ActionEvent event) throws IOException {
         Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardSymptomEvaluation.fxml"));
@@ -105,6 +116,63 @@ public class SearchCreateViewController implements Initializable {
         window.setScene(toDashboardScene);
         window.centerOnScreen();
         window.show();
+    }
+
+    // CREATE PATIENT
+    @FXML
+    public void btnSavePatientFunc(String cprNumber) {      //funktion til knappen save patient
+        try {  // gemmer værdier i @FXML-boksene i patient
+            // DatabaseHandler.savePatientToDb("181250007", "Name", 0, "Gender"); // Bruges kun til at tjekke forbindelsen til DB
+            Main.patient.setCprNumber(field_cpr.getText());
+            Main.patient.setName(field_name.getText());
+            // Main.patient.setAge(Integer.parseInt(field_age.getText()));
+            // Main.patient.setAge(calculateAge(Integer.parseInt(field_cpr.getText()));    // undersøg hvordan den kan regne alder - evt. ny funk.
+            //Main.patient.setAge(convertCPRtoAge(field_cpr.setText(patientAge)));
+
+            // if-else statment sørger for, at der kun kan vælges enten Male eller Female
+            if (checkBox_Male.isSelected()) {
+                Main.patient.setGender("Male");
+            } else if (checkBox_Female.isSelected()) {
+                Main.patient.setGender("Female");
+            }
+            /*
+            if (field_cpr.getText().isEmpty() == false
+                    && field_name.getText().isEmpty() == false
+                    && cprNumber.matches("\\d{10}") == true) {
+                        Main.patient.setCprNumber(Integer.parseInt(field_cpr.getText()));
+                    }
+            else if (cprNumber.matches("\\d{10}") == false) {
+                label_toSavePatientFillInBlancFields.setText("Incorrect CPR");
+            }
+            /* if (validateCprLength = true) {
+
+                    } else {
+                        validateCprLength = false;
+                        label_toSavePatientFillInBlancFields.setText("Incorrect CPR");
+            } else {
+                label_toSavePatientFillInBlancFields.setText("Fill in blanc fields");
+            } */
+
+            DatabaseHandler.savePatientToDb(Main.patient.getCprNumber(),
+                    Main.patient.getName(),
+                    Main.patient.getAge(),
+                    Main.patient.getGender());
+
+        } catch (Exception f) {
+            JOptionPane.showMessageDialog(null, f);
+        }
+    }
+
+    public void checkBoxGenderMale() {    // vælger køn = male vha. checkBox
+        if (checkBox_Male.isSelected()) {
+            checkBox_Female.setSelected(false);
+        }
+    }
+
+    public void checkBoxGenderFemale() {    // vælger køn = female vha. checkBox
+        if (checkBox_Female.isSelected()) {
+            checkBox_Male.setSelected(false);
+        }
     }
 
 }

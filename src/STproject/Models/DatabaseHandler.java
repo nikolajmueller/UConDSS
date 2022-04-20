@@ -58,6 +58,39 @@ public class DatabaseHandler {
         return null;
     }
 
+    public static void savePatientToDb(String CPR, String name, int age, String gender) {
+        try {
+            // Undersøger om CPR er registreret i DB
+            Connection conn = DatabaseHandler.getConnection();  // forbinder til Db-handler med navnet conn
+            PreparedStatement psCheckIfExists = conn.prepareStatement("SELECT COUNT(*) FROM PatientList AS countrow WHERE CPR = ?");
+            psCheckIfExists.setString(1, CPR);
+            ResultSet rsIfExists = psCheckIfExists.executeQuery();
+            rsIfExists.next();
+            int countToRow = rsIfExists.getInt(1);
+
+            // Hvis CPR ikke er registreret, gemmes patienten i BD
+            if (countToRow == 0) {
+                PreparedStatement psCreatePatient = conn.prepareStatement("INSERT INTO PatientList"
+                        + " (CPR, Name, Age, Gender)"
+                        + " VALUES (?, ?, ?, ?)");
+                psCreatePatient.setString(1, CPR);
+                psCreatePatient.setString(2, name);
+                psCreatePatient.setInt(3, age);
+                psCreatePatient.setString(4, gender);
+                psCreatePatient.execute();
+                conn.close();     // lukker connection til DB
+            } // Hvis CPR er registreret, vises fejlmeddelelse
+            else {
+                System.out.println("error 123");
+                //JOptionPane.showMessageDialog(null, "Patient already registered");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+    }
+
     public static void saveSymptonsToDb(String patientCPR, String a, int b, int c, int d, int e, String f) {
         try {
             Connection conn = DatabaseHandler.getConnection();
