@@ -143,7 +143,7 @@ public class SearchCreateViewController implements Initializable {
     }
 
     // CREATE PATIENT
-    public void btnSavePatientFunc() {      //funktion til knappen save patient
+    public void btnSavePatientFunc(ActionEvent event) {      //funktion til knappen save patient
         try {  // gemmer værdier i @FXML-boksene i patient
             patient.setCprNumber(field_cpr.getText());
             patient.setName(field_name.getText());
@@ -166,6 +166,16 @@ public class SearchCreateViewController implements Initializable {
             }
         } catch (Exception f) {
             JOptionPane.showMessageDialog(null, f);
+        }
+        try {
+            Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardSymptomEvaluation.fxml"));
+            Scene toDashboardScene = new Scene(toDashboardParent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(toDashboardScene);
+            window.centerOnScreen();
+            window.show();
+        } catch (Exception r) {
+            JOptionPane.showMessageDialog(null, r);
         }
     }
 
