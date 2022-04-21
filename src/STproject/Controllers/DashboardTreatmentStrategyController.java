@@ -53,7 +53,6 @@ public class DashboardTreatmentStrategyController implements Initializable {
 // sæt symptoms visible(true)
     }
 
-    
     public void clickBtnSave(ActionEvent event) {
 
         try {
@@ -71,9 +70,6 @@ public class DashboardTreatmentStrategyController implements Initializable {
         }
 
     }
-    
-    
-    
 
 // TIME LIMITED PARADIGM START
     public void clickTLContinuous() {
@@ -176,6 +172,11 @@ public class DashboardTreatmentStrategyController implements Initializable {
         UrgeDeactivated.setSelected(true);
         treatmentSetting.setUrgeSetting("Deactivated");
 
+        Urge5.setSelected(false);
+        Urge4.setSelected(false);
+        Urge3.setSelected(false);
+        Urge2.setSelected(false);
+        Urge1.setSelected(false);
         Urge5.setDisable(true);
         Urge4.setDisable(true);
         Urge3.setDisable(true);
