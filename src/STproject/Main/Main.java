@@ -17,6 +17,7 @@ public class Main extends Application {
     public static Patient patient = new Patient();
     public static Symptoms symptoms = new Symptoms();
     public static TreatmentSetting treatmentSetting = new TreatmentSetting();
+    public static SymptomEffect symptomEffect = new SymptomEffect();
 
     public static void main(String[] args) {
         launch(args);
@@ -24,7 +25,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/ressources/SearchCreateView.fxml")); // /ressources/LoginView.fxml
+        Parent root = FXMLLoader.load(getClass().getResource("/ressources/DashboardEffectivenessScore.fxml")); // /ressources/LoginView.fxml
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
