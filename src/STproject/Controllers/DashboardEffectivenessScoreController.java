@@ -46,10 +46,9 @@ public class DashboardEffectivenessScoreController implements Initializable {
         seriesPrevious.setName("Pre symptoms");
         seriesPrevious.getData().add(new XYChart.Data("IEs", symptoms.getIEsPerDay()));
         seriesPrevious.getData().add(new XYChart.Data("UEs", symptoms.getUEsPerDay()));
-        seriesPrevious.getData().add(new XYChart.Data("Urination", symptoms.getIEsPerDay()));
-        seriesPrevious.getData().add(new XYChart.Data("Nocturia Ep", symptoms.getIEsPerDay()));
+        seriesPrevious.getData().add(new XYChart.Data("Urination", symptoms.getUrinationPerDay()));
+        seriesPrevious.getData().add(new XYChart.Data("Nocturia Ep", symptoms.getNocturiaEpisodes()));
         barChart.setAnimated(false);
-
 
         barChart.getData().addAll(seriesPrevious);
     }

@@ -5,8 +5,7 @@
  */
 package STproject.Models;
 
-import STproject.Main.Main;
-import static STproject.Main.Main.treatmentSetting;
+import static STproject.Main.Main.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -91,13 +90,13 @@ public class DatabaseHandler {
 
     }
 
-    public static void saveSymptonsToDb(String patientCPR, String a, int b, int c, int d, int e, String f) {
+    public static void saveSymptonsToDb() {
         try {
             Connection conn = DatabaseHandler.getConnection();
 
 // check om CPR allerede har registeret baseline symptoms
             PreparedStatement psCheckIfExists = conn.prepareStatement("SELECT COUNT(*) FROM SymptomsBaseline AS countrow WHERE patientCPR = ?");
-            psCheckIfExists.setString(1, Main.patient.getCprNumber());
+            psCheckIfExists.setString(1, patient.getCprNumber());
             ResultSet rsIfExists = psCheckIfExists.executeQuery();
             rsIfExists.next();
             int countrow = rsIfExists.getInt(1);
@@ -109,13 +108,13 @@ public class DatabaseHandler {
                         + " (patientCPR, bladderCapacity, IEsPerDay,"
                         + " UEsPerDay, UrinationPerDay, NocturiaEpisodes, Other)"
                         + " VALUES (?,?,?,?,?,?,?)");
-                ps.setString(1, Main.patient.getCprNumber());
-                ps.setString(2, a);
-                ps.setInt(3, b);
-                ps.setInt(4, c);
-                ps.setInt(5, d);
-                ps.setInt(6, e);
-                ps.setString(7, f);
+                ps.setString(1, patient.getCprNumber());
+                ps.setString(2, symptoms.getBladderCapacity());
+                ps.setInt(3, symptoms.getIEsPerDay());
+                ps.setInt(4, symptoms.getUEsPerDay());
+                ps.setInt(5, symptoms.getUrinationPerDay());
+                ps.setInt(6, symptoms.getNocturiaEpisodes());
+                ps.setString(7, symptoms.getOther());
                 ps.execute();
                 conn.close();
 
@@ -134,7 +133,7 @@ public class DatabaseHandler {
 
             PreparedStatement psCheckIfExists = conn.prepareStatement(
                     "SELECT DISTINCT COUNT(treatmentNumber) FROM patientTreatment WHERE CPR = ?");
-            psCheckIfExists.setString(1, Main.patient.getCprNumber());
+            psCheckIfExists.setString(1, patient.getCprNumber());
             ResultSet rsIfExists = psCheckIfExists.executeQuery();
             rsIfExists.next();
             int countrow = rsIfExists.getInt(1);
@@ -147,7 +146,7 @@ public class DatabaseHandler {
                         + "INSERT INTO `patientTreatment`(`CPR`, `treatmentNumber`, `timeLimitedSetting`,"
                         + " `timeLimitedIntensity`, `urgeSetting`, `urgeIntensity`, `dateSaved`)"
                         + " VALUES (?,?,?,?,?,?,?)");
-                ps.setString(1, Main.patient.getCprNumber());
+                ps.setString(1, patient.getCprNumber());
                 ps.setInt(2, countrow);
                 ps.setString(3, treatmentSetting.getTimeLimitedSetting());
                 ps.setInt(4, treatmentSetting.getTimeLimitedIntensity());
@@ -170,7 +169,7 @@ public class DatabaseHandler {
                             + "INSERT INTO `patientTreatment`(`CPR`, `treatmentNumber`, `timeLimitedSetting`,"
                             + " `timeLimitedIntensity`, `urgeSetting`, `urgeIntensity`)"
                             + " VALUES (?,?,?,?,?,?)");
-                    ps.setString(1, Main.patient.getCprNumber());
+                    ps.setString(1, patient.getCprNumber());
                     ps.setInt(2, countrow);
                     ps.setString(3, treatmentSetting.getTimeLimitedSetting());
                     ps.setInt(4, treatmentSetting.getTimeLimitedIntensity());

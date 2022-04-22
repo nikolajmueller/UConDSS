@@ -1,6 +1,5 @@
 package STproject.Controllers;
 
-import STproject.Main.Main;
 import static STproject.Main.Main.*;
 import STproject.Models.DatabaseHandler;
 import java.net.URL;

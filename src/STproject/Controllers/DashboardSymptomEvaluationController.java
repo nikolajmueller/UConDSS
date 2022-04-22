@@ -54,10 +54,8 @@ public class DashboardSymptomEvaluationController implements Initializable {
             symptoms.setNocturiaEpisodes(Integer.parseInt(nocturiaTextfield.getText()));
             symptoms.setOther(otherComboBox.getValue().toString());
 
-// kald metode fra DatabaseHandler; gemmer værdier til databasen
-            DatabaseHandler.saveSymptonsToDb(Main.patient.getCprNumber(), symptoms.getBladderCapacity(),
-                    symptoms.getIEsPerDay(), symptoms.getUEsPerDay(), symptoms.getUrinationPerDay(),
-                    symptoms.getNocturiaEpisodes(), symptoms.getOther());
+// kald metode fra DatabaseHandler; gemmer værdier til databasen RET TIL INGEN ARGUMENTER
+            DatabaseHandler.saveSymptonsToDb();
 
             Parent toTreatmentParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardTreatmentStrategy.fxml"));
             Scene toTreatmentScene = new Scene(toTreatmentParent);
