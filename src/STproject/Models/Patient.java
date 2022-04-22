@@ -5,18 +5,18 @@
  */
 package STproject.Models;
 
-public class PatientsCprList {
+public class Patient {
 
     private String cprNumber;
     private String name;
     private int age;
     private String gender;
 
-    public PatientsCprList(String cprNumber) {
+    public Patient(String cprNumber) {
         this.cprNumber = cprNumber;
     }
 
-    public PatientsCprList() {
+    public Patient() {
     }
 
     public String getCprNumber() {

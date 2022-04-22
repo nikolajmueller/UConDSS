@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 
 public class DatabaseHandler {
 
-    public static ObservableList<PatientsCprList> ob = FXCollections.observableArrayList();
+    public static ObservableList<Patient> ob = FXCollections.observableArrayList();
 
     public static Connection getConnection() {
 
@@ -43,14 +43,14 @@ public class DatabaseHandler {
 
     }
 
-    public static PatientsCprList readPatient() {
+    public static Patient readPatient() {
 
         try {
-            String sqlQuery = "select * from TestPatient";
+            String sqlQuery = "select CPR from PatientList";
             ResultSet rs_patient = getConnection().createStatement().executeQuery(sqlQuery);
 
             while (rs_patient.next()) {
-                ob.add(new PatientsCprList(rs_patient.getString("cprNumber")));
+                ob.add(new Patient(rs_patient.getString("CPR")));
             }
         } catch (SQLException e) {
             System.err.println("Cannot connect to database server");

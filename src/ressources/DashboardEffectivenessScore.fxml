@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardEffectivenessScoreController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardEffectivenessScoreController">
     <stylesheets>
         <URL value="@DashboardEffectivenessScoreCss.css" />
     </stylesheets>
    <children>
-      <Button layoutX="259.0" layoutY="161.0" mnemonicParsing="false" text="Button" />
+      <Label layoutX="55.0" layoutY="55.0" text="IEs per day:" textAlignment="RIGHT" />
+      <Label layoutX="50.0" layoutY="92.0" text="UEs per day:" textAlignment="RIGHT" />
+      <Label layoutX="18.0" layoutY="129.0" text="Urination per day:" textAlignment="RIGHT" />
+      <Label layoutX="13.0" layoutY="164.0" text="Nocturia episodes:" textAlignment="RIGHT" />
+      <TextField fx:id="TF_IEsPerDay" layoutX="247.0" layoutY="51.0" prefHeight="26.0" prefWidth="61.0" />
+      <TextField fx:id="TF_UEsPerDay" layoutX="247.0" layoutY="88.0" prefHeight="26.0" prefWidth="61.0" />
+      <TextField fx:id="TF_urination" layoutX="247.0" layoutY="125.0" prefHeight="26.0" prefWidth="61.0" />
+      <TextField fx:id="TF_nocturia" layoutX="247.0" layoutY="160.0" prefHeight="26.0" prefWidth="61.0" />
+      <TextField fx:id="TF_IEsPerDayScore" editable="false" layoutX="448.0" layoutY="51.0" mouseTransparent="true" prefHeight="26.0" prefWidth="85.0" />
+      <TextField fx:id="TF_UEsPerDayScore" editable="false" layoutX="448.0" layoutY="88.0" mouseTransparent="true" prefHeight="26.0" prefWidth="86.0" />
+      <TextField fx:id="TF_urinationScore" editable="false" layoutX="448.0" layoutY="125.0" mouseTransparent="true" prefHeight="26.0" prefWidth="86.0" />
+      <TextField fx:id="TF_nocturiaScore" editable="false" layoutX="448.0" layoutY="160.0" mouseTransparent="true" prefHeight="26.0" prefWidth="86.0" />
+      <Label layoutX="241.0" layoutY="4.0" text="New&#10;symptoms&#10;" textAlignment="CENTER" />
+      <Label layoutX="428.0" layoutY="4.0" text="Symptoms change&#10;(in percent)" textAlignment="CENTER" />
+      <Button fx:id="btnDetermineEffect" layoutX="335.0" layoutY="98.0" mnemonicParsing="false" onAction="#determineEffect" text="Determine&#10;effect" textAlignment="CENTER" />
+      <TextField fx:id="TF_IEsPrevious" editable="false" layoutX="151.0" layoutY="50.0" mouseTransparent="true" prefHeight="26.0" prefWidth="61.0" />
+      <TextField fx:id="TF_UEsPrevious" editable="false" layoutX="151.0" layoutY="87.0" mouseTransparent="true" prefHeight="26.0" prefWidth="61.0" />
+      <TextField fx:id="TF_urinationPrevious" editable="false" layoutX="151.0" layoutY="124.0" mouseTransparent="true" prefHeight="26.0" prefWidth="61.0" />
+      <TextField fx:id="TF_nocturiaPrevious" editable="false" layoutX="151.0" layoutY="159.0" mouseTransparent="true" prefHeight="26.0" prefWidth="61.0" />
+      <Label layoutX="148.0" layoutY="4.0" text="Previous&#10;symptoms" textAlignment="CENTER" />
+      <BarChart fx:id="barChart" layoutX="46.0" layoutY="194.0" prefHeight="214.0" prefWidth="500.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
    </children>
 </AnchorPane>

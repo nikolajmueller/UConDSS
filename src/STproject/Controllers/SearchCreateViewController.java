@@ -3,7 +3,7 @@ package STproject.Controllers;
 import STproject.Main.Main;
 import static STproject.Main.Main.patient;
 import STproject.Models.DatabaseHandler;
-import STproject.Models.PatientsCprList;
+import STproject.Models.Patient;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -40,10 +40,10 @@ public class SearchCreateViewController implements Initializable {
     private TextField keywordTextField;
 
     @FXML
-    private TableView<PatientsCprList> tableView_CPR;
+    private TableView<Patient> tableView_CPR;
 
     @FXML
-    private TableColumn<PatientsCprList, String> col_CPR;
+    private TableColumn<Patient, String> col_CPR;
 
     @FXML
     private Button btnSavePatient, button_logout;
@@ -51,6 +51,8 @@ public class SearchCreateViewController implements Initializable {
     @FXML
     private TextField field_cpr, field_name;
 
+    @FXML
+    private Label label_toSavePatientFillInBlancFields;
 
     /**
      * Initializes the controller class.
@@ -58,9 +60,8 @@ public class SearchCreateViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        determineGender();
         DatabaseHandler.readPatient();
-        ObservableList<PatientsCprList> ob = DatabaseHandler.ob;
+        ObservableList<Patient> ob = DatabaseHandler.ob;
 
         // set Cell value factory and property value factory
         col_CPR.setCellValueFactory(new PropertyValueFactory<>("cprNumber"));
@@ -68,7 +69,7 @@ public class SearchCreateViewController implements Initializable {
         tableView_CPR.setItems(ob);
 
         //Initial filtered list
-        FilteredList<PatientsCprList> filteredData = new FilteredList<>(ob, b -> true);
+        FilteredList<Patient> filteredData = new FilteredList<>(ob, b -> true);
 
         keywordTextField.textProperty().addListener((Observable, oldValue, newValue) -> {
             filteredData.setPredicate(PatientsCprList -> {
@@ -87,7 +88,7 @@ public class SearchCreateViewController implements Initializable {
             });
         });
 
-        SortedList<PatientsCprList> sortedData = new SortedList<>(filteredData);
+        SortedList<Patient> sortedData = new SortedList<>(filteredData);
 
         // Bind sorted result with TableView
         sortedData.comparatorProperty().bind(tableView_CPR.comparatorProperty());
@@ -142,7 +143,7 @@ public class SearchCreateViewController implements Initializable {
     }
 
     // CREATE PATIENT
-    public void btnSavePatientFunc() {      //funktion til knappen save patient
+    public void btnSavePatientFunc(ActionEvent event) {      //funktion til knappen save patient
         try {  // gemmer værdier i @FXML-boksene i patient
             patient.setCprNumber(field_cpr.getText());
             patient.setName(field_name.getText());
@@ -165,6 +166,16 @@ public class SearchCreateViewController implements Initializable {
             }
         } catch (Exception f) {
             JOptionPane.showMessageDialog(null, f);
+        }
+        try {
+            Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardSymptomEvaluation.fxml"));
+            Scene toDashboardScene = new Scene(toDashboardParent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(toDashboardScene);
+            window.centerOnScreen();
+            window.show();
+        } catch (Exception r) {
+            JOptionPane.showMessageDialog(null, r);
         }
     }
 

@@ -102,8 +102,8 @@ public class LoginViewController implements Initializable {
         }
     }
 
-    @FXML
-    void addUsers(ActionEvent event) {
+    @FXML // SKAL UNDER DATABASEHANDLER!
+    void addUser(ActionEvent event) {
         conn = DatabaseHandler.getConnection(); // get db connection
 
         try {
