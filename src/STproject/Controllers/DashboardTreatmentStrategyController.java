@@ -33,7 +33,7 @@ public class DashboardTreatmentStrategyController implements Initializable {
             Urge5, Urge4, Urge3, Urge2, Urge1;
 
     @FXML
-    private Button btnSave;
+    private Button btnSave, btnExpandGraph;
 
     /**
      * Initializes the controller class.
@@ -53,21 +53,45 @@ public class DashboardTreatmentStrategyController implements Initializable {
     }
 
     public void clickBtnSave(ActionEvent event) {
+        int emptyField = checkForEmptyField();
 
-        try {
-            DatabaseHandler.saveTreatmentToDb();
-
-            Parent toTreatmentParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardTreatmentEvaluation.fxml"));
-            Scene toTreatmentScene = new Scene(toTreatmentParent);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(toTreatmentScene);
-            window.show();
-            window.centerOnScreen();
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        if (emptyField == 0) {
+            try {
+                DatabaseHandler.saveTreatmentToDb();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error connection to database");
+            }
+            try {
+                Parent toTreatmentParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardEffectivenessScore.fxml"));
+                Scene toTreatmentScene = new Scene(toTreatmentParent);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(toTreatmentScene);
+                window.show();
+                window.centerOnScreen();
+            } catch (Exception f) {
+                JOptionPane.showMessageDialog(null, "Error");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fill in missing check boxes!");
         }
+    }
 
+    public int checkForEmptyField() {
+        int emptyField = 0;
+
+        if (!TLContinuous.isSelected() && !TL4Hours.isSelected() && !TL30Minutes.isSelected() // TL paradigm
+                && !TL15Minutes.isSelected() && !TLDeactivated.isSelected()) {
+            emptyField = 1;
+        } else if (!TLDeactivated.isSelected() && (!TL5.isSelected() && !TL4.isSelected() // TL intensity
+                && !TL3.isSelected() && !TL2.isSelected() && !TL1.isSelected())) {
+            emptyField = 1;
+        } else if (!Urge60Seconds.isSelected() && !UrgeDeactivated.isSelected()) { // urge paradigm
+            emptyField = 1;
+        } else if (!UrgeDeactivated.isSelected() && (!Urge5.isSelected() && !Urge4.isSelected() // urge intensity
+                && !Urge3.isSelected() && !Urge2.isSelected() && !Urge1.isSelected())) {
+            emptyField = 1;
+        }
+        return emptyField;
     }
 
 // TIME LIMITED PARADIGM START

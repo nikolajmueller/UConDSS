@@ -26,7 +26,7 @@ public class DashboardEffectivenessScoreController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // dummy patientdata
-        patient.setCprNumber("0205950237");
+        /*patient.setCprNumber("0205950237");
         patient.setName("Erik Eriksen");
         patient.setAge(26);
         patient.setGender("Male");
@@ -34,6 +34,7 @@ public class DashboardEffectivenessScoreController implements Initializable {
         symptoms.setUEsPerDay(7);
         symptoms.setUrinationPerDay(12);
         symptoms.setNocturiaEpisodes(3);
+         */
 
 // sæt PREVIOUS textfields
         TF_IEsPrevious.setText("" + symptoms.getIEsPerDay());

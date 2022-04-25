@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 public class DashboardSymptomEvaluationController implements Initializable {
 
@@ -65,7 +66,7 @@ public class DashboardSymptomEvaluationController implements Initializable {
             window.centerOnScreen();
 
         } catch (Exception g) {
-            System.out.println("Error btnSaveFunc");
+            JOptionPane.showMessageDialog(null, "Error saving symptoms to database");
         }
 
     }
