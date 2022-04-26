@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML.java to edit this template
- */
+
 package STproject.Main;
 
 import STproject.Models.*;
@@ -31,15 +28,6 @@ public class Main extends Application {
         stage.show();
         stage.setTitle("UConDSS");   // sætter titel
         stage.setResizable(false);   // Denne linje gør at man ikke kan udvide skærm manuelt
-    }
-
-    public void readClasses() {
-        try {
-            //Main.patient = DatabaseHandler.readPatient();
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
     }
 
 }

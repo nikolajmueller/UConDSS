@@ -5,6 +5,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -57,10 +58,8 @@ public class LoginViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        
     }
 
-    
     // Muliggør at man kan skifte mellem login og signin
     public void loginPaneShow() {
         pane_login.setVisible(true);
@@ -86,14 +85,14 @@ public class LoginViewController implements Initializable {
 
             if (rs.next()) {
                 // parse inputType to "FXMLFrontpageController.java"  
-                
+
                 // De næste 5 linjer skifter scene
                 Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/SearchCreateView.fxml"));
                 Scene toDashboardScene = new Scene(toDashboardParent);
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(toDashboardScene);
                 window.centerOnScreen();
-                window.setTitle("UConDSS" + "    -" +  "     Name: " + username_lg.getText());
+                window.setTitle("UConDSS" + "    -" + "     Name: " + username_lg.getText());
                 window.show();
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid Username or Password");
@@ -104,9 +103,11 @@ public class LoginViewController implements Initializable {
     }
 
     @FXML // SKAL UNDER DATABASEHANDLER!
-    void addUsers(ActionEvent event) {
-        conn = DatabaseHandler.getConnection(); // get db connection
+    void addUsers(ActionEvent event) throws SQLException {
 
+        if (username_up.getText().length() > 3 && password_up.getText().length() > 3) {
+            conn = DatabaseHandler.getConnection(); // get db connection
+        
         try {
             // sqlUser query to create user
             String sqlUser = "insert into Clinical (username,password,email) values (?,?,?)";
@@ -138,7 +139,10 @@ public class LoginViewController implements Initializable {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Username or password need to be at least 3 characters");
+        }
     }
-    
+
 }
