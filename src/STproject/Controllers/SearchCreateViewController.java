@@ -41,6 +41,9 @@ public class SearchCreateViewController implements Initializable {
 
     @FXML
     private TextField field_cpr, field_name;
+    
+    @FXML
+    private Button btnToDashboard;
 
 
     /**
@@ -138,8 +141,7 @@ public class SearchCreateViewController implements Initializable {
         if (Main.patient == null) {
 
         } else {
-            keywordTextField.setText(Main.patient.getCprNumber());
-
+            btnToDashboard.setDisable(false);
         }
 
     }

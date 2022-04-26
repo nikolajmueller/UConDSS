@@ -7,8 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="759.0" prefWidth="1278.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardMainViewController">
     <stylesheets>
@@ -55,20 +53,12 @@
                         </Button>
                      </children>
                   </HBox>
-                  <Text fill="WHITE" layoutX="10.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient name:" wrappingWidth="205.00001680850983">
-                     <font>
-                        <Font name="System Bold" size="17.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="name" editable="false" focusTraversable="false" layoutX="10.0" layoutY="58.0" prefHeight="34.0" prefWidth="173.0" />
-                  <Text fill="WHITE" layoutX="10.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient age:" wrappingWidth="205.00001680850983">
-                     <font>
-                        <Font name="System Bold" size="17.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="age" editable="false" focusTraversable="false" layoutX="10.0" layoutY="133.0" prefHeight="34.0" prefWidth="94.0" />
                   <Button layoutX="47.0" layoutY="703.0" mnemonicParsing="false" onAction="#logout" prefHeight="7.0" prefWidth="110.0" text="Logout" />
                   <Button layoutX="11.0" layoutY="632.0" mnemonicParsing="false" onAction="#selectNewPatient" text="Select new patient" />
+                  <TextField fx:id="cpr" editable="false" layoutX="16.0" layoutY="6.0" prefHeight="32.0" prefWidth="173.0" />
+                  <TextField fx:id="name" editable="false" layoutX="16.0" layoutY="49.0" prefHeight="32.0" prefWidth="173.0" />
+                  <TextField fx:id="age" editable="false" layoutX="16.0" layoutY="91.0" prefHeight="32.0" prefWidth="173.0" />
+                  <TextField fx:id="gender" editable="false" layoutX="16.0" layoutY="135.0" prefHeight="32.0" prefWidth="173.0" />
                </children>
             </Pane>
          </children>

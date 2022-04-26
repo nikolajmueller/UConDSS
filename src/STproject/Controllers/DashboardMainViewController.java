@@ -17,12 +17,19 @@ import javafx.stage.Stage;
 
 public class DashboardMainViewController implements Initializable {
 
+
+    @FXML
+    private TextField cpr;
+
     @FXML
     private TextField name;
 
     @FXML
     private TextField age;
 
+    @FXML
+    private TextField gender;
+    
     @FXML
     private AnchorPane anchorpane_Evaluation;
 
@@ -37,8 +44,10 @@ public class DashboardMainViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        cpr.setText(Main.patient.getCprNumber());
         name.setText(Main.patient.getName());
-        age.setText("" + Main.patient.getAge());
+        age.setText(""+Main.patient.getAge());
+        gender.setText(Main.patient.getGender());
     }
 
     public void symptomsShow() {

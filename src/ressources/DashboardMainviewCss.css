@@ -8,5 +8,8 @@
 }
 
 .text-field {
-    -fx-background-color:  white;
+    -fx-background-color:   transparent;
+    -fx-text-fill: white;
+    -fx-border-color:  #61a2b1;
+    -fx-border-width:  2px 2px 2px 2px;
 }
