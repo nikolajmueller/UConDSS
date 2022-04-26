@@ -1,7 +1,6 @@
 package STproject.Controllers;
 
 import static STproject.Main.Main.*;
-import java.awt.Color;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;

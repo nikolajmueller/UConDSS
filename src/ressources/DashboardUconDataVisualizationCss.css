@@ -9,7 +9,7 @@
 .text-field {
     -fx-background-color:   transparent;
     -fx-border-color:  linear-gradient(#61a2b1, #2A5058);
-    -fx-border-width:  0px 0px 2px 0px;
+    -fx-border-width:  2px 2px 2px 2px;
 }
 
 .list-cell { 

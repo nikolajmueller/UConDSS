@@ -1,6 +1,5 @@
 package STproject.Controllers;
 
-import STproject.Main.Main;
 import STproject.Models.DatabaseHandler;
 import java.net.URL;
 import java.sql.Connection;
@@ -93,6 +92,8 @@ public class LoginViewController implements Initializable {
                 Scene toDashboardScene = new Scene(toDashboardParent);
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(toDashboardScene);
+                window.centerOnScreen();
+                window.setTitle("UConDSS" + "    -" +  "     Name: " + username_lg.getText());
                 window.show();
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid Username or Password");
@@ -139,5 +140,5 @@ public class LoginViewController implements Initializable {
         }
 
     }
-
+    
 }

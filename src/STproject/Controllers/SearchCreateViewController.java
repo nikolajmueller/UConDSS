@@ -6,16 +6,10 @@ import STproject.Models.DatabaseHandler;
 import STproject.Models.Patient;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.Observable;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -46,13 +40,8 @@ public class SearchCreateViewController implements Initializable {
     private TableColumn<Patient, String> col_CPR;
 
     @FXML
-    private Button btnSavePatient, button_logout;
-
-    @FXML
     private TextField field_cpr, field_name;
 
-    @FXML
-    private Label label_toSavePatientFillInBlancFields;
 
     /**
      * Initializes the controller class.
@@ -129,12 +118,13 @@ public class SearchCreateViewController implements Initializable {
 
         } else {
             keywordTextField.setText(Main.patient.getCprNumber());
+
         }
 
     }
 
     public void btnToDashboard(ActionEvent event) throws IOException {
-        Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardSymptomEvaluation.fxml"));
+        Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardMainView.fxml"));
         Scene toDashboardScene = new Scene(toDashboardParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(toDashboardScene);
@@ -217,6 +207,17 @@ public class SearchCreateViewController implements Initializable {
         } else {
             patient.setGender("Male");
         }
+    }
+
+    @FXML
+    void logout(ActionEvent event) throws IOException {
+
+        Parent toLoginParent = FXMLLoader.load(getClass().getResource("/ressources/LoginView.fxml"));
+        Scene toLoginScene = new Scene(toLoginParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(toLoginScene);
+        window.centerOnScreen();
+        window.show();
     }
 
 }

@@ -10,62 +10,161 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardTreatmentStrategyController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardTreatmentStrategyController">
     <stylesheets>
         <URL value="@DashboardTreatmentStrategyCss.css" />
     </stylesheets>
    <children>
-      <Text layoutX="26.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time Limited">
+      <Text layoutX="52.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time Limited">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <Text layoutX="238.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Urge">
+      <Text layoutX="346.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Urge">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <Line endX="9.79998779296875" endY="266.0" layoutX="166.0" layoutY="134.0" startX="9.79998779296875" startY="-134.0" />
-      <Line endX="-26.20001220703125" endY="226.0999755859375" layoutX="371.0" layoutY="174.0" startX="-26.20001220703125" startY="-175.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" height="159.0" layoutX="353.0" layoutY="6.0" opacity="0.2" stroke="BLACK" strokeType="INSIDE" width="237.0" />
-      <Text layoutX="444.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Symptoms">
+      <Line endX="9.79998779296875" endY="661.5" layoutX="236.0" layoutY="105.0" startX="9.79998779296875" startY="-134.0" />
+      <Line endX="-26.20001220703125" endY="592.5" layoutX="526.0" layoutY="174.0" startX="-26.20001220703125" startY="-175.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff" height="368.0" layoutX="589.0" layoutY="27.0" opacity="0.2" stroke="BLACK" strokeType="INSIDE" width="405.0" />
+      <Text layoutX="732.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Symptoms">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <CheckBox fx:id="TLContinuous" layoutX="19.0" layoutY="81.0" mnemonicParsing="false" onAction="#clickTLContinuous" text="Continuous *" />
-      <CheckBox fx:id="TL4Hours" layoutX="19.0" layoutY="105.0" mnemonicParsing="false" onAction="#clickTL4Hours" text="4 hours" />
-      <CheckBox fx:id="TL15Minutes" layoutX="19.0" layoutY="154.0" mnemonicParsing="false" onAction="#clickTL15Minutes" text="15 minutes" />
-      <CheckBox fx:id="TL30Minutes" layoutX="19.0" layoutY="129.0" mnemonicParsing="false" onAction="#clickTL30Minutes" text="30 minutes" />
-      <CheckBox fx:id="TLDeactivated" layoutX="19.0" layoutY="179.0" mnemonicParsing="false" onAction="#clickTLDeactivated" text="Deactivated" />
-      <Text layoutX="28.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Session time:" />
-      <Text layoutX="200.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Session time:" />
-      <CheckBox fx:id="Urge60Seconds" layoutX="191.0" layoutY="81.0" mnemonicParsing="false" onAction="#clickUrge60Seconds" text="60 seconds" />
-      <CheckBox fx:id="TL5" layoutX="19.0" layoutY="248.0" mnemonicParsing="false" onAction="#clickTL5" text="5 (High) *" />
-      <CheckBox fx:id="TL4" layoutX="19.0" layoutY="272.0" mnemonicParsing="false" onAction="#clickTL4" text="4" />
-      <CheckBox fx:id="TL2" layoutX="19.0" layoutY="321.0" mnemonicParsing="false" onAction="#clickTL2" text="2" />
-      <CheckBox fx:id="TL3" layoutX="19.0" layoutY="296.0" mnemonicParsing="false" onAction="#clickTL3" text="3" />
-      <CheckBox fx:id="TL1" layoutX="19.0" layoutY="346.0" mnemonicParsing="false" onAction="#clickTL1" text="1 (Low)" />
-      <Text layoutX="28.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max intensity:" />
-      <CheckBox fx:id="Urge5" layoutX="194.0" layoutY="250.0" mnemonicParsing="false" onAction="#clickUrge5" text="5 (High) *" />
-      <CheckBox fx:id="Urge4" layoutX="194.0" layoutY="274.0" mnemonicParsing="false" onAction="#clickUrge4" text="4" />
-      <CheckBox fx:id="Urge2" layoutX="194.0" layoutY="323.0" mnemonicParsing="false" onAction="#clickUrge2" text="2" />
-      <CheckBox fx:id="Urge3" layoutX="194.0" layoutY="298.0" mnemonicParsing="false" onAction="#clickUrge3" text="3" />
-      <CheckBox fx:id="Urge1" layoutX="194.0" layoutY="348.0" mnemonicParsing="false" onAction="#clickUrge1" text="1 (Low)" />
-      <Text layoutX="203.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max intensity:" />
-      <CheckBox fx:id="UrgeDeactivated" layoutX="191.0" layoutY="105.0" mnemonicParsing="false" onAction="#clickUrgeDeactivated" text="Deactivated *" />
-      <Button fx:id="btnSave" layoutX="451.0" layoutY="344.0" mnemonicParsing="false" onAction="#clickBtnSave" text="Save" />
-      <Label layoutX="365.0" layoutY="29.0" text="Bladder capacity:" />
-      <Label layoutX="394.0" layoutY="46.0" text="IEs per day:" />
-      <Label layoutX="388.0" layoutY="63.0" text="UEs per day:" />
-      <Label layoutX="358.0" layoutY="80.0" text="Urination per day:" />
-      <Label layoutX="361.0" layoutY="97.0" text="Nocutira per day:" />
-      <Label layoutX="419.0" layoutY="116.0" text="Other:" />
-      <Label fx:id="lbPatientBladderCapacity" layoutX="487.0" layoutY="30.0" text="placeholder" />
-      <Label fx:id="lbPatientIEsPerDay" layoutX="487.0" layoutY="46.0" text="placeholder" />
-      <Label fx:id="lbPatientUEsPerDay" layoutX="487.0" layoutY="63.0" text="placeholder" />
-      <Label fx:id="lbPatientUrinationPerDay" layoutX="487.0" layoutY="81.0" text="placeholder" />
-      <Label fx:id="lbPatientNocturiaEpisodes" layoutX="487.0" layoutY="97.0" text="placeholder" />
-      <Label fx:id="lbPatientOther" layoutX="487.0" layoutY="116.0" text="placeholder" />
+      <CheckBox fx:id="TLContinuous" layoutX="53.0" layoutY="140.0" mnemonicParsing="false" onAction="#clickTLContinuous" prefHeight="47.0" prefWidth="145.0" text="Continuous *">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="TL4Hours" layoutX="54.0" layoutY="191.0" mnemonicParsing="false" onAction="#clickTL4Hours" text="4 hours">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="TL15Minutes" layoutX="54.0" layoutY="270.0" mnemonicParsing="false" onAction="#clickTL15Minutes" text="15 minutes">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="TL30Minutes" layoutX="54.0" layoutY="229.0" mnemonicParsing="false" onAction="#clickTL30Minutes" text="30 minutes">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="TLDeactivated" layoutX="51.0" layoutY="311.0" mnemonicParsing="false" onAction="#clickTLDeactivated" text="Deactivated">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <Text layoutX="71.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Session time:">
+         <font>
+            <Font name="System Italic" size="19.0" />
+         </font></Text>
+      <Text layoutX="321.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Session time:">
+         <font>
+            <Font name="System Italic" size="19.0" />
+         </font></Text>
+      <CheckBox fx:id="Urge60Seconds" layoutX="315.0" layoutY="150.0" mnemonicParsing="false" onAction="#clickUrge60Seconds" text="60 seconds">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="TL5" layoutX="55.0" layoutY="442.0" mnemonicParsing="false" onAction="#clickTL5" text="5 (High) *">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="TL4" layoutX="55.0" layoutY="489.0" mnemonicParsing="false" onAction="#clickTL4" text="4">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="TL2" layoutX="55.0" layoutY="574.0" mnemonicParsing="false" onAction="#clickTL2" text="2">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="TL3" layoutX="55.0" layoutY="534.0" mnemonicParsing="false" onAction="#clickTL3" text="3">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="TL1" layoutX="55.0" layoutY="615.0" mnemonicParsing="false" onAction="#clickTL1" text="1 (Low)">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <Text layoutX="68.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max intensity:">
+         <font>
+            <Font name="System Italic" size="19.0" />
+         </font></Text>
+      <CheckBox fx:id="Urge5" layoutX="317.0" layoutY="442.0" mnemonicParsing="false" onAction="#clickUrge5" text="5 (High) *">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="Urge4" layoutX="318.0" layoutY="489.0" mnemonicParsing="false" onAction="#clickUrge4" text="4">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="Urge2" layoutX="318.0" layoutY="574.0" mnemonicParsing="false" onAction="#clickUrge2" text="2">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="Urge3" layoutX="318.0" layoutY="534.0" mnemonicParsing="false" onAction="#clickUrge3" text="3">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="Urge1" layoutX="316.0" layoutY="615.0" mnemonicParsing="false" onAction="#clickUrge1" text="1 (Low)">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <Text layoutX="314.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max intensity:">
+         <font>
+            <Font name="System Italic" size="19.0" />
+         </font></Text>
+      <CheckBox fx:id="UrgeDeactivated" layoutX="316.0" layoutY="197.0" mnemonicParsing="false" onAction="#clickUrgeDeactivated" text="Deactivated *">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <Button fx:id="btnSave" layoutX="716.0" layoutY="702.0" mnemonicParsing="false" onAction="#clickBtnSave" prefHeight="47.0" prefWidth="198.0" text="Save" />
+      <Label layoutX="631.0" layoutY="91.0" text="Bladder capacity:">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
+      <Label layoutX="640.0" layoutY="136.0" text="IEs per day:">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
+      <Label layoutX="636.0" layoutY="186.0" text="UEs per day:">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
+      <Label layoutX="613.0" layoutY="236.0" text="Urination per day:">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
+      <Label layoutX="630.0" layoutY="283.0" text="Nocutira per day:">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
+      <Label layoutX="662.0" layoutY="330.0" text="Other:">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
+      <Label fx:id="lbPatientBladderCapacity" layoutX="826.0" layoutY="91.0" text="placeholder">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
+      <Label fx:id="lbPatientIEsPerDay" layoutX="826.0" layoutY="136.0" text="placeholder">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
+      <Label fx:id="lbPatientUEsPerDay" layoutX="826.0" layoutY="186.0" text="placeholder">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
+      <Label fx:id="lbPatientUrinationPerDay" layoutX="826.0" layoutY="236.0" text="placeholder">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
+      <Label fx:id="lbPatientNocturiaEpisodes" layoutX="826.0" layoutY="283.0" text="placeholder">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
+      <Label fx:id="lbPatientOther" layoutX="826.0" layoutY="330.0" text="placeholder">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
    </children>
 </AnchorPane>

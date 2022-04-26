@@ -1,21 +1,13 @@
 package STproject.Controllers;
 
 import STproject.Main.Main;
-import STproject.Models.DatabaseHandler;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 
 public class DashboardTreatmentEvaluationController implements Initializable {
 
@@ -47,12 +39,12 @@ public class DashboardTreatmentEvaluationController implements Initializable {
         textField_Urge_MaxIntensity.setText("" + Main.treatmentSetting.getUrgeIntensity());
     }
 
-    public void clickRadioBtnCorret() {
+    public void clickRadioBtnCorret(ActionEvent event) {
         radioBtn_UsedIncorrect.setSelected(false);
         radioBtn_UsedCorrect.setSelected(true);
     }
     
-    public void clickRadioBtnIncorret() {
+    public void clickRadioBtnIncorret(ActionEvent event) {
         radioBtn_UsedCorrect.setSelected(false);
         radioBtn_UsedIncorrect.setSelected(true);
     }

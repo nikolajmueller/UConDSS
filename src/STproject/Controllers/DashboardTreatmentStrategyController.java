@@ -12,9 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javax.swing.Action;
 import javax.swing.JOptionPane;
 
 public class DashboardTreatmentStrategyController implements Initializable {

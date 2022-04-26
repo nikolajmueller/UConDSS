@@ -1,7 +1,12 @@
-/*
- * Empty Stylesheet file.
- */
 
-.mainFxmlClass {
+.label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
 
+.text-field {
+    -fx-background-color:   transparent;
+    -fx-border-color:  linear-gradient(#61a2b1, #2A5058);
+    -fx-border-width:  2px 2px 2px 2px;
 }
