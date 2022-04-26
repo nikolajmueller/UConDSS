@@ -1,5 +1,6 @@
 package STproject.Controllers;
 
+import STproject.Main.Main;
 import static STproject.Main.Main.symptoms;
 import STproject.Models.*;
 import java.net.URL;
