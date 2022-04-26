@@ -16,15 +16,15 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class DashboardEffectivenessScoreController implements Initializable {
-
+    
     @FXML
     private TextField TF_IEsPrevious, TF_UEsPrevious, TF_urinationPrevious, TF_nocturiaPrevious,
             TF_IEsPerDay, TF_UEsPerDay, TF_urination, TF_nocturia,
             TF_IEsPerDayScore, TF_UEsPerDayScore, TF_urinationScore, TF_nocturiaScore;
-
+    
     @FXML
     private BarChart<String, Integer> barChart;
-
+    
     @FXML
     private Button btnExpandGraph;
 
@@ -33,16 +33,7 @@ public class DashboardEffectivenessScoreController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // dummy patientdata
-        /*patient.setCprNumber("0205950237");
-        patient.setName("Erik Eriksen");
-        patient.setAge(26);
-        patient.setGender("Male");
-        symptoms.setIEsPerDay(4);
-        symptoms.setUEsPerDay(7);
-        symptoms.setUrinationPerDay(12);
-        symptoms.setNocturiaEpisodes(3);
-         */
+    
 
 // sæt PREVIOUS textfields
         TF_IEsPrevious.setText("" + symptoms.getIEsPerDay());
@@ -58,15 +49,15 @@ public class DashboardEffectivenessScoreController implements Initializable {
         seriesPrevious.getData().add(new XYChart.Data("Urination", symptoms.getUrinationPerDay()));
         seriesPrevious.getData().add(new XYChart.Data("Nocturia Ep", symptoms.getNocturiaEpisodes()));
         barChart.setAnimated(false);
-
+        
         barChart.getData().addAll(seriesPrevious);
     }
-
+    
     public void determineEffect() {
-
+        
         String goodColor = "#14B831";
         String badColor = "#F34E2B";
-
+        
         symptomEffect.setPostIEs(Integer.parseInt(TF_IEsPerDay.getText()));
         symptomEffect.setPostUEs(Integer.parseInt(TF_UEsPerDay.getText()));
         symptomEffect.setPostUrination(Integer.parseInt(TF_urination.getText()));
@@ -127,14 +118,14 @@ public class DashboardEffectivenessScoreController implements Initializable {
             symptomEffect.setNocturiaScore(0);
             TF_nocturiaScore.setText(symptomEffect.getNocturiaScore() + " %");
         }
-
+        
         XYChart.Series<String, Integer> seriesEffect = new XYChart.Series();
         seriesEffect.setName("Post symptoms");
         seriesEffect.getData().add(new XYChart.Data("IEs", symptomEffect.getPostIEs()));
         seriesEffect.getData().add(new XYChart.Data("UEs", symptomEffect.getPostUEs()));
         seriesEffect.getData().add(new XYChart.Data("Urination", symptomEffect.getPostUrination()));
         seriesEffect.getData().add(new XYChart.Data("Nocturia Ep", symptomEffect.getPostNocturia()));
-
+        
         if (barChart.getData().size() > 1) {
             barChart.getData().remove(1);
             barChart.getData().addAll(seriesEffect);
@@ -143,8 +134,18 @@ public class DashboardEffectivenessScoreController implements Initializable {
         }
     }
 // "/ressources/TreatmentExpandGraph.fxml"
-    public void expandGraph() {
-       
-    }
 
+    public void expandGraph() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/ressources/TreatmentExpandGraph.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("My Window");
+            stage.show();
+        } catch (Exception e) {
+            System.out.println("Error loading expanded graph");
+        }
+    }
+    
 }

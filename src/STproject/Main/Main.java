@@ -31,7 +31,6 @@ public class Main extends Application {
         stage.show();
         stage.setTitle("UConDSS");   // sætter titel
         stage.setResizable(false);   // Denne linje gør at man ikke kan udvide skærm manuelt
-
     }
 
     public void readClasses() {

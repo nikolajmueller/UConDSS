@@ -1,5 +1,6 @@
 package STproject.Controllers;
 
+import static STproject.Main.Main.patient;
 import static STproject.Main.Main.symptoms;
 import static STproject.Main.Main.patient;
 import STproject.Models.*;
@@ -57,14 +58,14 @@ public class DashboardSymptomEvaluationController implements Initializable {
 // kald metode fra DatabaseHandler; gemmer værdier til databasen RET TIL INGEN ARGUMENTER
             System.out.println(patient.getCprNumber());
             DatabaseHandler.saveSymptonsToDb();
-
+            /*
             Parent toTreatmentParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardTreatmentStrategy.fxml"));
             Scene toTreatmentScene = new Scene(toTreatmentParent);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(toTreatmentScene);
             window.show();
             window.centerOnScreen();
-
+             */
         } catch (Exception g) {
             JOptionPane.showMessageDialog(null, "Error saving symptoms to database");
         }
