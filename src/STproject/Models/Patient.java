@@ -5,6 +5,8 @@
  */
 package STproject.Models;
 
+import sun.management.resources.agent;
+
 public class Patient {
 
     private String cprNumber;
@@ -12,8 +14,11 @@ public class Patient {
     private int age;
     private String gender;
 
-    public Patient(String cprNumber) {
+    public Patient(String cprNumber, String name, int age, String gender) {
         this.cprNumber = cprNumber;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
     }
 
     public Patient() {

@@ -45,11 +45,11 @@ public class DatabaseHandler {
     public static Patient readPatient() {
 
         try {
-            String sqlQuery = "select CPR from PatientList";
+            String sqlQuery = "select * from PatientList";
             ResultSet rs_patient = getConnection().createStatement().executeQuery(sqlQuery);
 
             while (rs_patient.next()) {
-                ob.add(new Patient(rs_patient.getString("CPR")));
+                ob.add(new Patient(rs_patient.getString("CPR"),rs_patient.getString("Name"),rs_patient.getInt("Age"),rs_patient.getString("Gender")));
             }
         } catch (SQLException e) {
             System.err.println("Cannot connect to database server");
