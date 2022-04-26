@@ -3,6 +3,7 @@ package STproject.Controllers;
 import static STproject.Main.Main.patient;
 import static STproject.Main.Main.symptoms;
 import static STproject.Main.Main.patient;
+import STproject.Controllers.DashboardMainViewController;
 import STproject.Models.*;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -56,7 +57,6 @@ public class DashboardSymptomEvaluationController implements Initializable {
             symptoms.setOther(otherComboBox.getValue().toString());
 
 // kald metode fra DatabaseHandler; gemmer værdier til databasen RET TIL INGEN ARGUMENTER
-            System.out.println(patient.getCprNumber());
             DatabaseHandler.saveSymptonsToDb();
             /*
             Parent toTreatmentParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardTreatmentStrategy.fxml"));
@@ -66,6 +66,10 @@ public class DashboardSymptomEvaluationController implements Initializable {
             window.show();
             window.centerOnScreen();
              */
+            
+            DashboardMainViewController dashboardMainViewController = new DashboardMainViewController();
+            dashboardMainViewController.treatmentShow();
+            
         } catch (Exception g) {
             JOptionPane.showMessageDialog(null, "Error saving symptoms to database");
         }

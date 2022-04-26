@@ -1,7 +1,6 @@
 package STproject.Controllers;
 
 import STproject.Main.Main;
-import java.awt.Color;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -110,5 +109,8 @@ public class DashboardMainViewController implements Initializable {
         window.show();
     }
 
+    public void btntoTreatment() {
+        
+    }
     
 }

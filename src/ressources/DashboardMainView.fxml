@@ -55,10 +55,10 @@
                   </HBox>
                   <Button layoutX="47.0" layoutY="703.0" mnemonicParsing="false" onAction="#logout" prefHeight="7.0" prefWidth="110.0" text="Logout" />
                   <Button layoutX="11.0" layoutY="632.0" mnemonicParsing="false" onAction="#selectNewPatient" text="Select new patient" />
-                  <TextField fx:id="cpr" editable="false" layoutX="16.0" layoutY="6.0" prefHeight="32.0" prefWidth="173.0" />
-                  <TextField fx:id="name" editable="false" layoutX="16.0" layoutY="49.0" prefHeight="32.0" prefWidth="173.0" />
-                  <TextField fx:id="age" editable="false" layoutX="16.0" layoutY="91.0" prefHeight="32.0" prefWidth="173.0" />
-                  <TextField fx:id="gender" editable="false" layoutX="16.0" layoutY="135.0" prefHeight="32.0" prefWidth="173.0" />
+                  <TextField fx:id="cpr" editable="false" focusTraversable="false" layoutX="16.0" layoutY="6.0" mouseTransparent="true" prefHeight="32.0" prefWidth="173.0" />
+                  <TextField fx:id="name" editable="false" focusTraversable="false" layoutX="16.0" layoutY="49.0" mouseTransparent="true" prefHeight="32.0" prefWidth="173.0" />
+                  <TextField fx:id="age" editable="false" focusTraversable="false" layoutX="16.0" layoutY="91.0" mouseTransparent="true" prefHeight="32.0" prefWidth="173.0" />
+                  <TextField fx:id="gender" editable="false" focusTraversable="false" layoutX="16.0" layoutY="135.0" mouseTransparent="true" prefHeight="32.0" prefWidth="173.0" />
                </children>
             </Pane>
          </children>

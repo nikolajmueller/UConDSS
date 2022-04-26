@@ -105,7 +105,7 @@ public class LoginViewController implements Initializable {
     @FXML // SKAL UNDER DATABASEHANDLER!
     void addUsers(ActionEvent event) throws SQLException {
 
-        if (username_up.getText().length() > 3 && password_up.getText().length() > 3) {
+        if (username_up.getText().length() > 2 && password_up.getText().length() > 2) {
             conn = DatabaseHandler.getConnection(); // get db connection
         
         try {
