@@ -4,10 +4,16 @@ import static STproject.Main.Main.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 
 public class DashboardEffectivenessScoreController implements Initializable {
 
@@ -18,6 +24,9 @@ public class DashboardEffectivenessScoreController implements Initializable {
 
     @FXML
     private BarChart<String, Integer> barChart;
+
+    @FXML
+    private Button btnExpandGraph;
 
     /**
      * Initializes the controller class.
@@ -133,4 +142,9 @@ public class DashboardEffectivenessScoreController implements Initializable {
             barChart.getData().addAll(seriesEffect);
         }
     }
+// "/ressources/TreatmentExpandGraph.fxml"
+    public void expandGraph() {
+       
+    }
+
 }
