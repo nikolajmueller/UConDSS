@@ -1,6 +1,7 @@
 package STproject.Controllers;
 
 import static STproject.Main.Main.symptoms;
+import static STproject.Main.Main.patient;
 import STproject.Models.*;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,6 +55,7 @@ public class DashboardSymptomEvaluationController implements Initializable {
             symptoms.setOther(otherComboBox.getValue().toString());
 
 // kald metode fra DatabaseHandler; gemmer værdier til databasen RET TIL INGEN ARGUMENTER
+            System.out.println(patient.getCprNumber());
             DatabaseHandler.saveSymptonsToDb();
 
             Parent toTreatmentParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardTreatmentStrategy.fxml"));
