@@ -96,10 +96,32 @@ public class SearchCreateViewController implements Initializable {
         tableView_CPR.setItems(sortedData);
 
 // Sikre at der kun kan indtastes tal i CPR felt
+        keywordTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    keywordTextField.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+
+// sikre at der ikke kommer mere end 10 tal i CPR felt
+        keywordTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (keywordTextField.getText().length() > 10) {
+                    String s = keywordTextField.getText().substring(0, 10);
+                    keywordTextField.setText(s);
+                }
+            }
+        });        
+        
+        
+        
+// Sikre at der kun kan indtastes tal i CPR felt
         field_cpr.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                    String newValue) {
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if (!newValue.matches("\\d*")) {
                     field_cpr.setText(newValue.replaceAll("[^\\d]", ""));
                 }
@@ -109,8 +131,7 @@ public class SearchCreateViewController implements Initializable {
 // sikre at der ikke kommer mere end 10 tal i CPR felt
         field_cpr.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                    String newValue) {
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if (field_cpr.getText().length() > 10) {
                     String s = field_cpr.getText().substring(0, 10);
                     field_cpr.setText(s);
