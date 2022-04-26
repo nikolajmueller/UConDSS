@@ -1,57 +1,95 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package STproject.Controllers;
 
+import STproject.Main.Main;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author mathi
- */
 public class DashboardMainViewController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private TextField name;
+
+    @FXML
+    private TextField age;
+
+    @FXML
+    private AnchorPane anchorpane_Evaluation;
+
+    @FXML
+    private AnchorPane anchorpane_Effect;
+
+    @FXML
+    private AnchorPane anchorpane_Treatment;
+
+    @FXML
+    private AnchorPane anchorpane_Symptoms;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
-    /*
-    public void symptomsPaneShow() {
-        .setVisible(true);
-        .setVisible(false);
-        .setVisible(false);
-        .setVisible(false);
+        name.setText(Main.patient.getName());
+        age.setText("" + Main.patient.getAge());
     }
 
-    public void treatmentPaneShow() {
-        .setVisible(true);
-        .setVisible(false);
-        .setVisible(false);
-        .setVisible(false);
+    public void symptomsShow() {
+        anchorpane_Symptoms.setVisible(true);
+        anchorpane_Treatment.setVisible(false);
+        anchorpane_Effect.setVisible(false);
+        anchorpane_Evaluation.setVisible(false);
     }
-    
-    public void effectPaneShow() {
-        .setVisible(true);
-        .setVisible(false);
-        .setVisible(false);
-        .setVisible(false);
+
+    public void treatmentShow() {
+        anchorpane_Treatment.setVisible(true);
+        anchorpane_Symptoms.setVisible(false);
+        anchorpane_Effect.setVisible(false);
+        anchorpane_Evaluation.setVisible(false);
     }
-    
-    public void evaluationPaneShow() {
-        .setVisible(true);
-        .setVisible(false);
-        .setVisible(false);
-        .setVisible(false);
+
+    public void effectShow() {
+        anchorpane_Effect.setVisible(true);
+        anchorpane_Treatment.setVisible(false);
+        anchorpane_Symptoms.setVisible(false);
+        anchorpane_Evaluation.setVisible(false);
     }
-*/
+
+    public void evaluationShow() {
+        anchorpane_Evaluation.setVisible(true);
+        anchorpane_Symptoms.setVisible(false);
+        anchorpane_Treatment.setVisible(false);
+        anchorpane_Effect.setVisible(false);
+    }
+
+    @FXML
+    void logout(ActionEvent event) throws IOException {
+
+        Parent toLoginParent = FXMLLoader.load(getClass().getResource("/ressources/LoginView.fxml"));
+        Scene toLoginScene = new Scene(toLoginParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(toLoginScene);
+        window.centerOnScreen();
+        window.show();
+    }
+
+    @FXML
+    void selectNewPatient(ActionEvent event) throws IOException {
+
+        Parent toSearchCreateParent = FXMLLoader.load(getClass().getResource("/ressources/SearchCreateView.fxml"));
+        Scene toSearchCreateScene = new Scene(toSearchCreateParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(toSearchCreateScene);
+        window.centerOnScreen();
+        window.show();
+    }
+
     
 }

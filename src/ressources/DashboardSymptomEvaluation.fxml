@@ -9,28 +9,28 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardSymptomEvaluationController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardSymptomEvaluationController">
     <stylesheets>
         <URL value="@DashboardSymptomEvaluationCss.css" />
     </stylesheets>
    <children>
-      <Button fx:id="btnSave" layoutX="473.0" layoutY="317.0" mnemonicParsing="false" onAction="#btnSaveFunc" prefHeight="38.0" prefWidth="72.0" text="Save" />
-      <ComboBox fx:id="bladderCapacityComboBox" layoutX="194.0" layoutY="20.0" prefHeight="26.0" prefWidth="132.0" promptText="Select" />
-      <TextField fx:id="IEsTextField" layoutX="195.0" layoutY="57.0" prefHeight="26.0" prefWidth="47.0" />
-      <TextField fx:id="UEsTextField" layoutX="195.0" layoutY="95.0" prefHeight="26.0" prefWidth="47.0" />
-      <TextField fx:id="urinationTextField" layoutX="195.0" layoutY="132.0" prefHeight="26.0" prefWidth="47.0" />
-      <TextField fx:id="nocturiaTextfield" layoutX="195.0" layoutY="168.0" prefHeight="26.0" prefWidth="47.0" />
-      <ComboBox fx:id="otherComboBox" layoutX="194.0" layoutY="206.0" prefHeight="26.0" prefWidth="132.0" promptText="Select" />
+      <Button fx:id="btnSave" layoutX="309.0" layoutY="644.0" mnemonicParsing="false" onAction="#btnSaveFunc" prefHeight="40.0" prefWidth="169.0" text="Save" />
+      <ComboBox fx:id="bladderCapacityComboBox" layoutX="343.0" layoutY="122.0" prefHeight="35.0" prefWidth="136.0" promptText="Select" />
+      <TextField fx:id="IEsTextField" layoutX="343.0" layoutY="203.0" prefHeight="40.0" prefWidth="100.0" />
+      <TextField fx:id="UEsTextField" layoutX="343.0" layoutY="287.0" prefHeight="40.0" prefWidth="100.0" />
+      <TextField fx:id="urinationTextField" layoutX="343.0" layoutY="375.0" prefHeight="40.0" prefWidth="100.0" />
+      <TextField fx:id="nocturiaTextfield" layoutX="343.0" layoutY="456.0" prefHeight="40.0" prefWidth="100.0" />
+      <ComboBox fx:id="otherComboBox" layoutX="343.0" layoutY="539.0" prefHeight="35.0" prefWidth="136.0" promptText="Select" />
       <Text fx:id="saveTextVerify" layoutX="490.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Label layoutX="64.0" layoutY="27.0" text="Bladder Capacity:" />
-      <Label layoutX="95.0" layoutY="66.0" text="IEs per day:" />
-      <Label layoutX="90.0" layoutY="104.0" text="UEs per day:" />
-      <Label layoutX="60.0" layoutY="141.0" text="Urination per day:" />
-      <Label layoutX="56.0" layoutY="177.0" text="Nocturia episodes:" />
-      <Label layoutX="120.0" layoutY="213.0" text="Other:" />
+      <Label layoutX="78.0" layoutY="121.0" text="Bladder Capacity:" />
+      <Label layoutX="78.0" layoutY="204.0" text="IEs per day:" />
+      <Label layoutX="78.0" layoutY="288.0" text="UEs per day:" />
+      <Label layoutX="78.0" layoutY="376.0" text="Urination per day:" />
+      <Label layoutX="78.0" layoutY="457.0" text="Nocturia episodes:" />
+      <Label layoutX="78.0" layoutY="538.0" text="Other:" />
    </children>
 </AnchorPane>

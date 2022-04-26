@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="624.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.SearchCreateViewController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="624.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.SearchCreateViewController">
     <stylesheets>
         <URL value="@SearchCreateViewCss.css" />
     </stylesheets>
@@ -40,7 +40,7 @@
             <TextField fx:id="field_cpr" layoutX="90.0" layoutY="102.0" />
             <Label layoutX="28.0" layoutY="160.0" text="Name:" />
             <TextField fx:id="field_name" layoutX="90.0" layoutY="155.0" />
-            <Button fx:id="button_logout" layoutX="231.0" mnemonicParsing="false" text="Log out" />
+            <Button fx:id="button_logout" layoutX="231.0" mnemonicParsing="false" onAction="#logout" text="Log out" />
          </children>
       </AnchorPane>
    </children>
