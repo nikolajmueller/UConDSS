@@ -1,6 +1,7 @@
 package STproject.Controllers;
 
 import STproject.Main.Main;
+import java.awt.Color;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,12 +43,20 @@ public class DashboardMainViewController implements Initializable {
     @FXML
     private AnchorPane anchorpane_Symptoms;
 
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         cpr.setText(Main.patient.getCprNumber());
+        cpr.setStyle("-fx-text-fill: White;");
         name.setText(Main.patient.getName());
+        name.setStyle("-fx-text-fill: White;");
         age.setText(""+Main.patient.getAge());
+        age.setStyle("-fx-text-fill: White;");
         gender.setText(Main.patient.getGender());
+        gender.setStyle("-fx-text-fill: White;");
+
     }
 
     public void symptomsShow() {
