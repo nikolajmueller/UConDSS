@@ -181,7 +181,7 @@ public class SearchCreateViewController implements Initializable {
                 }
             }
         } catch (Exception f) {
-            JOptionPane.showMessageDialog(null, f);
+            JOptionPane.showMessageDialog(null, "Fill in valid CPR number");
         }
     }
 
