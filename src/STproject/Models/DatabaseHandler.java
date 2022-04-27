@@ -185,4 +185,30 @@ public class DatabaseHandler {
         }
     }
 
+// SELECT * FROM SymptomsBaseline WHERE patientCPR =
+    public static void readSymptoms() {
+
+        try {
+            Connection conn = DatabaseHandler.getConnection();
+            PreparedStatement ps = conn.prepareStatement(
+                    "SELECT `bladderCapacity`, `IEsPerDay`, `UEsPerDay`, `UrinationPerDay`,"
+                    + " `NocturiaEpisodes`, `Other` FROM `SymptomsBaseline` "
+                    + "WHERE patientCPR = ? ORDER BY symptomsIndex DESC LIMIT 1");
+            ps.setString(1, patient.getCprNumber());
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+
+            symptoms.setBladderCapacity(rs.getString(1));
+            symptoms.setIEsPerDay(rs.getInt(2));
+            symptoms.setUEsPerDay(rs.getInt(3));
+            symptoms.setUrinationPerDay(rs.getInt(4));
+            symptoms.setNocturiaEpisodes(rs.getInt(5));
+            symptoms.setOther(rs.getString(6));
+
+            conn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERROR DatabaseHandler.readSymptoms()");
+        }
+    }
+
 }
