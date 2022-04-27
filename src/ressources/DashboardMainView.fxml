@@ -77,10 +77,12 @@
             <AnchorPane fx:id="anchorpane_Treatment" layoutX="3.0" layoutY="7.0" prefHeight="728.0" prefWidth="1076.0" visible="false">
                <children>
                   <fx:include source="DashboardTreatmentStrategy.fxml" />
+                  <Button layoutX="959.0" layoutY="712.0" mnemonicParsing="false" onAction="#fromTreatmentToEffectShow" text="To effect" />
                </children></AnchorPane>
             <AnchorPane fx:id="anchorpane_Symptoms" focusTraversable="true" layoutX="3.0" prefHeight="775.0" prefWidth="1079.0">
                <children>
                   <fx:include source="DashboardSymptomEvaluation.fxml" />
+                  <Button layoutX="929.0" layoutY="719.0" mnemonicParsing="false" onAction="#fromSymptomsToTreatmentShow" text="To treatment" />
                </children></AnchorPane>
          </children></AnchorPane>
    </children>

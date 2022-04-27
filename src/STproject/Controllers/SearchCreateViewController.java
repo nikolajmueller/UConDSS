@@ -41,10 +41,9 @@ public class SearchCreateViewController implements Initializable {
 
     @FXML
     private TextField field_cpr, field_name;
-    
+
     @FXML
     private Button btnToDashboard;
-
 
     /**
      * Initializes the controller class.
@@ -106,10 +105,8 @@ public class SearchCreateViewController implements Initializable {
                     keywordTextField.setText(s);
                 }
             }
-        });        
-        
-        
-        
+        });
+
 // Sikre at der kun kan indtastes tal i CPR felt
         field_cpr.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -173,22 +170,18 @@ public class SearchCreateViewController implements Initializable {
                             patient.getName(),
                             patient.getAge(),
                             patient.getGender());
+                    Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardMainView.fxml"));
+                    Scene toDashboardScene = new Scene(toDashboardParent);
+                    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    window.setScene(toDashboardScene);
+                    window.centerOnScreen();
+                    window.show();
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid CPR");
                 }
             }
         } catch (Exception f) {
             JOptionPane.showMessageDialog(null, f);
-        }
-        try {
-            Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardSymptomEvaluation.fxml"));
-            Scene toDashboardScene = new Scene(toDashboardParent);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(toDashboardScene);
-            window.centerOnScreen();
-            window.show();
-        } catch (Exception r) {
-            JOptionPane.showMessageDialog(null, r);
         }
     }
 

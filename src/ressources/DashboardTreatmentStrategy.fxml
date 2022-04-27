@@ -117,7 +117,7 @@
          <font>
             <Font size="18.0" />
          </font></CheckBox>
-      <Button fx:id="btnSave" layoutX="716.0" layoutY="702.0" mnemonicParsing="false" onAction="#clickBtnSave" prefHeight="47.0" prefWidth="198.0" text="Save" />
+      <Button fx:id="btnSave" layoutX="514.0" layoutY="680.0" mnemonicParsing="false" onAction="#clickBtnSave" prefHeight="47.0" prefWidth="198.0" text="Save treatment" />
       <Label layoutX="631.0" layoutY="91.0" text="Bladder capacity:">
          <font>
             <Font size="19.0" />
@@ -166,5 +166,6 @@
          <font>
             <Font size="19.0" />
          </font></Label>
+      <Label fx:id="treatmentSaved" layoutX="531.0" layoutY="737.0" />
    </children>
 </AnchorPane>

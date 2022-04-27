@@ -31,16 +31,16 @@ public class DashboardMainViewController implements Initializable {
     private TextField gender;
     
     @FXML
-    private AnchorPane anchorpane_Evaluation;
+    public AnchorPane anchorpane_Evaluation;
 
     @FXML
-    private AnchorPane anchorpane_Effect;
+    public AnchorPane anchorpane_Effect;
 
     @FXML
-    private AnchorPane anchorpane_Treatment;
+    public AnchorPane anchorpane_Treatment;
 
     @FXML
-    private AnchorPane anchorpane_Symptoms;
+    public AnchorPane anchorpane_Symptoms;
 
     
     
@@ -108,9 +108,17 @@ public class DashboardMainViewController implements Initializable {
         window.centerOnScreen();
         window.show();
     }
-
-    public void btntoTreatment() {
+    
+    public void fromSymptomsToTreatmentShow() {
+        anchorpane_Treatment.setVisible(true);
+        anchorpane_Symptoms.setVisible(false);
+    }
+    
+    public void fromTreatmentToEffectShow() {
+        anchorpane_Effect.setVisible(true);
+        anchorpane_Treatment.setVisible(false);
         
     }
+    
     
 }

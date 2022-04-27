@@ -25,6 +25,9 @@ public class DashboardTreatmentStrategyController implements Initializable {
     @FXML // stimulation paradigm checkboxes
     private CheckBox TLContinuous, TL4Hours, TL30Minutes,
             TL15Minutes, TLDeactivated, Urge60Seconds, UrgeDeactivated;
+    
+    @FXML
+    private Label treatmentSaved;
 
     @FXML // max intensity checkboxes
     private CheckBox TL5, TL4, TL3, TL2, TL1,
@@ -56,21 +59,25 @@ public class DashboardTreatmentStrategyController implements Initializable {
         if (emptyField == 0) {
             try {
                 DatabaseHandler.saveTreatmentToDb();
+                treatmentSaved.setText("Treatment saved");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error connection to database");
             }
+            /*
             try {
+                
                 Parent toTreatmentParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardEffectivenessScore.fxml"));
                 Scene toTreatmentScene = new Scene(toTreatmentParent);
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(toTreatmentScene);
                 window.show();
                 window.centerOnScreen();
+                
             } catch (Exception f) {
                 JOptionPane.showMessageDialog(null, "Error");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Fill in missing check boxes!");
+            JOptionPane.showMessageDialog(null, "Fill in missing check boxes!");*/
         }
     }
 
