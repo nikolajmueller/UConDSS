@@ -161,7 +161,7 @@ public class SearchCreateViewController implements Initializable {
             determineGender();
 
             if (!field_cpr.getText().matches("\\d{10}")) {
-                JOptionPane.showMessageDialog(null, "Invalid CPR number.");
+                JOptionPane.showMessageDialog(null, "Invalid CPR number");
             } else if (field_name.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Fill in name");
             } else {
@@ -185,7 +185,7 @@ public class SearchCreateViewController implements Initializable {
         }
     }
 
-    public int calculateAge(String cpr) {
+    public int calculateAge(String cpr) {   // Funktion til at beregne alder
         int patientAge = 0;
         try {
             String CPRInput = cpr.substring(4, 6);
