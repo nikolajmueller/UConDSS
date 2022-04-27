@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 import javax.swing.JOptionPane;
 
 public class DashboardSymptomEvaluationController implements Initializable {
-
+    
     @FXML
     private ComboBox bladderCapacityComboBox, otherComboBox;
 
@@ -54,8 +54,8 @@ public class DashboardSymptomEvaluationController implements Initializable {
             DatabaseHandler.saveSymptonsToDb();
             symptomsSaved.setText("Symptoms saved");
             symptomsSaved.setStyle("-fx-font-size: 13pt ;");
-
-
+            
+            
         } catch (Exception g) {
             JOptionPane.showMessageDialog(null, "Error saving symptoms to database");
         }

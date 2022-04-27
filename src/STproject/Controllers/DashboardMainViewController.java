@@ -1,6 +1,7 @@
 package STproject.Controllers;
 
 import STproject.Main.Main;
+import static STproject.Main.Main.symptoms;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -117,7 +118,6 @@ public class DashboardMainViewController implements Initializable {
     public void fromTreatmentToEffectShow() {
         anchorpane_Effect.setVisible(true);
         anchorpane_Treatment.setVisible(false);
-        
     }
     
     

@@ -6,19 +6,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 public class DashboardTreatmentStrategyController implements Initializable {
-
+    
     @FXML
-    private Label lbPatientBladderCapacity, lbPatientIEsPerDay,
+    public Label lbPatientBladderCapacity, lbPatientIEsPerDay,
             lbPatientUEsPerDay, lbPatientUrinationPerDay, lbPatientNocturiaEpisodes,
             lbPatientOther;
 
@@ -42,15 +37,29 @@ public class DashboardTreatmentStrategyController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-// opdater symptoms liste
+// opdater symptoms liste  
+/*
         lbPatientBladderCapacity.setText(symptoms.getBladderCapacity());
         lbPatientIEsPerDay.setText(Integer.toString(symptoms.getIEsPerDay()));
         lbPatientUEsPerDay.setText(Integer.toString(symptoms.getUEsPerDay()));
         lbPatientUrinationPerDay.setText(Integer.toString(symptoms.getUrinationPerDay()));
         lbPatientNocturiaEpisodes.setText(Integer.toString(symptoms.getNocturiaEpisodes()));
         lbPatientOther.setText(symptoms.getOther());
+*/
 
 // sæt symptoms visible(true)
+    }
+    
+  //@FXML 
+    public void loadSymptoms(){
+        
+        lbPatientBladderCapacity.setText(symptoms.getBladderCapacity());
+        lbPatientIEsPerDay.setText(Integer.toString(symptoms.getIEsPerDay()));
+        lbPatientUEsPerDay.setText(Integer.toString(symptoms.getUEsPerDay()));
+        lbPatientUrinationPerDay.setText(Integer.toString(symptoms.getUrinationPerDay()));
+        lbPatientNocturiaEpisodes.setText(Integer.toString(symptoms.getNocturiaEpisodes()));
+        lbPatientOther.setText(symptoms.getOther());
+        
     }
 
     public void clickBtnSave(ActionEvent event) {
@@ -83,7 +92,7 @@ public class DashboardTreatmentStrategyController implements Initializable {
         }
         return emptyField;
     }
-
+    
 // TIME LIMITED PARADIGM START
     public void clickTLContinuous() {
         TLContinuous.setSelected(true);
