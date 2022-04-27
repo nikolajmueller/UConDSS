@@ -6,6 +6,9 @@ import STproject.Models.DatabaseHandler;
 import STproject.Models.Patient;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
@@ -152,6 +155,7 @@ public class SearchCreateViewController implements Initializable {
         window.show();
     }
 
+    Connection conn = null;
     // CREATE PATIENT
     public void btnSavePatientFunc(ActionEvent event) {      //funktion til knappen save patient
         try {  // gemmer værdier i @FXML-boksene i patient
@@ -160,12 +164,21 @@ public class SearchCreateViewController implements Initializable {
             patient.setAge(calculateAge(patient.getCprNumber()));
             determineGender();
 
+            conn = DatabaseHandler.getConnection(); // get db connection
+            // sqlUser query to check for duplicates in database (CPR)
+            String sqlUserDupe = "SELECT COUNT(*) FROM PatientList where CPR LIKE \"" + field_cpr.getText() + "\"";
+            
+            Statement stDupe = conn.createStatement();
+            ResultSet userRes = stDupe.executeQuery(sqlUserDupe);
+            userRes.next();
+            String dupeCountrow = userRes.getString(1);
+            
             if (!field_cpr.getText().matches("\\d{10}")) {
                 JOptionPane.showMessageDialog(null, "Invalid CPR number");
             } else if (field_name.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Fill in name");
             } else {
-                if (patient.getAge() != 0) {
+                if (patient.getAge() != 0 && dupeCountrow.equals("0")) {
                     DatabaseHandler.savePatientToDb(patient.getCprNumber(),
                             patient.getName(),
                             patient.getAge(),
@@ -176,8 +189,14 @@ public class SearchCreateViewController implements Initializable {
                     window.setScene(toDashboardScene);
                     window.centerOnScreen();
                     window.show();
+                    JOptionPane.showMessageDialog(null, "Patient registered");
                 } else {
+                    if (dupeCountrow.equals("1")) {
+                    JOptionPane.showMessageDialog(null, "Patient already registered");
+                    }
+                    else {
                     JOptionPane.showMessageDialog(null, "Invalid CPR");
+                    }
                 }
             }
         } catch (Exception f) {

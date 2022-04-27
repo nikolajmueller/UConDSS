@@ -25,28 +25,16 @@ import javax.swing.JOptionPane;
 public class LoginViewController implements Initializable {
 
     @FXML
-    private AnchorPane pane_login;
+    private AnchorPane pane_login, pane_signup;
 
     @FXML
-    private AnchorPane pane_signup;
-
-    @FXML
-    private TextField username_lg;
+    private TextField username_lg, username_up, password_up, email_up;
 
     @FXML
     private PasswordField password_lg;
 
     @FXML
     private Button btnLogin;
-
-    @FXML
-    private TextField username_up;
-
-    @FXML
-    private TextField password_up;
-
-    @FXML
-    private TextField email_up;
 
     Connection conn = null;
     ResultSet rs = null;
