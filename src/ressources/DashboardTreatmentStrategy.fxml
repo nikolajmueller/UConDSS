@@ -166,6 +166,6 @@
          <font>
             <Font size="19.0" />
          </font></Label>
-      <Label fx:id="treatmentSaved" layoutX="531.0" layoutY="737.0" />
+      <Label fx:id="treatmentSaved" layoutX="545.0" layoutY="733.0" />
    </children>
 </AnchorPane>

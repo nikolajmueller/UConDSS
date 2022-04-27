@@ -63,21 +63,6 @@ public class DashboardTreatmentStrategyController implements Initializable {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error connection to database");
             }
-            /*
-            try {
-                
-                Parent toTreatmentParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardEffectivenessScore.fxml"));
-                Scene toTreatmentScene = new Scene(toTreatmentParent);
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                window.setScene(toTreatmentScene);
-                window.show();
-                window.centerOnScreen();
-                
-            } catch (Exception f) {
-                JOptionPane.showMessageDialog(null, "Error");
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Fill in missing check boxes!");*/
         }
     }
 

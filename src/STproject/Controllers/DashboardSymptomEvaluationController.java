@@ -53,18 +53,8 @@ public class DashboardSymptomEvaluationController implements Initializable {
 // kald metode fra DatabaseHandler; gemmer værdier til databasen RET TIL INGEN ARGUMENTER
             DatabaseHandler.saveSymptonsToDb();
             symptomsSaved.setText("Symptoms saved");
-            /*
-            Parent toTreatmentParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardTreatmentStrategy.fxml"));
-            Scene toTreatmentScene = new Scene(toTreatmentParent);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(toTreatmentScene);
-            window.show();
-            window.centerOnScreen();
-             */
-            
-            //DashboardMainViewController dashboardMainViewController = new DashboardMainViewController();
-            //dashboardMainViewController.anchorpane_Treatment.setVisible(true);
-            //dashboardMainViewController.anchorpane_Evaluation.setVisible(false);
+            symptomsSaved.setStyle("-fx-font-size: 13pt ;");
+
 
         } catch (Exception g) {
             JOptionPane.showMessageDialog(null, "Error saving symptoms to database");
