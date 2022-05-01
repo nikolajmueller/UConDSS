@@ -1,14 +1,22 @@
 package STproject.Controllers;
 
+import STproject.Main.Main;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 public class DashboardUconDataVisualizationController implements Initializable {
@@ -27,6 +35,9 @@ public class DashboardUconDataVisualizationController implements Initializable {
 
     @FXML
     private TextField average_TimeLimitedSessions;
+    
+    @FXML
+    private TextField cpr, name, age, gender;
 
     /**
      * Initializes the controller class.
@@ -34,6 +45,15 @@ public class DashboardUconDataVisualizationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        cpr.setText(Main.patient.getCprNumber());
+        cpr.setStyle("-fx-text-fill: White;");
+        name.setText(Main.patient.getName());
+        name.setStyle("-fx-text-fill: White;");
+        age.setText(""+Main.patient.getAge());
+        age.setStyle("-fx-text-fill: White;");
+        gender.setText(Main.patient.getGender());
+        gender.setStyle("-fx-text-fill: White;");
+        
         String fileName = "C:\\jar-files\\files\\log_2021-04-09.txt";
         File file = new File(fileName);
 
@@ -89,6 +109,62 @@ public class DashboardUconDataVisualizationController implements Initializable {
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(null, e);
         }
+    }
+    
+    @FXML
+    void logout(ActionEvent event) throws IOException {
+
+        Parent toLoginParent = FXMLLoader.load(getClass().getResource("/ressources/LoginView.fxml"));
+        Scene toLoginScene = new Scene(toLoginParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(toLoginScene);
+        window.centerOnScreen();
+        window.setTitle("UCon");
+        window.show();
+    }
+
+    @FXML
+    void selectNewPatient(ActionEvent event) throws IOException {
+
+        Parent toSearchCreateParent = FXMLLoader.load(getClass().getResource("/ressources/SearchCreateView.fxml"));
+        Scene toSearchCreateScene = new Scene(toSearchCreateParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(toSearchCreateScene);
+        window.centerOnScreen();
+        window.show();
+    }
+    
+    @FXML
+    void toSymptomEvaluation(ActionEvent event) throws IOException {
+
+        Parent toSearchCreateParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardSymptomEvaluation.fxml"));
+        Scene toSearchCreateScene = new Scene(toSearchCreateParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(toSearchCreateScene);
+        window.centerOnScreen();
+        window.show();
+    }
+    
+    @FXML
+    void toTreatment(ActionEvent event) throws IOException {
+
+        Parent toSearchCreateParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardTreatmentStrategy.fxml"));
+        Scene toSearchCreateScene = new Scene(toSearchCreateParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(toSearchCreateScene);
+        window.centerOnScreen();
+        window.show();
+    }
+    
+    @FXML
+    void toEffect(ActionEvent event) throws IOException {
+
+        Parent toSearchCreateParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardEffectivenessScore.fxml"));
+        Scene toSearchCreateScene = new Scene(toSearchCreateParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(toSearchCreateScene);
+        window.centerOnScreen();
+        window.show();
     }
 
 }

@@ -147,7 +147,7 @@ public class SearchCreateViewController implements Initializable {
     }
 
     public void btnToDashboard(ActionEvent event) throws IOException {
-        Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardMainView.fxml"));
+        Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardSymptomEvaluation.fxml"));
         Scene toDashboardScene = new Scene(toDashboardParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(toDashboardScene);
@@ -183,7 +183,7 @@ public class SearchCreateViewController implements Initializable {
                             patient.getName(),
                             patient.getAge(),
                             patient.getGender());
-                    Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardMainView.fxml"));
+                    Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardSymptomEvaluation.fxml"));
                     Scene toDashboardScene = new Scene(toDashboardParent);
                     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     window.setScene(toDashboardScene);

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -8,40 +9,100 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1079.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardEffectivenessScoreController">
+<AnchorPane id="AnchorPane" prefHeight="774.0" prefWidth="1178.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardEffectivenessScoreController">
     <stylesheets>
         <URL value="@DashboardEffectivenessScoreCss.css" />
     </stylesheets>
    <children>
-      <Label layoutX="137.0" layoutY="91.0" text="IEs per day:" textAlignment="RIGHT" />
-      <Label layoutX="134.0" layoutY="138.0" text="UEs per day:" textAlignment="RIGHT" />
-      <Label layoutX="135.0" layoutY="186.0" text="Urination per day:" textAlignment="RIGHT" />
-      <Label layoutX="133.0" layoutY="232.0" text="Nocturia episodes:" textAlignment="RIGHT" />
-      <TextField fx:id="TF_IEsPerDay" layoutX="453.0" layoutY="84.0" prefHeight="35.0" prefWidth="74.0" />
-      <TextField fx:id="TF_UEsPerDay" layoutX="453.0" layoutY="131.0" prefHeight="35.0" prefWidth="74.0" />
-      <TextField fx:id="TF_urination" layoutX="453.0" layoutY="179.0" prefHeight="35.0" prefWidth="74.0" />
-      <TextField fx:id="TF_nocturia" layoutX="453.0" layoutY="226.0" prefHeight="35.0" prefWidth="74.0" />
-      <TextField fx:id="TF_IEsPerDayScore" editable="false" layoutX="745.0" layoutY="85.0" mouseTransparent="true" prefHeight="26.0" prefWidth="85.0" />
-      <TextField fx:id="TF_UEsPerDayScore" editable="false" layoutX="744.0" layoutY="131.0" mouseTransparent="true" prefHeight="26.0" prefWidth="86.0" />
-      <TextField fx:id="TF_urinationScore" editable="false" layoutX="744.0" layoutY="179.0" mouseTransparent="true" prefHeight="26.0" prefWidth="86.0" />
-      <TextField fx:id="TF_nocturiaScore" editable="false" layoutX="744.0" layoutY="225.0" mouseTransparent="true" prefHeight="26.0" prefWidth="86.0" />
-      <Label layoutX="453.0" layoutY="34.0" text="New&#10;symptoms&#10;" textAlignment="CENTER" />
-      <Label layoutX="723.0" layoutY="34.0" text="Symptoms change&#10;(in percent)" textAlignment="CENTER" />
-      <Button fx:id="btnDetermineEffect" layoutX="592.0" layoutY="153.0" mnemonicParsing="false" onAction="#determineEffect" text="Determine&#10;effect" textAlignment="CENTER" />
-      <TextField fx:id="TF_IEsPrevious" editable="false" layoutX="290.0" layoutY="85.0" mouseTransparent="true" prefHeight="35.0" prefWidth="74.0" />
-      <TextField fx:id="TF_UEsPrevious" editable="false" layoutX="290.0" layoutY="133.0" mouseTransparent="true" prefHeight="35.0" prefWidth="74.0" />
-      <TextField fx:id="TF_urinationPrevious" editable="false" layoutX="290.0" layoutY="179.0" mouseTransparent="true" prefHeight="35.0" prefWidth="74.0" />
-      <TextField fx:id="TF_nocturiaPrevious" editable="false" layoutX="290.0" layoutY="226.0" mouseTransparent="true" prefHeight="35.0" prefWidth="74.0" />
-      <Label layoutX="290.0" layoutY="34.0" text="Previous&#10;symptoms" textAlignment="CENTER" />
-      <BarChart fx:id="barChart" layoutX="133.0" layoutY="317.0" prefHeight="332.0" prefWidth="814.0">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </BarChart>
-      <Button fx:id="btnExpandGraph" layoutX="979.0" layoutY="583.0" mnemonicParsing="false" onAction="#expandGraph" text="Expand&#10;graph" textAlignment="CENTER" />
+      <AnchorPane prefHeight="774.0" prefWidth="208.0">
+         <children>
+            <Pane prefHeight="774.0" prefWidth="208.0" style="-fx-background-color: #2D3039;">
+               <children>
+                  <HBox layoutY="160.0" prefHeight="70.0" prefWidth="173.0">
+                     <children>
+                        <Button blendMode="OVERLAY" mnemonicParsing="false" onAction="#toSymptomEvaluation" prefWidth="150.0" text="Symptoms">
+                           <HBox.margin>
+                              <Insets left="30.0" top="30.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox layoutY="230.0" prefHeight="70.0" prefWidth="173.0">
+                     <children>
+                        <Button blendMode="OVERLAY" mnemonicParsing="false" onAction="#toTreatment" prefWidth="150.0" text="Treatment">
+                           <HBox.margin>
+                              <Insets left="30.0" top="30.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox layoutY="300.0" prefHeight="70.0" prefWidth="173.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefWidth="150.0" text="Effect">
+                           <HBox.margin>
+                              <Insets left="30.0" top="30.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox layoutY="370.0" prefHeight="70.0" prefWidth="173.0">
+                     <children>
+                        <Button blendMode="OVERLAY" mnemonicParsing="false" onAction="#toTreatmentEvaluation" prefWidth="150.0" text="Evaluation">
+                           <HBox.margin>
+                              <Insets left="30.0" top="30.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Button layoutX="47.0" layoutY="703.0" mnemonicParsing="false" onAction="#logout" prefHeight="7.0" prefWidth="110.0" text="Logout" />
+                  <Button layoutX="32.0" layoutY="632.0" mnemonicParsing="false" onAction="#selectNewPatient" text="Select new patient" />
+                  <TextField fx:id="cpr" editable="false" focusTraversable="false" layoutX="16.0" layoutY="6.0" mouseTransparent="true" prefHeight="32.0" prefWidth="173.0" />
+                  <TextField fx:id="name" editable="false" focusTraversable="false" layoutX="16.0" layoutY="49.0" mouseTransparent="true" prefHeight="32.0" prefWidth="173.0" />
+                  <TextField fx:id="age" editable="false" focusTraversable="false" layoutX="16.0" layoutY="91.0" mouseTransparent="true" prefHeight="32.0" prefWidth="173.0" />
+                  <TextField fx:id="gender" editable="false" focusTraversable="false" layoutX="16.0" layoutY="135.0" mouseTransparent="true" prefHeight="32.0" prefWidth="173.0" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="AnchorPane" layoutX="202.0" prefHeight="742.0" prefWidth="1005.0" styleClass="mainFxmlClass">
+         <stylesheets>
+            <URL value="@DashboardEffectivenessScoreCss.css" />
+         </stylesheets>
+         <children>
+            <Label layoutX="105.0" layoutY="96.0" text="IEs per day:" textAlignment="RIGHT" />
+            <Label layoutX="102.0" layoutY="143.0" text="UEs per day:" textAlignment="RIGHT" />
+            <Label layoutX="103.0" layoutY="191.0" text="Urination per day:" textAlignment="RIGHT" />
+            <Label layoutX="101.0" layoutY="237.0" text="Nocturia episodes:" textAlignment="RIGHT" />
+            <TextField fx:id="TF_IEsPerDay" layoutX="421.0" layoutY="89.0" prefHeight="35.0" prefWidth="74.0" />
+            <TextField fx:id="TF_UEsPerDay" layoutX="421.0" layoutY="136.0" prefHeight="35.0" prefWidth="74.0" />
+            <TextField fx:id="TF_urination" layoutX="421.0" layoutY="184.0" prefHeight="35.0" prefWidth="74.0" />
+            <TextField fx:id="TF_nocturia" layoutX="421.0" layoutY="231.0" prefHeight="35.0" prefWidth="74.0" />
+            <TextField fx:id="TF_IEsPerDayScore" editable="false" layoutX="713.0" layoutY="90.0" mouseTransparent="true" prefHeight="26.0" prefWidth="85.0" />
+            <TextField fx:id="TF_UEsPerDayScore" editable="false" layoutX="712.0" layoutY="136.0" mouseTransparent="true" prefHeight="26.0" prefWidth="86.0" />
+            <TextField fx:id="TF_urinationScore" editable="false" layoutX="712.0" layoutY="184.0" mouseTransparent="true" prefHeight="26.0" prefWidth="86.0" />
+            <TextField fx:id="TF_nocturiaScore" editable="false" layoutX="712.0" layoutY="230.0" mouseTransparent="true" prefHeight="26.0" prefWidth="86.0" />
+            <Label layoutX="421.0" layoutY="39.0" text="New&#10;symptoms&#10;" textAlignment="CENTER" />
+            <Label layoutX="691.0" layoutY="39.0" text="Symptoms change&#10;(in percent)" textAlignment="CENTER" />
+            <Button fx:id="btnDetermineEffect" layoutX="560.0" layoutY="158.0" mnemonicParsing="false" onAction="#determineEffect" text="Determine&#10;effect" textAlignment="CENTER" />
+            <TextField fx:id="TF_IEsPrevious" editable="false" layoutX="258.0" layoutY="90.0" mouseTransparent="true" prefHeight="35.0" prefWidth="74.0" />
+            <TextField fx:id="TF_UEsPrevious" editable="false" layoutX="258.0" layoutY="138.0" mouseTransparent="true" prefHeight="35.0" prefWidth="74.0" />
+            <TextField fx:id="TF_urinationPrevious" editable="false" layoutX="258.0" layoutY="184.0" mouseTransparent="true" prefHeight="35.0" prefWidth="74.0" />
+            <TextField fx:id="TF_nocturiaPrevious" editable="false" layoutX="258.0" layoutY="231.0" mouseTransparent="true" prefHeight="35.0" prefWidth="74.0" />
+            <Label layoutX="258.0" layoutY="39.0" text="Previous&#10;symptoms" textAlignment="CENTER" />
+            <BarChart fx:id="barChart" layoutX="21.0" layoutY="321.0" prefHeight="421.0" prefWidth="849.0">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis side="LEFT" />
+               </yAxis>
+            </BarChart>
+            <Button fx:id="btnExpandGraph" layoutX="897.0" layoutY="330.0" mnemonicParsing="false" onAction="#expandGraph" text="Expand&#10;graph" textAlignment="CENTER" />
+            <Button layoutX="905.0" layoutY="724.0" mnemonicParsing="false" onAction="#toTreatmentEvaluation" prefHeight="35.0" prefWidth="85.0" text="Next" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
