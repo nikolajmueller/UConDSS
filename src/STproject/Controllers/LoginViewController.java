@@ -80,7 +80,6 @@ public class LoginViewController implements Initializable {
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(toDashboardScene);
                 window.centerOnScreen();
-                window.setTitle("UConDSS" + "    -" + "     Name: " + username_lg.getText());
                 window.show();
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid Username or Password");

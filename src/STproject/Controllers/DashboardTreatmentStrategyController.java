@@ -1,17 +1,24 @@
 package STproject.Controllers;
 
+import STproject.Main.Main;
 import static STproject.Main.Main.*;
 import STproject.Models.DatabaseHandler;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 public class DashboardTreatmentStrategyController implements Initializable {
-    
+
     @FXML
     public Label lbPatientBladderCapacity, lbPatientIEsPerDay,
             lbPatientUEsPerDay, lbPatientUrinationPerDay, lbPatientNocturiaEpisodes,
@@ -20,13 +27,16 @@ public class DashboardTreatmentStrategyController implements Initializable {
     @FXML // stimulation paradigm checkboxes
     private CheckBox TLContinuous, TL4Hours, TL30Minutes,
             TL15Minutes, TLDeactivated, Urge60Seconds, UrgeDeactivated;
-    
+
     @FXML
     private Label treatmentSaved;
 
     @FXML // max intensity checkboxes
     private CheckBox TL5, TL4, TL3, TL2, TL1,
             Urge5, Urge4, Urge3, Urge2, Urge1;
+
+    @FXML
+    private TextField cpr, name, age, gender;
 
     @FXML
     private Button btnSave, btnExpandGraph;
@@ -38,28 +48,23 @@ public class DashboardTreatmentStrategyController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
 // opdater symptoms liste  
-/*
         lbPatientBladderCapacity.setText(symptoms.getBladderCapacity());
         lbPatientIEsPerDay.setText(Integer.toString(symptoms.getIEsPerDay()));
         lbPatientUEsPerDay.setText(Integer.toString(symptoms.getUEsPerDay()));
         lbPatientUrinationPerDay.setText(Integer.toString(symptoms.getUrinationPerDay()));
         lbPatientNocturiaEpisodes.setText(Integer.toString(symptoms.getNocturiaEpisodes()));
         lbPatientOther.setText(symptoms.getOther());
-*/
+
+        cpr.setText(Main.patient.getCprNumber());
+        cpr.setStyle("-fx-text-fill: White;");
+        name.setText(Main.patient.getName());
+        name.setStyle("-fx-text-fill: White;");
+        age.setText("" + Main.patient.getAge());
+        age.setStyle("-fx-text-fill: White;");
+        gender.setText(Main.patient.getGender());
+        gender.setStyle("-fx-text-fill: White;");
 
 // sæt symptoms visible(true)
-    }
-    
-  //@FXML 
-    public void loadSymptoms(){
-        
-        lbPatientBladderCapacity.setText(symptoms.getBladderCapacity());
-        lbPatientIEsPerDay.setText(Integer.toString(symptoms.getIEsPerDay()));
-        lbPatientUEsPerDay.setText(Integer.toString(symptoms.getUEsPerDay()));
-        lbPatientUrinationPerDay.setText(Integer.toString(symptoms.getUrinationPerDay()));
-        lbPatientNocturiaEpisodes.setText(Integer.toString(symptoms.getNocturiaEpisodes()));
-        lbPatientOther.setText(symptoms.getOther());
-        
     }
 
     public void clickBtnSave(ActionEvent event) {
@@ -68,7 +73,14 @@ public class DashboardTreatmentStrategyController implements Initializable {
         if (emptyField == 0) {
             try {
                 DatabaseHandler.saveTreatmentToDb();
-                treatmentSaved.setText("Treatment saved");
+                
+                Parent toLoginParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardEffectivenessScore.fxml"));
+                Scene toLoginScene = new Scene(toLoginParent);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(toLoginScene);
+                window.centerOnScreen();
+                window.show();
+                
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error connection to database");
             }
@@ -92,7 +104,7 @@ public class DashboardTreatmentStrategyController implements Initializable {
         }
         return emptyField;
     }
-    
+
 // TIME LIMITED PARADIGM START
     public void clickTLContinuous() {
         TLContinuous.setSelected(true);
@@ -301,4 +313,60 @@ public class DashboardTreatmentStrategyController implements Initializable {
         treatmentSetting.setUrgeIntensity(1);
     }
 // URGE MAX INTENSITY END
+
+    @FXML
+    void logout(ActionEvent event) throws IOException {
+
+        Parent toLoginParent = FXMLLoader.load(getClass().getResource("/ressources/LoginView.fxml"));
+        Scene toLoginScene = new Scene(toLoginParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(toLoginScene);
+        window.centerOnScreen();
+        window.setTitle("UCon");
+        window.show();
+    }
+
+    @FXML
+    void selectNewPatient(ActionEvent event) throws IOException {
+
+        Parent toSearchCreateParent = FXMLLoader.load(getClass().getResource("/ressources/SearchCreateView.fxml"));
+        Scene toSearchCreateScene = new Scene(toSearchCreateParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(toSearchCreateScene);
+        window.centerOnScreen();
+        window.show();
+    }
+
+    @FXML
+    void toTreatmentEvaluation(ActionEvent event) throws IOException {
+
+        Parent toSearchCreateParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardUconDataVisualization.fxml"));
+        Scene toSearchCreateScene = new Scene(toSearchCreateParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(toSearchCreateScene);
+        window.centerOnScreen();
+        window.show();
+    }
+
+    @FXML
+    void toEffect(ActionEvent event) throws IOException {
+
+        Parent toSearchCreateParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardEffectivenessScore.fxml"));
+        Scene toSearchCreateScene = new Scene(toSearchCreateParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(toSearchCreateScene);
+        window.centerOnScreen();
+        window.show();
+    }
+
+    @FXML
+    void toSymptomEvaluation(ActionEvent event) throws IOException {
+
+        Parent toSearchCreateParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardSymptomEvaluation.fxml"));
+        Scene toSearchCreateScene = new Scene(toSearchCreateParent);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(toSearchCreateScene);
+        window.centerOnScreen();
+        window.show();
+    }
 }
