@@ -48,9 +48,6 @@ public class SearchCreateViewController implements Initializable {
     @FXML
     private Button btnToDashboard;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 

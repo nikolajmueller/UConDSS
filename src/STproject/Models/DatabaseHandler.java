@@ -5,6 +5,7 @@
  */
 package STproject.Models;
 
+import STproject.Main.Main;
 import static STproject.Main.Main.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,6 +22,7 @@ import javax.swing.JOptionPane;
 public class DatabaseHandler {
 
     public static ObservableList<Patient> ob = FXCollections.observableArrayList();
+    public static ObservableList<TreatmentSetting> ob_treatment = FXCollections.observableArrayList();
 
     public static Connection getConnection() {
 
@@ -209,5 +211,21 @@ public class DatabaseHandler {
             JOptionPane.showMessageDialog(null, "ERROR DatabaseHandler.readSymptoms()");
         }
     }
+    
+    public static TreatmentSetting readTreatmentSetting() {
+
+        try {
+            String sqlQuery = "select * from patientTreatment WHERE CPR =" + Main.patient.getCprNumber();
+            ResultSet rs_treatment = getConnection().createStatement().executeQuery(sqlQuery);
+
+            while (rs_treatment.next()) {
+                ob_treatment.add(new TreatmentSetting(rs_treatment.getInt("treatmentNumber"), rs_treatment.getString("timeLimitedSetting"), rs_treatment.getInt("timeLimitedIntensity"), rs_treatment.getString("urgeSetting"), rs_treatment.getInt("urgeIntensity")));
+            }
+        } catch (SQLException e) {
+            System.err.println("Cannot connect to database server");
+        }
+        return null;
+    }
 
 }
+

@@ -3,9 +3,12 @@ package STproject.Controllers;
 import STproject.Main.Main;
 import static STproject.Main.Main.*;
 import STproject.Models.DatabaseHandler;
+import STproject.Models.TreatmentSetting;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Observable;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
@@ -64,7 +68,6 @@ public class DashboardTreatmentStrategyController implements Initializable {
         gender.setText(Main.patient.getGender());
         gender.setStyle("-fx-text-fill: White;");
 
-// sæt symptoms visible(true)
     }
 
     public void clickBtnSave(ActionEvent event) {
@@ -73,14 +76,14 @@ public class DashboardTreatmentStrategyController implements Initializable {
         if (emptyField == 0) {
             try {
                 DatabaseHandler.saveTreatmentToDb();
-                
+
                 Parent toLoginParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardEffectivenessScore.fxml"));
                 Scene toLoginScene = new Scene(toLoginParent);
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(toLoginScene);
                 window.centerOnScreen();
                 window.show();
-                
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error connection to database");
             }
@@ -368,5 +371,21 @@ public class DashboardTreatmentStrategyController implements Initializable {
         window.setScene(toSearchCreateScene);
         window.centerOnScreen();
         window.show();
+    }
+
+    public void showTreatments(ActionEvent event) {
+
+        try {
+            
+            Parent root = FXMLLoader.load(getClass().getResource("/ressources/TreatmentPatientHistorik.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("UConDss");
+            stage.show();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error connection to database");
+        }
     }
 }

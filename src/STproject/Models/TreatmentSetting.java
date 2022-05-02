@@ -8,8 +8,18 @@ public class TreatmentSetting {
     private String urgeSetting;
     private int urgeIntensity;
 
-        
+    public TreatmentSetting(int treatmentNumber, String timeLimitedSetting, int timeLimitedIntensity, String urgeSetting, int urgeIntensity) {
+        this.treatmentNumber = treatmentNumber;
+        this.timeLimitedSetting = timeLimitedSetting;
+        this.timeLimitedIntensity = timeLimitedIntensity;
+        this.urgeSetting = urgeSetting;
+        this.urgeIntensity = urgeIntensity;
+    }
     
+    public TreatmentSetting() {
+    }
+
+
     public void setTreatmentNumber(int treatmentNumber) {
         this.treatmentNumber = treatmentNumber;
     }
