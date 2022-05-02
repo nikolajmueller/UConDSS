@@ -41,6 +41,8 @@ public class TreatmentPatientHistorikController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        ob_treatment.clear();
+        
         DatabaseHandler.readTreatmentSetting();
         ObservableList<TreatmentSetting> ob_treatment = DatabaseHandler.ob_treatment;
         
