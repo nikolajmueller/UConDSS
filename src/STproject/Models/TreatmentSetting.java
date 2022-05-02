@@ -1,17 +1,15 @@
 package STproject.Models;
 
-/**
- *
- * @author Nikol
- */
 public class TreatmentSetting {
 
-    int treatmentNumber;
-    String timeLimitedSetting;
-    int timeLimitedIntensity;
-    String urgeSetting;
-    int urgeIntensity;
+    private int treatmentNumber;
+    private String timeLimitedSetting;
+    private int timeLimitedIntensity;
+    private String urgeSetting;
+    private int urgeIntensity;
 
+        
+    
     public void setTreatmentNumber(int treatmentNumber) {
         this.treatmentNumber = treatmentNumber;
     }
