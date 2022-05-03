@@ -31,7 +31,7 @@ public class DashboardSymptomEvaluationController implements Initializable {
     private Label symptomsSaved;
 
     @FXML
-    private Button btnSave;
+    private Button btnSave, btnToTreatment, btnToEffect, btnToEvaluation;
 
     @FXML
     private Text saveTextVerify;

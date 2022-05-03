@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="774.0" prefWidth="1145.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardSymptomEvaluationController">
+<AnchorPane id="AnchorPane" prefHeight="774.0" prefWidth="1145.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardSymptomEvaluationController">
     <stylesheets>
         <URL value="@DashboardSymptomEvaluationCss.css" />
     </stylesheets>
@@ -58,7 +58,7 @@
                   </HBox>
                   <HBox layoutY="230.0" prefHeight="70.0" prefWidth="173.0">
                      <children>
-                        <Button blendMode="OVERLAY" mnemonicParsing="false" onAction="#toTreatment" prefWidth="150.0" text="Treatment">
+                        <Button fx:id="btnToTreatment" blendMode="OVERLAY" disable="true" mnemonicParsing="false" onAction="#toTreatment" prefWidth="150.0" text="Treatment">
                            <HBox.margin>
                               <Insets left="30.0" top="30.0" />
                            </HBox.margin>
@@ -67,7 +67,7 @@
                   </HBox>
                   <HBox layoutY="300.0" prefHeight="70.0" prefWidth="173.0">
                      <children>
-                        <Button blendMode="OVERLAY" mnemonicParsing="false" onAction="#toEffect" prefWidth="150.0" text="Effect">
+                        <Button fx:id="btnToEffect" blendMode="OVERLAY" disable="true" mnemonicParsing="false" onAction="#toEffect" prefWidth="150.0" text="Effect">
                            <HBox.margin>
                               <Insets left="30.0" top="30.0" />
                            </HBox.margin>
@@ -76,7 +76,7 @@
                   </HBox>
                   <HBox layoutY="370.0" prefHeight="70.0" prefWidth="173.0">
                      <children>
-                        <Button blendMode="OVERLAY" mnemonicParsing="false" onAction="#toTreatmentEvaluation" prefWidth="150.0" text="Evaluation">
+                        <Button fx:id="btnToEvaluation" blendMode="OVERLAY" disable="true" mnemonicParsing="false" onAction="#toTreatmentEvaluation" prefWidth="150.0" text="Evaluation">
                            <HBox.margin>
                               <Insets left="30.0" top="30.0" />
                            </HBox.margin>

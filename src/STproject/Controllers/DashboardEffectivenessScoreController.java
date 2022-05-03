@@ -214,6 +214,8 @@ public class DashboardEffectivenessScoreController implements Initializable {
     @FXML
     void toTreatmentEvaluation(ActionEvent event) throws IOException {
 
+// ny funk her der gemmer NYE symptomer til db
+
         Parent toSearchCreateParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardUconDataVisualization.fxml"));
         Scene toSearchCreateScene = new Scene(toSearchCreateParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

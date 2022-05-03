@@ -215,6 +215,31 @@ public class DatabaseHandler {
         }
     }
 
+    public static void readLatestTreatment() {
+        try {
+            Connection conn = DatabaseHandler.getConnection();
+            PreparedStatement ps = conn.prepareStatement(
+                    "SELECT `treatmentNumber`, `timeLimitedSetting`, `timeLimitedIntensity`,"
+                    + " `urgeSetting`, `urgeIntensity`"
+                    + " FROM `patientTreatment` WHERE CPR = ?"
+                    + " ORDER BY treatmentNumber DESC LIMIT 1");
+            ps.setString(1, patient.getCprNumber());
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+
+            treatmentSetting.setTreatmentNumber(rs.getInt(1));
+            treatmentSetting.setTimeLimitedSetting(rs.getString(2));
+            treatmentSetting.setTimeLimitedIntensity(rs.getInt(3));
+            treatmentSetting.setUrgeSetting(rs.getString(4));
+            treatmentSetting.setUrgeIntensity(rs.getInt(5));
+
+            conn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERROR DatabaseHandler.readTreatment()");
+        }
+    }
+
+// TJEK NEDENSTÅENDE - HVAD HVIS DER ER FLERE TREATMENTS? TAGER DEN SIDSTE TREATMENT?
     public static TreatmentSetting readTreatmentSetting() {
 
         try {
