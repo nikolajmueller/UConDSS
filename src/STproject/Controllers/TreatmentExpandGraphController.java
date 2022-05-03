@@ -46,11 +46,6 @@ public class TreatmentExpandGraphController implements Initializable {
                     ResultSet rs = ps.executeQuery();
                     rs.next();
 
-                    System.out.println(rs.getInt(1));
-                    System.out.println(rs.getInt(2));
-                    System.out.println(rs.getInt(3));
-                    System.out.println(rs.getInt(4));
-
                     XYChart.Series<String, Integer> seriesAdd = new XYChart.Series();
                     seriesAdd.setName("" + i);
                     seriesAdd.getData().add(new XYChart.Data("IEs", rs.getInt(1)));
