@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="774.0" prefWidth="1145.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardTreatmentStrategyController">
+<AnchorPane id="AnchorPane" prefHeight="774.0" prefWidth="1145.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardTreatmentStrategyController">
     <stylesheets>
         <URL value="@DashboardTreatmentStrategyCss.css" />
     </stylesheets>
@@ -219,7 +219,7 @@
                <children>
                   <HBox layoutY="160.0" prefHeight="70.0" prefWidth="173.0">
                      <children>
-                        <Button blendMode="OVERLAY" mnemonicParsing="false" onAction="#toSymptomEvaluation" prefWidth="150.0" text="Symptoms">
+                        <Button fx:id="btnToSymptoms" blendMode="OVERLAY" mnemonicParsing="false" onAction="#toSymptomEvaluation" prefWidth="150.0" text="Symptoms">
                            <HBox.margin>
                               <Insets left="30.0" top="30.0" />
                            </HBox.margin>

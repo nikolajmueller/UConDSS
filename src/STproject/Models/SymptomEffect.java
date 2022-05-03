@@ -10,6 +10,11 @@ public class SymptomEffect {
     double UEsScore;
     double urinationScore;
     double nocturiaScore;
+    double overallEffectivessScore;
+
+    public double getOverallEffectivessScore() {
+        return overallEffectivessScore;
+    }
 
     public double getPostIEs() {
         return postIEs;
@@ -41,6 +46,10 @@ public class SymptomEffect {
 
     public double getNocturiaScore() {
         return nocturiaScore;
+    }
+
+    public void setOverallEffectivessScore(double overallEffectivessScore) {
+        this.overallEffectivessScore = overallEffectivessScore;
     }
 
     public void setPostIEs(int postIEs) {

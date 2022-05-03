@@ -21,8 +21,6 @@ public class TreatmentExpandGraphController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-// dummy
-        patient.setCprNumber("0205950254");
 
         barChart.setAnimated(false);
         try {
@@ -36,7 +34,6 @@ public class TreatmentExpandGraphController implements Initializable {
 
             if (count != 0) {
                 for (int i = 1; i <= count; i++) {
-                    System.out.println(i);
                     PreparedStatement ps = conn.prepareStatement(
                             "SELECT IEsPerDay, UEsPerDay, UrinationPerDay,"
                             + " NocturiaEpisodes FROM SymptomsBaseline "

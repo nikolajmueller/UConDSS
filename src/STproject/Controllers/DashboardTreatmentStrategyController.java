@@ -22,34 +22,36 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 public class DashboardTreatmentStrategyController implements Initializable {
-
+    
     @FXML
     public Label lbPatientBladderCapacity, lbPatientIEsPerDay,
             lbPatientUEsPerDay, lbPatientUrinationPerDay, lbPatientNocturiaEpisodes,
             lbPatientOther;
-
+    
     @FXML // stimulation paradigm checkboxes
     private CheckBox TLContinuous, TL4Hours, TL30Minutes,
             TL15Minutes, TLDeactivated, Urge60Seconds, UrgeDeactivated;
-
+    
     @FXML
     private Label treatmentSaved;
-
+    
     @FXML // max intensity checkboxes
     private CheckBox TL5, TL4, TL3, TL2, TL1,
             Urge5, Urge4, Urge3, Urge2, Urge1;
-
+    
     @FXML
     private TextField cpr, name, age, gender;
-
+    
     @FXML
-    private Button btnSave, btnExpandGraph;
+    private Button btnSave, btnExpandGraph, btnToSymptoms;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        btnToSymptoms.setDisable(true);
 
 // opdater symptoms liste  
         lbPatientBladderCapacity.setText(symptoms.getBladderCapacity());
@@ -58,7 +60,7 @@ public class DashboardTreatmentStrategyController implements Initializable {
         lbPatientUrinationPerDay.setText(Integer.toString(symptoms.getUrinationPerDay()));
         lbPatientNocturiaEpisodes.setText(Integer.toString(symptoms.getNocturiaEpisodes()));
         lbPatientOther.setText(symptoms.getOther());
-
+        
         cpr.setText(Main.patient.getCprNumber());
         cpr.setStyle("-fx-text-fill: White;");
         name.setText(Main.patient.getName());
@@ -67,32 +69,32 @@ public class DashboardTreatmentStrategyController implements Initializable {
         age.setStyle("-fx-text-fill: White;");
         gender.setText(Main.patient.getGender());
         gender.setStyle("-fx-text-fill: White;");
-
+        
     }
-
+    
     public void clickBtnSave(ActionEvent event) {
         int emptyField = checkForEmptyField();
-
+        
         if (emptyField == 0) {
             try {
                 DatabaseHandler.saveTreatmentToDb();
-
+                
                 Parent toLoginParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardEffectivenessScore.fxml"));
                 Scene toLoginScene = new Scene(toLoginParent);
                 Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 window.setScene(toLoginScene);
                 window.centerOnScreen();
                 window.show();
-
+                
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error connection to database");
             }
         }
     }
-
+    
     public int checkForEmptyField() {
         int emptyField = 0;
-
+        
         if (!TLContinuous.isSelected() && !TL4Hours.isSelected() && !TL30Minutes.isSelected() // TL paradigm
                 && !TL15Minutes.isSelected() && !TLDeactivated.isSelected()) {
             emptyField = 1;
@@ -116,14 +118,14 @@ public class DashboardTreatmentStrategyController implements Initializable {
         TL15Minutes.setSelected(false);
         TLDeactivated.setSelected(false);
         treatmentSetting.setTimeLimitedSetting("Continuous");
-
+        
         TL5.setDisable(false);
         TL4.setDisable(false);
         TL3.setDisable(false);
         TL2.setDisable(false);
         TL1.setDisable(false);
     }
-
+    
     public void clickTL4Hours() {
         TLContinuous.setSelected(false);
         TL4Hours.setSelected(true);
@@ -131,14 +133,14 @@ public class DashboardTreatmentStrategyController implements Initializable {
         TL15Minutes.setSelected(false);
         TLDeactivated.setSelected(false);
         treatmentSetting.setTimeLimitedSetting("4 hours");
-
+        
         TL5.setDisable(false);
         TL4.setDisable(false);
         TL3.setDisable(false);
         TL2.setDisable(false);
         TL1.setDisable(false);
     }
-
+    
     public void clickTL30Minutes() {
         TLContinuous.setSelected(false);
         TL4Hours.setSelected(false);
@@ -146,14 +148,14 @@ public class DashboardTreatmentStrategyController implements Initializable {
         TL15Minutes.setSelected(false);
         TLDeactivated.setSelected(false);
         treatmentSetting.setTimeLimitedSetting("30 minutes");
-
+        
         TL5.setDisable(false);
         TL4.setDisable(false);
         TL3.setDisable(false);
         TL2.setDisable(false);
         TL1.setDisable(false);
     }
-
+    
     public void clickTL15Minutes() {
         TLContinuous.setSelected(false);
         TL4Hours.setSelected(false);
@@ -161,21 +163,21 @@ public class DashboardTreatmentStrategyController implements Initializable {
         TL15Minutes.setSelected(true);
         TLDeactivated.setSelected(false);
         treatmentSetting.setTimeLimitedSetting("15 minutes");
-
+        
         TL5.setDisable(false);
         TL4.setDisable(false);
         TL3.setDisable(false);
         TL2.setDisable(false);
         TL1.setDisable(false);
     }
-
+    
     public void clickTLDeactivated() {
         TLContinuous.setSelected(false);
         TL4Hours.setSelected(false);
         TL30Minutes.setSelected(false);
         TL15Minutes.setSelected(false);
         TLDeactivated.setSelected(true);
-
+        
         TL5.setSelected(false);
         TL5.setDisable(true);
         TL4.setSelected(false);
@@ -196,19 +198,19 @@ public class DashboardTreatmentStrategyController implements Initializable {
         Urge60Seconds.setSelected(true);
         UrgeDeactivated.setSelected(false);
         treatmentSetting.setUrgeSetting("60 seconds");
-
+        
         Urge5.setDisable(false);
         Urge4.setDisable(false);
         Urge3.setDisable(false);
         Urge2.setDisable(false);
         Urge1.setDisable(false);
     }
-
+    
     public void clickUrgeDeactivated() {
         Urge60Seconds.setSelected(false);
         UrgeDeactivated.setSelected(true);
         treatmentSetting.setUrgeSetting("Deactivated");
-
+        
         Urge5.setSelected(false);
         Urge4.setSelected(false);
         Urge3.setSelected(false);
@@ -232,7 +234,7 @@ public class DashboardTreatmentStrategyController implements Initializable {
         TL1.setSelected(false);
         treatmentSetting.setTimeLimitedIntensity(5);
     }
-
+    
     public void clickTL4() {
         TL5.setSelected(false);
         TL4.setSelected(true);
@@ -241,7 +243,7 @@ public class DashboardTreatmentStrategyController implements Initializable {
         TL1.setSelected(false);
         treatmentSetting.setTimeLimitedIntensity(4);
     }
-
+    
     public void clickTL3() {
         TL5.setSelected(false);
         TL4.setSelected(false);
@@ -250,7 +252,7 @@ public class DashboardTreatmentStrategyController implements Initializable {
         TL1.setSelected(false);
         treatmentSetting.setTimeLimitedIntensity(3);
     }
-
+    
     public void clickTL2() {
         TL5.setSelected(false);
         TL4.setSelected(false);
@@ -259,7 +261,7 @@ public class DashboardTreatmentStrategyController implements Initializable {
         TL1.setSelected(false);
         treatmentSetting.setTimeLimitedIntensity(2);
     }
-
+    
     public void clickTL1() {
         TL5.setSelected(false);
         TL4.setSelected(false);
@@ -279,7 +281,7 @@ public class DashboardTreatmentStrategyController implements Initializable {
         Urge1.setSelected(false);
         treatmentSetting.setUrgeIntensity(5);
     }
-
+    
     public void clickUrge4() {
         Urge5.setSelected(false);
         Urge4.setSelected(true);
@@ -288,7 +290,7 @@ public class DashboardTreatmentStrategyController implements Initializable {
         Urge1.setSelected(false);
         treatmentSetting.setUrgeIntensity(4);
     }
-
+    
     public void clickUrge3() {
         Urge5.setSelected(false);
         Urge4.setSelected(false);
@@ -297,7 +299,7 @@ public class DashboardTreatmentStrategyController implements Initializable {
         Urge1.setSelected(false);
         treatmentSetting.setUrgeIntensity(3);
     }
-
+    
     public void clickUrge2() {
         Urge5.setSelected(false);
         Urge4.setSelected(false);
@@ -306,7 +308,7 @@ public class DashboardTreatmentStrategyController implements Initializable {
         Urge1.setSelected(false);
         treatmentSetting.setUrgeIntensity(2);
     }
-
+    
     public void clickUrge1() {
         Urge5.setSelected(false);
         Urge4.setSelected(false);
@@ -319,7 +321,7 @@ public class DashboardTreatmentStrategyController implements Initializable {
 
     @FXML
     void logout(ActionEvent event) throws IOException {
-
+        
         Parent toLoginParent = FXMLLoader.load(getClass().getResource("/ressources/LoginView.fxml"));
         Scene toLoginScene = new Scene(toLoginParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -328,10 +330,10 @@ public class DashboardTreatmentStrategyController implements Initializable {
         window.setTitle("UCon");
         window.show();
     }
-
+    
     @FXML
     void selectNewPatient(ActionEvent event) throws IOException {
-
+        
         Parent toSearchCreateParent = FXMLLoader.load(getClass().getResource("/ressources/SearchCreateView.fxml"));
         Scene toSearchCreateScene = new Scene(toSearchCreateParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -339,10 +341,10 @@ public class DashboardTreatmentStrategyController implements Initializable {
         window.centerOnScreen();
         window.show();
     }
-
+    
     @FXML
     void toTreatmentEvaluation(ActionEvent event) throws IOException {
-
+        
         Parent toSearchCreateParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardUconDataVisualization.fxml"));
         Scene toSearchCreateScene = new Scene(toSearchCreateParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -350,10 +352,10 @@ public class DashboardTreatmentStrategyController implements Initializable {
         window.centerOnScreen();
         window.show();
     }
-
+    
     @FXML
     void toEffect(ActionEvent event) throws IOException {
-
+        
         Parent toSearchCreateParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardEffectivenessScore.fxml"));
         Scene toSearchCreateScene = new Scene(toSearchCreateParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -361,10 +363,10 @@ public class DashboardTreatmentStrategyController implements Initializable {
         window.centerOnScreen();
         window.show();
     }
-
+    
     @FXML
     void toSymptomEvaluation(ActionEvent event) throws IOException {
-
+        
         Parent toSearchCreateParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardSymptomEvaluation.fxml"));
         Scene toSearchCreateScene = new Scene(toSearchCreateParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -372,9 +374,9 @@ public class DashboardTreatmentStrategyController implements Initializable {
         window.centerOnScreen();
         window.show();
     }
-
+    
     public void showTreatments(ActionEvent event) {
-
+        
         try {
             
             Parent root = FXMLLoader.load(getClass().getResource("/ressources/TreatmentPatientHistorik.fxml"));
@@ -383,7 +385,7 @@ public class DashboardTreatmentStrategyController implements Initializable {
             stage.setScene(scene);
             stage.setTitle("UConDss");
             stage.show();
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error connection to database");
         }

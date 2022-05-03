@@ -2,6 +2,7 @@ package STproject.Controllers;
 
 import STproject.Main.Main;
 import static STproject.Main.Main.*;
+import STproject.Models.DatabaseHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,7 +31,7 @@ public class DashboardEffectivenessScoreController implements Initializable {
     private BarChart<String, Integer> barChart;
 
     @FXML
-    private Button btnExpandGraph;
+    private Button btnExpandGraph, btnToSymptoms;
 
     @FXML
     private TextField cpr;
@@ -49,6 +50,8 @@ public class DashboardEffectivenessScoreController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        btnToSymptoms.setDisable(true);
 
         cpr.setText(Main.patient.getCprNumber());
         cpr.setStyle("-fx-text-fill: White;");
@@ -143,16 +146,18 @@ public class DashboardEffectivenessScoreController implements Initializable {
             TF_nocturiaScore.setText(symptomEffect.getNocturiaScore() + " %");
         }
 
-        double overallEffectivenessScore = (symptomEffect.getIEsScore() + symptomEffect.getUEsScore()
-                + symptomEffect.getUrinationScore() + symptomEffect.getNocturiaScore()) / 4;
+        symptomEffect.setOverallEffectivessScore((symptomEffect.getIEsScore() + symptomEffect.getUEsScore()
+                + symptomEffect.getUrinationScore() + symptomEffect.getNocturiaScore()) / 4);
 
-        if (overallEffectivenessScore < 0) {
+        if (symptomEffect.getOverallEffectivessScore() < 0) {
             TF_overallScore.setStyle("-fx-text-inner-color: " + goodColor + ";");
-            TF_overallScore.setText("" + overallEffectivenessScore + " %");
+            TF_overallScore.setText("" + symptomEffect.getOverallEffectivessScore() + " %");
         } else {
             TF_overallScore.setStyle("-fx-text-inner-color: " + badColor + ";");
-            TF_overallScore.setText("+" + overallEffectivenessScore + " %");
+            TF_overallScore.setText("+" + symptomEffect.getOverallEffectivessScore() + " %");
         }
+
+        DatabaseHandler.saveEffectToDb();
 
         XYChart.Series<String, Integer> seriesEffect = new XYChart.Series();
         seriesEffect.setName("Post symptoms");

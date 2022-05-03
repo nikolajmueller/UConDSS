@@ -15,10 +15,9 @@ public class TreatmentSetting {
         this.urgeSetting = urgeSetting;
         this.urgeIntensity = urgeIntensity;
     }
-    
+
     public TreatmentSetting() {
     }
-
 
     public void setTreatmentNumber(int treatmentNumber) {
         this.treatmentNumber = treatmentNumber;

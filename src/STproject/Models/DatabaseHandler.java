@@ -141,6 +141,7 @@ public class DatabaseHandler {
 
             if (countrow == 0) {
                 countrow = 1;
+                treatmentSetting.setTreatmentNumber(countrow);
                 PreparedStatement ps = conn.prepareStatement(""
                         + "INSERT INTO `patientTreatment`(`CPR`, `treatmentNumber`, `timeLimitedSetting`,"
                         + " `timeLimitedIntensity`, `urgeSetting`, `urgeIntensity`, `dateSaved`)"
@@ -164,6 +165,8 @@ public class DatabaseHandler {
                 int dateExists = dateExistsSQL.getInt(1);
                 if (dateExists == 0) {
                     countrow++;
+                    treatmentSetting.setTreatmentNumber(countrow);
+
                     PreparedStatement ps = conn.prepareStatement(""
                             + "INSERT INTO `patientTreatment`(`CPR`, `treatmentNumber`, `timeLimitedSetting`,"
                             + " `timeLimitedIntensity`, `urgeSetting`, `urgeIntensity`)"
@@ -211,7 +214,7 @@ public class DatabaseHandler {
             JOptionPane.showMessageDialog(null, "ERROR DatabaseHandler.readSymptoms()");
         }
     }
-    
+
     public static TreatmentSetting readTreatmentSetting() {
 
         try {
@@ -219,7 +222,9 @@ public class DatabaseHandler {
             ResultSet rs_treatment = getConnection().createStatement().executeQuery(sqlQuery);
 
             while (rs_treatment.next()) {
-                ob_treatment.add(new TreatmentSetting(rs_treatment.getInt("treatmentNumber"), rs_treatment.getString("timeLimitedSetting"), rs_treatment.getInt("timeLimitedIntensity"), rs_treatment.getString("urgeSetting"), rs_treatment.getInt("urgeIntensity")));
+                ob_treatment.add(new TreatmentSetting(rs_treatment.getInt("treatmentNumber"),
+                        rs_treatment.getString("timeLimitedSetting"), rs_treatment.getInt("timeLimitedIntensity"),
+                        rs_treatment.getString("urgeSetting"), rs_treatment.getInt("urgeIntensity")));
             }
         } catch (SQLException e) {
             System.err.println("Cannot connect to database server");
@@ -227,5 +232,33 @@ public class DatabaseHandler {
         return null;
     }
 
-}
+    public static void saveEffectToDb() {
+        try {
+            Connection conn = DatabaseHandler.getConnection();
+            PreparedStatement ps = conn.prepareStatement("UPDATE `patientTreatment` SET `overallEffectivenessScore` = ?"
+                    + " WHERE `CPR` = ? AND treatmentNumber = ?");
+            ps.setDouble(1, symptomEffect.getOverallEffectivessScore());
+            ps.setString(2, patient.getCprNumber());
+            ps.setInt(3, treatmentSetting.getTreatmentNumber());
+            ps.execute();
+            conn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error. saveEffectToDb");
+        }
+    }
 
+    public static void saveCorrectivenessToDb(int usedCorrect) {
+        try {
+            Connection conn = DatabaseHandler.getConnection();
+            PreparedStatement ps = conn.prepareStatement("UPDATE `patientTreatment` SET `corectivenessScore` = ?"
+                    + " WHERE `CPR` = ? AND treatmentNumber = ?");
+            ps.setDouble(1, usedCorrect);
+            ps.setString(2, patient.getCprNumber());
+            ps.setInt(3, treatmentSetting.getTreatmentNumber());
+            ps.execute();
+            conn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error. saveCorrectivenesstToDb");
+        }
+    }
+}

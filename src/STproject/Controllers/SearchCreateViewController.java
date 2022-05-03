@@ -144,7 +144,9 @@ public class SearchCreateViewController implements Initializable {
     }
 
     public void btnToDashboard(ActionEvent event) throws IOException {
-        Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardSymptomEvaluation.fxml"));
+        DatabaseHandler.readSymptoms();
+
+        Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardTreatmentStrategy.fxml"));
         Scene toDashboardScene = new Scene(toDashboardParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(toDashboardScene);
@@ -153,6 +155,7 @@ public class SearchCreateViewController implements Initializable {
     }
 
     Connection conn = null;
+
     // CREATE PATIENT
     public void btnSavePatientFunc(ActionEvent event) {      //funktion til knappen save patient
         try {  // gemmer værdier i @FXML-boksene i patient
@@ -164,12 +167,12 @@ public class SearchCreateViewController implements Initializable {
             conn = DatabaseHandler.getConnection(); // get db connection
             // sqlUser query to check for duplicates in database (CPR)
             String sqlUserDupe = "SELECT COUNT(*) FROM PatientList where CPR LIKE \"" + field_cpr.getText() + "\"";
-            
+
             Statement stDupe = conn.createStatement();
             ResultSet userRes = stDupe.executeQuery(sqlUserDupe);
             userRes.next();
             String dupeCountrow = userRes.getString(1);
-            
+
             if (!field_cpr.getText().matches("\\d{10}")) {
                 JOptionPane.showMessageDialog(null, "Invalid CPR number");
             } else if (field_name.getText().isEmpty()) {
@@ -189,10 +192,9 @@ public class SearchCreateViewController implements Initializable {
                     JOptionPane.showMessageDialog(null, "Patient registered");
                 } else {
                     if (dupeCountrow.equals("1")) {
-                    JOptionPane.showMessageDialog(null, "Patient already registered");
-                    }
-                    else {
-                    JOptionPane.showMessageDialog(null, "Invalid CPR");
+                        JOptionPane.showMessageDialog(null, "Patient already registered");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Invalid CPR");
                     }
                 }
             }

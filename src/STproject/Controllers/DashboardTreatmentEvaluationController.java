@@ -1,6 +1,7 @@
 package STproject.Controllers;
 
 import STproject.Main.Main;
+import STproject.Models.DatabaseHandler;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -10,6 +11,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
 public class DashboardTreatmentEvaluationController implements Initializable {
+
+    int usedCorrect;
 
     @FXML
     private TextField textField_TL_MaxIntensity;
@@ -31,7 +34,6 @@ public class DashboardTreatmentEvaluationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         // Opdater symptoms liste
         textField_TL_SessionTime.setText(Main.treatmentSetting.getTimeLimitedSetting());
         textField_TL_MaxIntensity.setText("" + Main.treatmentSetting.getTimeLimitedIntensity());
@@ -42,11 +44,16 @@ public class DashboardTreatmentEvaluationController implements Initializable {
     public void clickRadioBtnCorret(ActionEvent event) {
         radioBtn_UsedIncorrect.setSelected(false);
         radioBtn_UsedCorrect.setSelected(true);
+        usedCorrect = 1;
     }
-    
+
     public void clickRadioBtnIncorret(ActionEvent event) {
         radioBtn_UsedCorrect.setSelected(false);
         radioBtn_UsedIncorrect.setSelected(true);
+        usedCorrect = 0;
     }
 
+    public void clickBtnSave() {
+        DatabaseHandler.saveCorrectivenessToDb(usedCorrect);
+    }
 }
