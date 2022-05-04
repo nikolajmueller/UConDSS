@@ -30,7 +30,8 @@ public class TreatmentRecommendationController implements Initializable {
     private TableColumn<TreatmentSetting, Integer> col_urgeIntensity;
     
     @FXML
-    private TableColumn<TreatmentSetting, Double> col_overallEffectivenessScore;
+    private TableColumn<TreatmentSetting, Integer> col_effect;
+
 
     /**
      * Initializes the controller class.
@@ -50,11 +51,12 @@ public class TreatmentRecommendationController implements Initializable {
         col_timeLimitedIntensity.setCellValueFactory(new PropertyValueFactory<>("timeLimitedIntensity"));
         col_urgeSetting.setCellValueFactory(new PropertyValueFactory<>("urgeSetting"));
         col_urgeIntensity.setCellValueFactory(new PropertyValueFactory<>("urgeIntensity"));
-        col_overallEffectivenessScore.setCellValueFactory(new PropertyValueFactory<>("overallEffectivenessScore"));
-        
+        col_effect.setCellValueFactory(new PropertyValueFactory<>("overallEffectivenessScore"));
+
         // set observableList
         tableView_Treatment.setItems(ob_treatmentRecommendation);
         
+         
     }
 
 }
