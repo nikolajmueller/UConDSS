@@ -5,18 +5,18 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="411.0" prefWidth="682.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.TreatmentRecommendationController">
+<AnchorPane id="AnchorPane" prefHeight="411.0" prefWidth="746.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.TreatmentRecommendationController">
     <stylesheets>
         <URL value="@TreatmentRecommendationCss.css" />
     </stylesheets>
    <children>
-      <TableView fx:id="tableView_Treatment" layoutX="-3.0" layoutY="-4.0" prefHeight="405.0" prefWidth="685.0">
+      <TableView fx:id="tableView_Treatment" layoutX="-3.0" layoutY="-4.0" prefHeight="405.0" prefWidth="775.0">
         <columns>
-          <TableColumn fx:id="col_timeLimitedSetting" prefWidth="146.0" text="Time Limited" />
-          <TableColumn fx:id="col_timeLimitedIntensity" minWidth="0.0" prefWidth="183.0" text="Time Limited Intensity" />
-            <TableColumn fx:id="col_urgeSetting" prefWidth="87.0" text="Urge" />
-            <TableColumn fx:id="col_urgeIntensity" prefWidth="117.0" text="Urge intensity" />
-            <TableColumn fx:id="col_overallEffectivenessScore" prefWidth="157.0" text="Effectiveness Score" />
+          <TableColumn fx:id="col_timeLimitedSetting" prefWidth="164.0" text="Time Limited" />
+          <TableColumn fx:id="col_timeLimitedIntensity" minWidth="0.0" prefWidth="168.0" text="Time Limited Intensity" />
+            <TableColumn fx:id="col_urgeSetting" prefWidth="165.0" text="Urge" />
+            <TableColumn fx:id="col_urgeIntensity" prefWidth="122.0" text="Urge intensity" />
+            <TableColumn fx:id="col_effect" prefWidth="154.0" text="Effectiveness Score" />
         </columns>
       </TableView>
    </children>
