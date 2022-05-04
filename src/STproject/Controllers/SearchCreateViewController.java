@@ -144,6 +144,9 @@ public class SearchCreateViewController implements Initializable {
     }
 
     public void btnToDashboard(ActionEvent event) throws IOException {
+// ping DB om patient har symptomer
+// ping DB om patient har treatment
+
         DatabaseHandler.readSymptoms();
         DatabaseHandler.readLatestTreatment();
 

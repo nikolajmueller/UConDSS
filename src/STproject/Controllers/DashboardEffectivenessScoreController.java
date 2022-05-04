@@ -146,7 +146,7 @@ public class DashboardEffectivenessScoreController implements Initializable {
             TF_nocturiaScore.setText(symptomEffect.getNocturiaScore() + " %");
         }
 
-        symptomEffect.setOverallEffectivessScore((symptomEffect.getIEsScore() + symptomEffect.getUEsScore()
+        symptomEffect.setOverallEffectivessScore((int)(symptomEffect.getIEsScore() + symptomEffect.getUEsScore()
                 + symptomEffect.getUrinationScore() + symptomEffect.getNocturiaScore()) / 4);
 
         if (symptomEffect.getOverallEffectivessScore() < 0) {
@@ -215,6 +215,12 @@ public class DashboardEffectivenessScoreController implements Initializable {
     void toTreatmentEvaluation(ActionEvent event) throws IOException {
 
 // ny funk her der gemmer NYE symptomer til db
+        symptoms.setIEsPerDay((int) symptomEffect.getPostIEs());
+        symptoms.setUEsPerDay((int) symptomEffect.getPostUEs());
+        symptoms.setUrinationPerDay((int) symptomEffect.getPostUrination());
+        symptoms.setNocturiaEpisodes((int) symptomEffect.getPostNocturia());
+
+        DatabaseHandler.saveSymptonsToDb();
 
         Parent toSearchCreateParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardUconDataVisualization.fxml"));
         Scene toSearchCreateScene = new Scene(toSearchCreateParent);
