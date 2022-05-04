@@ -7,10 +7,10 @@ public class TreatmentSetting {
     private int timeLimitedIntensity;
     private String urgeSetting;
     private int urgeIntensity;
-    private double overallEffectivenessScore;
+    private int overallEffectivenessScore;
     private int corectivenessScore;
 
-    public TreatmentSetting(int treatmentNumber, String timeLimitedSetting, int timeLimitedIntensity, String urgeSetting, int urgeIntensity, double overallEffectivenessScore, int corectivenessScore) {
+    public TreatmentSetting(int treatmentNumber, String timeLimitedSetting, int timeLimitedIntensity, String urgeSetting, int urgeIntensity, int overallEffectivenessScore, int corectivenessScore) {
         this.treatmentNumber = treatmentNumber;
         this.timeLimitedSetting = timeLimitedSetting;
         this.timeLimitedIntensity = timeLimitedIntensity;

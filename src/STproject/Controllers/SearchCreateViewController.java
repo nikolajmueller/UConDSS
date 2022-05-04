@@ -144,18 +144,33 @@ public class SearchCreateViewController implements Initializable {
     }
 
     public void btnToDashboard(ActionEvent event) throws IOException {
-// ping DB om patient har symptomer
-// ping DB om patient har treatment
+        int patientStatus = DatabaseHandler.checkPatientStatus();
 
-        DatabaseHandler.readSymptoms();
-        DatabaseHandler.readLatestTreatment();
-
-        Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardEffectivenessScore.fxml"));
-        Scene toDashboardScene = new Scene(toDashboardParent);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(toDashboardScene);
-        window.centerOnScreen();
-        window.show();
+        if (patientStatus == 0) {
+            Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardSymptomEvaluation.fxml"));
+            Scene toDashboardScene = new Scene(toDashboardParent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(toDashboardScene);
+            window.centerOnScreen();
+            window.show();
+        } else if (patientStatus == 1) {
+            DatabaseHandler.readSymptoms();
+            Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardTreatmentStrategy.fxml"));
+            Scene toDashboardScene = new Scene(toDashboardParent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(toDashboardScene);
+            window.centerOnScreen();
+            window.show();
+        } else if (patientStatus == 2) {
+            DatabaseHandler.readSymptoms();
+            DatabaseHandler.readLatestTreatment();
+            Parent toDashboardParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardEffectivenessScore.fxml"));
+            Scene toDashboardScene = new Scene(toDashboardParent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(toDashboardScene);
+            window.centerOnScreen();
+            window.show();
+        }
     }
 
     Connection conn = null;

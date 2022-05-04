@@ -20,36 +20,36 @@ import javafx.collections.ObservableList;
 import javax.swing.JOptionPane;
 
 public class DatabaseHandler {
-    
+
     public static ObservableList<Patient> ob = FXCollections.observableArrayList();
     public static ObservableList<TreatmentSetting> ob_treatment = FXCollections.observableArrayList();
     public static ObservableList<TreatmentSetting> ob_treatmentRecommendation = FXCollections.observableArrayList();
-    
+
     public static Connection getConnection() {
-        
+
         try {
             // Your database    // db.course.hst.aau.dk = localhost
             String url = "jdbc:mysql://db.course.hst.aau.dk/hst_2022st6405"; // where jdbc is the API, mysql is the database, localhost is the server name on which mysql is running, we may also use IP address, 3306 is the port number and sonoo is the database name. We may use any database, in such case, we need to replace the sonoo with our database name.
             String user = "hst_2022st6405";
             String password = "eezahgoukaiheguphiej";
-            
+
             Class.forName("com.mysql.jdbc.Driver");      // Driver navn     com.mysql.jdbc.Driver
             Connection conn = DriverManager.getConnection(url, user, password);
-            
+
             return conn;
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-        
+
     }
-    
+
     public static Patient readPatient() {
-        
+
         try {
             String sqlQuery = "select * from PatientList";
             ResultSet rs_patient = getConnection().createStatement().executeQuery(sqlQuery);
-            
+
             while (rs_patient.next()) {
                 ob.add(new Patient(rs_patient.getString("CPR"), rs_patient.getString("Name"), rs_patient.getInt("Age"), rs_patient.getString("Gender")));
             }
@@ -58,7 +58,7 @@ public class DatabaseHandler {
         }
         return null;
     }
-    
+
     public static void savePatientToDb(String CPR, String name, int age, String gender) {
         try {
             // Undersøger om CPR er registreret i DB
@@ -85,13 +85,13 @@ public class DatabaseHandler {
                 System.out.println("error 123");
                 //JOptionPane.showMessageDialog(null, "Patient already registered");
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        
+
     }
-    
+
     public static void saveSymptonsToDb() {
         try {
             Connection conn = DatabaseHandler.getConnection();
@@ -126,20 +126,20 @@ public class DatabaseHandler {
             System.err.println("Cannot connect to database server");
         }
     }
-    
+
     public static void saveTreatmentToDb() {
         try {
             Connection conn = DatabaseHandler.getConnection();
-            
+
             PreparedStatement psCheckIfExists = conn.prepareStatement(
                     "SELECT DISTINCT COUNT(treatmentNumber) FROM patientTreatment WHERE CPR = ?");
             psCheckIfExists.setString(1, patient.getCprNumber());
             ResultSet rsIfExists = psCheckIfExists.executeQuery();
             rsIfExists.next();
             int countrow = rsIfExists.getInt(1);
-            
+
             String currentDate = LocalDate.now().toString();
-            
+
             if (countrow == 0) {
                 countrow = 1;
                 treatmentSetting.setTreatmentNumber(countrow);
@@ -154,7 +154,7 @@ public class DatabaseHandler {
                 ps.setString(5, treatmentSetting.getUrgeSetting());
                 ps.setInt(6, treatmentSetting.getUrgeIntensity());
                 ps.setString(7, currentDate);
-                
+
                 ps.execute();
                 conn.close();
             } else {
@@ -169,7 +169,7 @@ public class DatabaseHandler {
                 //if (dateExists == 0) {
                 countrow++;
                 treatmentSetting.setTreatmentNumber(countrow);
-                
+
                 PreparedStatement ps = conn.prepareStatement(""
                         + "INSERT INTO `patientTreatment`(`CPR`, `treatmentNumber`, `timeLimitedSetting`,"
                         + " `timeLimitedIntensity`, `urgeSetting`, `urgeIntensity`, `dateSaved`)"
@@ -181,7 +181,7 @@ public class DatabaseHandler {
                 ps.setString(5, treatmentSetting.getUrgeSetting());
                 ps.setInt(6, treatmentSetting.getUrgeIntensity());
                 ps.setString(7, currentDate);
-                
+
                 ps.execute();
                 conn.close();
                 // } else {
@@ -195,7 +195,7 @@ public class DatabaseHandler {
 
 // SELECT * FROM SymptomsBaseline WHERE patientCPR =
     public static void readSymptoms() {
-        
+
         try {
             Connection conn = DatabaseHandler.getConnection();
             PreparedStatement ps = conn.prepareStatement(
@@ -205,20 +205,20 @@ public class DatabaseHandler {
             ps.setString(1, patient.getCprNumber());
             ResultSet rs = ps.executeQuery();
             rs.next();
-            
+
             symptoms.setBladderCapacity(rs.getString(1));
             symptoms.setIEsPerDay(rs.getInt(2));
             symptoms.setUEsPerDay(rs.getInt(3));
             symptoms.setUrinationPerDay(rs.getInt(4));
             symptoms.setNocturiaEpisodes(rs.getInt(5));
             symptoms.setOther(rs.getString(6));
-            
+
             conn.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERROR DatabaseHandler.readSymptoms()");
         }
     }
-    
+
     public static void readLatestTreatment() {
         try {
             Connection conn = DatabaseHandler.getConnection();
@@ -230,13 +230,13 @@ public class DatabaseHandler {
             ps.setString(1, patient.getCprNumber());
             ResultSet rs = ps.executeQuery();
             rs.next();
-            
+
             treatmentSetting.setTreatmentNumber(rs.getInt(1));
             treatmentSetting.setTimeLimitedSetting(rs.getString(2));
             treatmentSetting.setTimeLimitedIntensity(rs.getInt(3));
             treatmentSetting.setUrgeSetting(rs.getString(4));
             treatmentSetting.setUrgeIntensity(rs.getInt(5));
-            
+
             conn.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERROR DatabaseHandler.readTreatment()");
@@ -245,39 +245,39 @@ public class DatabaseHandler {
 
 // TJEK NEDENSTÅENDE - HVAD HVIS DER ER FLERE TREATMENTS? TAGER DEN SIDSTE TREATMENT?
     public static TreatmentSetting readTreatmentSetting() {
-        
+
         try {
-            String sqlQuery = "select * from patientTreatment WHERE CPR =" + Main.patient.getCprNumber();
+            String sqlQuery = "select * from patientTreatment WHERE CPR = " + Main.patient.getCprNumber();
             ResultSet rs_treatment = getConnection().createStatement().executeQuery(sqlQuery);
-            
+
             while (rs_treatment.next()) {
                 ob_treatment.add(new TreatmentSetting(rs_treatment.getInt("treatmentNumber"),
                         rs_treatment.getString("timeLimitedSetting"), rs_treatment.getInt("timeLimitedIntensity"),
-                        rs_treatment.getString("urgeSetting"), rs_treatment.getInt("urgeIntensity"), rs_treatment.getDouble("overallEffectivenessScore"), rs_treatment.getInt("corectivenessScore")));
+                        rs_treatment.getString("urgeSetting"), rs_treatment.getInt("urgeIntensity"), rs_treatment.getInt("overallEffectivenessScore"), rs_treatment.getInt("corectivenessScore")));
             }
         } catch (SQLException e) {
             System.err.println("Cannot connect to database server");
         }
         return null;
     }
-    
+
     public static TreatmentSetting readTreatmentRecommendation() {
-        
+
         try {
-            String sqlQuery = "select * from patientTreatment WHERE overallEffectivenessScore < - 49 AND corectivenessScore = 1";
+            String sqlQuery = "SELECT * FROM patientTreatment WHERE overallEffectivenessScore < -49 AND corectivenessScore = 1";
             ResultSet rs_treatment = getConnection().createStatement().executeQuery(sqlQuery);
-            
+
             while (rs_treatment.next()) {
                 ob_treatmentRecommendation.add(new TreatmentSetting(rs_treatment.getInt("treatmentNumber"),
                         rs_treatment.getString("timeLimitedSetting"), rs_treatment.getInt("timeLimitedIntensity"),
-                        rs_treatment.getString("urgeSetting"), rs_treatment.getInt("urgeIntensity"), rs_treatment.getDouble("overallEffectivenessScore"), rs_treatment.getInt("corectivenessScore")));
+                        rs_treatment.getString("urgeSetting"), rs_treatment.getInt("urgeIntensity"), rs_treatment.getInt("overallEffectivenessScore"), rs_treatment.getInt("corectivenessScore")));
             }
         } catch (SQLException e) {
             System.err.println("Cannot connect to database server");
         }
         return null;
     }
-    
+
     public static void saveEffectToDb() {
         try {
             Connection conn = DatabaseHandler.getConnection();
@@ -292,7 +292,7 @@ public class DatabaseHandler {
             JOptionPane.showMessageDialog(null, "Error. saveEffectToDb");
         }
     }
-    
+
     public static void saveCorrectivenessToDb(int usedCorrect) {
         try {
             Connection conn = DatabaseHandler.getConnection();
@@ -306,5 +306,37 @@ public class DatabaseHandler {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error. saveCorrectivenesstToDb");
         }
+    }
+
+    public static int checkPatientStatus() {
+        int patientStatus = 0;
+        try {
+            Connection conn = DatabaseHandler.getConnection();
+            PreparedStatement psCheckForSymptoms = conn.prepareStatement("SELECT COUNT(*) FROM SymptomsBaseline WHERE patientCPR = ?");
+            psCheckForSymptoms.setString(1, patient.getCprNumber());
+            ResultSet rsSymptoms = psCheckForSymptoms.executeQuery();
+            rsSymptoms.next();
+            int checkForSymptoms = rsSymptoms.getInt(1);
+
+            if (checkForSymptoms == 0) {
+                patientStatus = 0;
+            } else {
+                PreparedStatement psCheckForTreatment = conn.prepareStatement("SELECT COUNT(*) FROM patientTreatment WHERE CPR = ?");
+                psCheckForTreatment.setString(1, patient.getCprNumber());
+                ResultSet rsTreatment = psCheckForTreatment.executeQuery();
+                rsTreatment.next();
+                int checkForTreatment = rsTreatment.getInt(1);
+
+                if (checkForTreatment == 0) {
+                    patientStatus = 1;
+                } else {
+                    patientStatus = 2;
+                }
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error checkPatientStatus");
+        }
+        return patientStatus;
     }
 }
