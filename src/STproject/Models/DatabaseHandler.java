@@ -23,6 +23,7 @@ public class DatabaseHandler {
 
     public static ObservableList<Patient> ob = FXCollections.observableArrayList();
     public static ObservableList<TreatmentSetting> ob_treatment = FXCollections.observableArrayList();
+    public static ObservableList<TreatmentSetting> ob_treatmentRecommendation = FXCollections.observableArrayList();
 
     public static Connection getConnection() {
 
@@ -249,7 +250,24 @@ public class DatabaseHandler {
             while (rs_treatment.next()) {
                 ob_treatment.add(new TreatmentSetting(rs_treatment.getInt("treatmentNumber"),
                         rs_treatment.getString("timeLimitedSetting"), rs_treatment.getInt("timeLimitedIntensity"),
-                        rs_treatment.getString("urgeSetting"), rs_treatment.getInt("urgeIntensity")));
+                        rs_treatment.getString("urgeSetting"), rs_treatment.getInt("urgeIntensity"), rs_treatment.getDouble("overallEffectivenessScore"),rs_treatment.getInt("corectivenessScore")));
+            }
+        } catch (SQLException e) {
+            System.err.println("Cannot connect to database server");
+        }
+        return null;
+    }
+
+    public static TreatmentSetting readTreatmentRecommendation() {
+
+        try {
+            String sqlQuery = "select * from patientTreatment WHERE overallEffectivenessScore < - 49 AND corectivenessScore = 1";
+            ResultSet rs_treatment = getConnection().createStatement().executeQuery(sqlQuery);
+
+            while (rs_treatment.next()) {
+                ob_treatmentRecommendation.add(new TreatmentSetting(rs_treatment.getInt("treatmentNumber"),
+                        rs_treatment.getString("timeLimitedSetting"), rs_treatment.getInt("timeLimitedIntensity"),
+                        rs_treatment.getString("urgeSetting"), rs_treatment.getInt("urgeIntensity"), rs_treatment.getDouble("overallEffectivenessScore"),rs_treatment.getInt("corectivenessScore")));
             }
         } catch (SQLException e) {
             System.err.println("Cannot connect to database server");

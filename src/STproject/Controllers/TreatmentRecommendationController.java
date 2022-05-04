@@ -1,8 +1,7 @@
-
 package STproject.Controllers;
 
 import STproject.Models.DatabaseHandler;
-import static STproject.Models.DatabaseHandler.ob_treatment;
+import static STproject.Models.DatabaseHandler.ob_treatmentRecommendation;
 import STproject.Models.TreatmentSetting;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,13 +12,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class TreatmentPatientHistorikController implements Initializable {
+public class TreatmentRecommendationController implements Initializable {
 
     @FXML
     private TableView<TreatmentSetting> tableView_Treatment;
-
-    @FXML
-    private TableColumn<TreatmentSetting, Integer> col_treatmentNumber;
 
     @FXML
     private TableColumn<TreatmentSetting, String> col_timeLimitedSetting;
@@ -33,23 +29,32 @@ public class TreatmentPatientHistorikController implements Initializable {
     @FXML
     private TableColumn<TreatmentSetting, Integer> col_urgeIntensity;
     
+    @FXML
+    private TableColumn<TreatmentSetting, Double> col_overallEffectivenessScore;
+
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+
+        ob_treatmentRecommendation.clear();
         
-        ob_treatment.clear();
-        
-        DatabaseHandler.readTreatmentSetting();
-        ObservableList<TreatmentSetting> ob_treatment = DatabaseHandler.ob_treatment;
+        DatabaseHandler.readTreatmentRecommendation();
+        ObservableList<TreatmentSetting> ob_treatmentRecommendation = DatabaseHandler.ob_treatmentRecommendation;
+
         
         // set Cell value factory and property value factory
-        col_treatmentNumber.setCellValueFactory(new PropertyValueFactory<>("treatmentNumber"));
         col_timeLimitedSetting.setCellValueFactory(new PropertyValueFactory<>("timeLimitedSetting"));
         col_timeLimitedIntensity.setCellValueFactory(new PropertyValueFactory<>("timeLimitedIntensity"));
         col_urgeSetting.setCellValueFactory(new PropertyValueFactory<>("urgeSetting"));
         col_urgeIntensity.setCellValueFactory(new PropertyValueFactory<>("urgeIntensity"));
+        col_overallEffectivenessScore.setCellValueFactory(new PropertyValueFactory<>("overallEffectivenessScore"));
+        
         // set observableList
-        tableView_Treatment.setItems(ob_treatment);
+        tableView_Treatment.setItems(ob_treatmentRecommendation);
+        
+    }
 
-    }    
-    
 }

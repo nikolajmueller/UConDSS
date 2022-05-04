@@ -383,7 +383,23 @@ public class DashboardTreatmentStrategyController implements Initializable {
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle("UConDss");
+            stage.setTitle("UConDss  -  Patient Historik");
+            stage.show();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error connection to database");
+        }
+    }
+    
+    public void showTreatmentRecommendation(ActionEvent event) {
+        
+        try {
+            
+            Parent root = FXMLLoader.load(getClass().getResource("/ressources/TreatmentRecommendation.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("UConDss  -  Patient Recommendation");
             stage.show();
             
         } catch (Exception e) {
