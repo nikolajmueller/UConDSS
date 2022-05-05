@@ -1,6 +1,6 @@
 package STproject.Models;
 
-public class Symptoms {
+public class Symptom {
 
     private String bladderCapacity;
     private int IEsPerDay;

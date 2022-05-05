@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     public static Patient patient = new Patient();
-    public static Symptoms symptoms = new Symptoms();
+    public static Symptom symptoms = new Symptom();
     public static TreatmentSetting treatmentSetting = new TreatmentSetting();
     public static SymptomEffect symptomEffect = new SymptomEffect();
 
