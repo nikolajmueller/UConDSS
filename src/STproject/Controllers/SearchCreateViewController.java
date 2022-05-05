@@ -3,6 +3,7 @@ package STproject.Controllers;
 import STproject.Main.Main;
 import static STproject.Main.Main.patient;
 import STproject.Models.DatabaseHandler;
+import static STproject.Models.DatabaseHandler.ob;
 import STproject.Models.Patient;
 import java.io.IOException;
 import java.net.URL;
@@ -51,6 +52,8 @@ public class SearchCreateViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        ob.clear();
+        
         DatabaseHandler.readPatient();
         ObservableList<Patient> ob = DatabaseHandler.ob;
 
