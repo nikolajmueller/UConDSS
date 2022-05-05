@@ -53,7 +53,7 @@ public class SearchCreateViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         ob.clear();
-        
+
         DatabaseHandler.readPatient();
         ObservableList<Patient> ob = DatabaseHandler.ob;
 

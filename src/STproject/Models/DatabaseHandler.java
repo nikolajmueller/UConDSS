@@ -47,8 +47,10 @@ public class DatabaseHandler {
     public static Patient readPatient() {
 
         try {
-            String sqlQuery = "select * from PatientList";
-            ResultSet rs_patient = getConnection().createStatement().executeQuery(sqlQuery);
+            Connection conn = DatabaseHandler.getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM PatientList WHERE clinicianID = ?");
+            ps.setInt(1, clinician.getId());
+            ResultSet rs_patient = ps.executeQuery();
 
             while (rs_patient.next()) {
                 ob.add(new Patient(rs_patient.getString("CPR"), rs_patient.getString("Name"), rs_patient.getInt("Age"), rs_patient.getString("Gender")));
@@ -72,12 +74,13 @@ public class DatabaseHandler {
             // Hvis CPR ikke er registreret, gemmes patienten i BD
             if (countToRow == 0) {
                 PreparedStatement psCreatePatient = conn.prepareStatement("INSERT INTO PatientList"
-                        + " (CPR, Name, Age, Gender)"
-                        + " VALUES (?, ?, ?, ?)");
-                psCreatePatient.setString(1, CPR);
-                psCreatePatient.setString(2, name);
-                psCreatePatient.setInt(3, age);
-                psCreatePatient.setString(4, gender);
+                        + " (clinicianID, CPR, Name, Age, Gender)"
+                        + " VALUES (?, ?, ?, ?, ?)");
+                psCreatePatient.setInt(1, clinician.getId());
+                psCreatePatient.setString(2, CPR);
+                psCreatePatient.setString(3, name);
+                psCreatePatient.setInt(4, age);
+                psCreatePatient.setString(5, gender);
                 psCreatePatient.execute();
                 conn.close();     // lukker connection til DB
             } // Hvis CPR er registreret, vises fejlmeddelelse

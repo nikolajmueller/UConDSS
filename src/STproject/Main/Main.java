@@ -1,4 +1,3 @@
-
 package STproject.Main;
 
 import STproject.Models.*;
@@ -11,6 +10,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    public static Clinician clinician = new Clinician();
     public static Patient patient = new Patient();
     public static Symptom symptoms = new Symptom();
     public static TreatmentSetting treatmentSetting = new TreatmentSetting();
@@ -22,7 +22,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/ressources/SearchCreateView.fxml")); // /ressources/LoginView.fxml
+        Parent root = FXMLLoader.load(getClass().getResource("/ressources/LoginView.fxml")); // /ressources/LoginView.fxml
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
