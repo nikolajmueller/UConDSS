@@ -43,6 +43,22 @@ public class TreatmentSetting {
         this.urgeIntensity = urgeIntensity;
     }
 
+    public void setOverallEffectivenessScore(int overallEffectivenessScore) {
+        this.overallEffectivenessScore = overallEffectivenessScore;
+    }
+
+    public void setCorectivenessScore(int corectivenessScore) {
+        this.corectivenessScore = corectivenessScore;
+    }
+
+    public int getOverallEffectivenessScore() {
+        return overallEffectivenessScore;
+    }
+
+    public int getCorectivenessScore() {
+        return corectivenessScore;
+    }
+
     public int getTreatmentNumber() {
         return treatmentNumber;
     }
