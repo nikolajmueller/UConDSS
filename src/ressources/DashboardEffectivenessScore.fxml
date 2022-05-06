@@ -101,7 +101,7 @@
                </yAxis>
             </BarChart>
             <Button fx:id="btnExpandGraph" layoutX="897.0" layoutY="330.0" mnemonicParsing="false" onAction="#expandGraph" text="Expand&#10;graph" textAlignment="CENTER" />
-            <Button layoutX="905.0" layoutY="724.0" mnemonicParsing="false" onAction="#toTreatmentEvaluation" prefHeight="35.0" prefWidth="85.0" text="Next" />
+            <Button fx:id="btnSave" disable="true" layoutX="905.0" layoutY="724.0" mnemonicParsing="false" onAction="#toTreatmentEvaluationBtnSave" prefHeight="35.0" prefWidth="85.0" text="Save" />
             <TextField fx:id="TF_overallScore" layoutX="712.0" layoutY="276.0" prefHeight="30.0" prefWidth="86.0" />
             <Label layoutX="510.0" layoutY="282.0" text="Overall effectiveness score:" />
          </children>

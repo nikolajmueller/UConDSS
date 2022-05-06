@@ -18,6 +18,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 public class DashboardEffectivenessScoreController implements Initializable {
 
@@ -31,7 +32,7 @@ public class DashboardEffectivenessScoreController implements Initializable {
     private BarChart<String, Integer> barChart;
 
     @FXML
-    private Button btnExpandGraph, btnToSymptoms;
+    private Button btnExpandGraph, btnToSymptoms, btnSave;
 
     @FXML
     private TextField cpr;
@@ -85,95 +86,86 @@ public class DashboardEffectivenessScoreController implements Initializable {
         String goodColor = "#14B831";
         String badColor = "#F34E2B";
 
-        symptomEffect.setPostIEs(Integer.parseInt(TF_IEsPerDay.getText()));
-        symptomEffect.setPostUEs(Integer.parseInt(TF_UEsPerDay.getText()));
-        symptomEffect.setPostUrination(Integer.parseInt(TF_urination.getText()));
-        symptomEffect.setPostNocturia(Integer.parseInt(TF_nocturia.getText()));
+        if (!TF_IEsPerDay.getText().isEmpty() && !TF_UEsPerDay.getText().isEmpty()
+                && !TF_urination.getText().isEmpty() && !TF_nocturia.getText().isEmpty()) {
+
+            symptomEffect.setPostIEs(Integer.parseInt(TF_IEsPerDay.getText()));
+            symptomEffect.setPostUEs(Integer.parseInt(TF_UEsPerDay.getText()));
+            symptomEffect.setPostUrination(Integer.parseInt(TF_urination.getText()));
+            symptomEffect.setPostNocturia(Integer.parseInt(TF_nocturia.getText()));
 
 // IEs
-        if (symptomEffect.getPostIEs() < symptoms.getIEsPerDay()) {
             symptomEffect.setIEsScore(((symptomEffect.getPostIEs() / symptoms.getIEsPerDay()) * 100) - 100);
-            TF_IEsPerDayScore.setText(String.format("%.1f", symptomEffect.getIEsScore()) + " %");
-            TF_IEsPerDayScore.setStyle("-fx-text-inner-color: " + goodColor + ";");
-        } else if (symptomEffect.getPostIEs() > symptoms.getIEsPerDay()) {
-            symptomEffect.setIEsScore(((symptomEffect.getPostIEs() / symptoms.getIEsPerDay()) * 100) - 100);
-            TF_IEsPerDayScore.setText("+" + String.format("%.1f", symptomEffect.getIEsScore()) + " %");
-            TF_IEsPerDayScore.setStyle("-fx-text-inner-color: " + badColor + ";");
-        } else {
-            symptomEffect.setIEsScore(0);
-            TF_IEsPerDayScore.setText(symptomEffect.getIEsScore() + " %");
-        }
+            if (symptomEffect.getPostIEs() < symptoms.getIEsPerDay()) {
+                TF_IEsPerDayScore.setText(String.format("%.1f", symptomEffect.getIEsScore()) + " %");
+                TF_IEsPerDayScore.setStyle("-fx-text-inner-color: " + goodColor + ";");
+            } else {
+                TF_IEsPerDayScore.setText("+" + String.format("%.1f", symptomEffect.getIEsScore()) + " %");
+                TF_IEsPerDayScore.setStyle("-fx-text-inner-color: " + badColor + ";");
+            }
 
 // UEs
-        if (symptomEffect.getPostUEs() < symptoms.getUEsPerDay()) {
             symptomEffect.setUEsScore(((symptomEffect.getPostUEs() / symptoms.getUEsPerDay()) * 100) - 100);
-            TF_UEsPerDayScore.setText(String.format("%.1f", symptomEffect.getUEsScore()) + " %");
-            TF_UEsPerDayScore.setStyle("-fx-text-inner-color: " + goodColor + ";");
-        } else if (symptomEffect.getPostUEs() > symptoms.getUEsPerDay()) {
-            symptomEffect.setUEsScore(((symptomEffect.getPostUEs() / symptoms.getUEsPerDay()) * 100) - 100);
-            TF_UEsPerDayScore.setText("+" + String.format("%.1f", symptomEffect.getUEsScore()) + " %");
-            TF_UEsPerDayScore.setStyle("-fx-text-inner-color: " + badColor + ";");
-        } else {
-            symptomEffect.setUEsScore(0);
-            TF_UEsPerDayScore.setText(symptomEffect.getUEsScore() + " %");
-        }
+            if (symptomEffect.getPostUEs() < symptoms.getUEsPerDay()) {
+                TF_UEsPerDayScore.setText(String.format("%.1f", symptomEffect.getUEsScore()) + " %");
+                TF_UEsPerDayScore.setStyle("-fx-text-inner-color: " + goodColor + ";");
+            } else {
+                TF_UEsPerDayScore.setText("+" + String.format("%.1f", symptomEffect.getUEsScore()) + " %");
+                TF_UEsPerDayScore.setStyle("-fx-text-inner-color: " + badColor + ";");
+            }
 
 // urination
-        if (symptomEffect.getPostUrination() < symptoms.getUrinationPerDay()) {
             symptomEffect.setUrinationScore(((symptomEffect.getPostUrination() / symptoms.getUrinationPerDay()) * 100) - 100);
-            TF_urinationScore.setText(String.format("%.1f", symptomEffect.getUrinationScore()) + " %");
-            TF_urinationScore.setStyle("-fx-text-inner-color: " + goodColor + ";");
-        } else if (symptomEffect.getPostUrination() > symptoms.getUrinationPerDay()) {
-            symptomEffect.setUrinationScore(((symptomEffect.getPostUrination() / symptoms.getUrinationPerDay()) * 100) - 100);
-            TF_urinationScore.setText("+" + String.format("%.1f", symptomEffect.getUrinationScore()) + " %");
-            TF_urinationScore.setStyle("-fx-text-inner-color: " + badColor + ";");
-        } else {
-            symptomEffect.setUrinationScore(0);
-            TF_urinationScore.setText(symptomEffect.getUrinationScore() + " %");
-        }
+            if (symptomEffect.getPostUrination() < symptoms.getUrinationPerDay()) {
+                TF_urinationScore.setText(String.format("%.1f", symptomEffect.getUrinationScore()) + " %");
+                TF_urinationScore.setStyle("-fx-text-inner-color: " + goodColor + ";");
+            } else {
+                TF_urinationScore.setText("+" + String.format("%.1f", symptomEffect.getUrinationScore()) + " %");
+                TF_urinationScore.setStyle("-fx-text-inner-color: " + badColor + ";");
+            }
 
 // nocturia
-        if (symptomEffect.getPostNocturia() < symptoms.getNocturiaEpisodes()) {
             symptomEffect.setNocturiaScore(((symptomEffect.getPostNocturia() / symptoms.getNocturiaEpisodes()) * 100) - 100);
-            TF_nocturiaScore.setText(String.format("%.1f", symptomEffect.getNocturiaScore()) + " %");
-            TF_nocturiaScore.setStyle("-fx-text-inner-color: " + goodColor + ";");
-        } else if (symptomEffect.getPostNocturia() > symptoms.getNocturiaEpisodes()) {
-            symptomEffect.setNocturiaScore(((symptomEffect.getPostNocturia() / symptoms.getNocturiaEpisodes()) * 100) - 100);
-            TF_nocturiaScore.setText("+" + String.format("%.1f", symptomEffect.getNocturiaScore()) + " %");
-            TF_nocturiaScore.setStyle("-fx-text-inner-color: " + badColor + ";");
+            if (symptomEffect.getPostNocturia() < symptoms.getNocturiaEpisodes()) {
+                TF_nocturiaScore.setText(String.format("%.1f", symptomEffect.getNocturiaScore()) + " %");
+                TF_nocturiaScore.setStyle("-fx-text-inner-color: " + goodColor + ";");
+            } else {
+                TF_nocturiaScore.setText("+" + String.format("%.1f", symptomEffect.getNocturiaScore()) + " %");
+                TF_nocturiaScore.setStyle("-fx-text-inner-color: " + badColor + ";");
+            }
+
+// overall effectiveness score
+            symptomEffect.setOverallEffectivessScore((int) (symptomEffect.getIEsScore() + symptomEffect.getUEsScore()
+                    + symptomEffect.getUrinationScore() + symptomEffect.getNocturiaScore()) / 4);
+
+            if (symptomEffect.getOverallEffectivessScore() < 0) {
+                TF_overallScore.setStyle("-fx-text-inner-color: " + goodColor + ";");
+                TF_overallScore.setText("" + symptomEffect.getOverallEffectivessScore() + " %");
+            } else {
+                TF_overallScore.setStyle("-fx-text-inner-color: " + badColor + ";");
+                TF_overallScore.setText("+" + symptomEffect.getOverallEffectivessScore() + " %");
+            }
+
+            DatabaseHandler.saveEffectToDb();
+
+            XYChart.Series<String, Integer> seriesEffect = new XYChart.Series();
+            seriesEffect.setName("Post symptoms");
+            seriesEffect.getData().add(new XYChart.Data("IEs", symptomEffect.getPostIEs()));
+            seriesEffect.getData().add(new XYChart.Data("UEs", symptomEffect.getPostUEs()));
+            seriesEffect.getData().add(new XYChart.Data("Urination", symptomEffect.getPostUrination()));
+            seriesEffect.getData().add(new XYChart.Data("Nocturia Ep", symptomEffect.getPostNocturia()));
+
+            if (barChart.getData().size() > 1) {
+                barChart.getData().remove(1);
+                barChart.getData().addAll(seriesEffect);
+            } else {
+                barChart.getData().addAll(seriesEffect);
+            }
+            btnSave.setDisable(false);
         } else {
-            symptomEffect.setNocturiaScore(0);
-            TF_nocturiaScore.setText(symptomEffect.getNocturiaScore() + " %");
-        }
-
-        symptomEffect.setOverallEffectivessScore((int)(symptomEffect.getIEsScore() + symptomEffect.getUEsScore()
-                + symptomEffect.getUrinationScore() + symptomEffect.getNocturiaScore()) / 4);
-
-        if (symptomEffect.getOverallEffectivessScore() < 0) {
-            TF_overallScore.setStyle("-fx-text-inner-color: " + goodColor + ";");
-            TF_overallScore.setText("" + symptomEffect.getOverallEffectivessScore() + " %");
-        } else {
-            TF_overallScore.setStyle("-fx-text-inner-color: " + badColor + ";");
-            TF_overallScore.setText("+" + symptomEffect.getOverallEffectivessScore() + " %");
-        }
-
-        DatabaseHandler.saveEffectToDb();
-
-        XYChart.Series<String, Integer> seriesEffect = new XYChart.Series();
-        seriesEffect.setName("Post symptoms");
-        seriesEffect.getData().add(new XYChart.Data("IEs", symptomEffect.getPostIEs()));
-        seriesEffect.getData().add(new XYChart.Data("UEs", symptomEffect.getPostUEs()));
-        seriesEffect.getData().add(new XYChart.Data("Urination", symptomEffect.getPostUrination()));
-        seriesEffect.getData().add(new XYChart.Data("Nocturia Ep", symptomEffect.getPostNocturia()));
-
-        if (barChart.getData().size() > 1) {
-            barChart.getData().remove(1);
-            barChart.getData().addAll(seriesEffect);
-        } else {
-            barChart.getData().addAll(seriesEffect);
+            JOptionPane.showMessageDialog(null, "Fill in all field for new symptoms");
         }
     }
-// "/ressources/TreatmentExpandGraph.fxml"
 
     public void expandGraph() {
         try {
@@ -214,20 +206,36 @@ public class DashboardEffectivenessScoreController implements Initializable {
     @FXML
     void toTreatmentEvaluation(ActionEvent event) throws IOException {
 
-// ny funk her der gemmer NYE symptomer til db
-        symptoms.setIEsPerDay((int) symptomEffect.getPostIEs());
-        symptoms.setUEsPerDay((int) symptomEffect.getPostUEs());
-        symptoms.setUrinationPerDay((int) symptomEffect.getPostUrination());
-        symptoms.setNocturiaEpisodes((int) symptomEffect.getPostNocturia());
-
-        DatabaseHandler.saveSymptonsToDb();
-
         Parent toSearchCreateParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardUconDataVisualization.fxml"));
         Scene toSearchCreateScene = new Scene(toSearchCreateParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(toSearchCreateScene);
         window.centerOnScreen();
         window.show();
+    }
+
+    @FXML
+    void toTreatmentEvaluationBtnSave(ActionEvent event) throws IOException {
+
+        if (!TF_IEsPerDay.getText().isEmpty() && !TF_UEsPerDay.getText().isEmpty()
+                && !TF_urination.getText().isEmpty() && !TF_nocturia.getText().isEmpty()) {
+
+            symptoms.setIEsPerDay((int) symptomEffect.getPostIEs());
+            symptoms.setUEsPerDay((int) symptomEffect.getPostUEs());
+            symptoms.setUrinationPerDay((int) symptomEffect.getPostUrination());
+            symptoms.setNocturiaEpisodes((int) symptomEffect.getPostNocturia());
+
+            DatabaseHandler.saveSymptonsToDb();
+
+            Parent toSearchCreateParent = FXMLLoader.load(getClass().getResource("/ressources/DashboardUconDataVisualization.fxml"));
+            Scene toSearchCreateScene = new Scene(toSearchCreateParent);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(toSearchCreateScene);
+            window.centerOnScreen();
+            window.show();
+        } else {
+            JOptionPane.showMessageDialog(null, "Fill in all field for new symptoms");
+        }
     }
 
     @FXML
