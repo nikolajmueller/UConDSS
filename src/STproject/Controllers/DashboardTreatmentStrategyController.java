@@ -89,6 +89,8 @@ public class DashboardTreatmentStrategyController implements Initializable {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error connection to database");
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fill in all required fields");
         }
     }
     
