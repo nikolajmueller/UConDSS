@@ -13,7 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class TreatmentPatientHistorikController implements Initializable {
+public class TreatmentPatientHistoryController implements Initializable {
 
     @FXML
     private TableView<TreatmentSetting> tableView_Treatment;
