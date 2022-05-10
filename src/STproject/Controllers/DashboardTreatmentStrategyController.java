@@ -385,7 +385,7 @@ public class DashboardTreatmentStrategyController implements Initializable {
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle("UConDss  -  Patient Historik");
+            stage.setTitle("UConDss  -  Patient History");
             stage.show();
             
         } catch (Exception e) {
