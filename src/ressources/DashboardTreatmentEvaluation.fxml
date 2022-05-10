@@ -31,7 +31,7 @@
       <TextField fx:id="textField_Urge_SessionTime" editable="false" focusTraversable="false" layoutX="291.0" layoutY="144.0" mouseTransparent="true" prefHeight="35.0" prefWidth="202.0" />
       <Label layoutX="291.0" layoutY="123.0" text="Session time:" />
       <Button layoutX="609.0" layoutY="177.0" mnemonicParsing="false" onAction="#clickBtnSave" prefHeight="34.0" prefWidth="210.0" text="Save correct/incorrect use" />
-      <Label layoutX="609.0" layoutY="57.0" prefHeight="27.0" prefWidth="183.0" text="Correct use of UCon?:">
+      <Label layoutX="609.0" layoutY="57.0" prefHeight="27.0" prefWidth="183.0" text="Correct use of UCon?">
          <font>
             <Font size="18.0" />
          </font>

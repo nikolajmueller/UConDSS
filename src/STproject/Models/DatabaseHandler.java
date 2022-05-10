@@ -246,7 +246,6 @@ public class DatabaseHandler {
         }
     }
 
-// TJEK NEDENSTÅENDE - HVAD HVIS DER ER FLERE TREATMENTS? TAGER DEN SIDSTE TREATMENT?
     public static TreatmentSetting readTreatmentSetting() {
 
         try {
