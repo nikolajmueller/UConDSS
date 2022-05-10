@@ -21,6 +21,7 @@
 
 .table-view .table-cell{
     -fx-text-fill: black;
+    -fx-alignment: center;
 }
 
 .table-row-cell{
