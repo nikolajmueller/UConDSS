@@ -210,7 +210,7 @@
             </Label>
             <Label fx:id="treatmentSaved" layoutX="545.0" layoutY="733.0" />
             <Button layoutX="782.0" layoutY="521.0" mnemonicParsing="false" onAction="#showTreatmentRecommendation" prefHeight="54.0" prefWidth="150.0" text="Show treatment &#10;recommendations" />
-            <Button layoutX="560.0" layoutY="521.0" mnemonicParsing="false" onAction="#showTreatments" prefHeight="54.0" prefWidth="147.0" text="Klik her Jøde" />
+            <Button layoutX="560.0" layoutY="521.0" mnemonicParsing="false" onAction="#showTreatments" prefHeight="54.0" prefWidth="147.0" text="Patient history" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="768.0" prefWidth="208.0">
