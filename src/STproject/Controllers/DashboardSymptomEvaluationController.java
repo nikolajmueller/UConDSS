@@ -103,7 +103,7 @@ public class DashboardSymptomEvaluationController implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(toLoginScene);
         window.centerOnScreen();
-        window.setTitle("UCon");
+        window.setTitle("UConDSS");
         window.show();
     }
 
