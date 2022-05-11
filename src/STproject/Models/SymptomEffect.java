@@ -2,15 +2,15 @@ package STproject.Models;
 
 public class SymptomEffect {
 
-    double postIEs;
-    double postUEs;
-    double postUrination;
-    double postNocturia;
-    double IEsScore;
-    double UEsScore;
-    double urinationScore;
-    double nocturiaScore;
-    int overallEffectivessScore;
+    private double postIEs;
+    private double postUEs;
+    private double postUrination;
+    private double postNocturia;
+    private double IEsScore;
+    private double UEsScore;
+    private double urinationScore;
+    private double nocturiaScore;
+    private int overallEffectivessScore;
 
     public int getOverallEffectivessScore() {
         return overallEffectivessScore;

@@ -173,7 +173,7 @@ public class DashboardEffectivenessScoreController implements Initializable {
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle("My Window");
+            stage.setTitle("UConDSS");
             stage.show();
         } catch (Exception e) {
             System.out.println("Error loading expanded graph");
