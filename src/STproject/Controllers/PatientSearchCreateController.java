@@ -32,7 +32,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
-public class SearchCreateViewController implements Initializable {
+public class PatientSearchCreateController implements Initializable {
 
     @FXML
     private TextField keywordTextField;

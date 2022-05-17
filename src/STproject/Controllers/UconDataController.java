@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
-public class DashboardUconDataVisualizationController implements Initializable {
+public class UconDataController implements Initializable {
     
     @FXML
     private ListView<String> listView_Urge;

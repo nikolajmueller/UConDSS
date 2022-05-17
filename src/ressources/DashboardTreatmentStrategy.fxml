@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="774.0" prefWidth="1145.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.DashboardTreatmentStrategyController">
+<AnchorPane id="AnchorPane" prefHeight="774.0" prefWidth="1145.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="STproject.Controllers.TreatmentSettingController">
     <stylesheets>
         <URL value="@DashboardTreatmentStrategyCss.css" />
     </stylesheets>

@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
-public class DashboardEffectivenessScoreController implements Initializable {
+public class SymptomEffectController implements Initializable {
 
     @FXML
     private TextField TF_IEsPrevious, TF_UEsPrevious, TF_urinationPrevious, TF_nocturiaPrevious,

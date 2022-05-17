@@ -17,7 +17,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
-public class DashboardTreatmentStrategyController implements Initializable {
+public class TreatmentSettingController implements Initializable {
 
     @FXML
     public Label lbPatientBladderCapacity, lbPatientIEsPerDay,

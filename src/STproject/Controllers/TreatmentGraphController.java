@@ -14,7 +14,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javax.swing.JOptionPane;
 
-public class TreatmentExpandGraphController implements Initializable {
+public class TreatmentGraphController implements Initializable {
 
     @FXML
     private BarChart<String, Integer> barChart;

@@ -11,7 +11,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
 
-public class DashboardTreatmentEvaluationController implements Initializable {
+public class TreatmentEvaluationController implements Initializable {
     
     int usedCorrect;
     

@@ -23,7 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
-public class LoginViewController implements Initializable {
+public class LoginController implements Initializable {
 
     @FXML
     private AnchorPane pane_login, pane_signup;
