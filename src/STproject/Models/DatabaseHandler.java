@@ -157,15 +157,6 @@ public class DatabaseHandler {
                 ps.execute();
                 conn.close();
             } else {
-                /*
-                PreparedStatement psCheckDate = conn.prepareStatement(
-                        "SELECT COUNT(*) FROM patientTreatment WHERE dateSaved = ?");
-                psCheckDate.setString(1, currentDate);
-                ResultSet dateExistsSQL = psCheckDate.executeQuery();
-                dateExistsSQL.next();
-                int dateExists = dateExistsSQL.getInt(1);
-                 */
-                //if (dateExists == 0) {
                 countrow++;
                 treatmentSetting.setTreatmentNumber(countrow);
 
@@ -183,9 +174,6 @@ public class DatabaseHandler {
 
                 ps.execute();
                 conn.close();
-                // } else {
-                //JOptionPane.showMessageDialog(null, "Patient already has treatment registered with current date.");
-                //}
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error");
@@ -267,8 +255,7 @@ public class DatabaseHandler {
 
             while (rs_treatment.next()) {
                 ob_treatmentRecommendation.add(new TreatmentSetting(rs_treatment.getInt("treatmentNumber"),
-                        rs_treatment.getString("timeLimitedSetting"), rs_treatment.getInt("timeLimitedIntensity"),
-                        rs_treatment.getString("urgeSetting"), rs_treatment.getInt("urgeIntensity"), rs_treatment.getInt("overallEffectivenessScore"), rs_treatment.getInt("corectivenessScore")));
+                        rs_treatment.getString("timeLimitedSetting"), rs_treatment.getInt("timeLimitedIntensity"),rs_treatment.getString("urgeSetting"), rs_treatment.getInt("urgeIntensity"), rs_treatment.getInt("overallEffectivenessScore"), rs_treatment.getInt("corectivenessScore")));
             }
         } catch (SQLException e) {
             System.err.println("Cannot connect to database server");
