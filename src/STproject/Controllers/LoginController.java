@@ -24,19 +24,19 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 public class LoginController implements Initializable {
-
+    
     @FXML
     private AnchorPane pane_login, pane_signup;
-
+    
     @FXML
     private TextField username_lg, username_up, password_up, email_up;
-
+    
     @FXML
     private PasswordField password_lg;
-
+    
     @FXML
     private Button btnLogin;
-
+    
     Connection conn = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
@@ -46,7 +46,7 @@ public class LoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
     }
 
     // Muliggør at man kan skifte mellem login og signin
@@ -54,12 +54,12 @@ public class LoginController implements Initializable {
         pane_login.setVisible(true);
         pane_signup.setVisible(false);
     }
-
+    
     public void signupPaneShow() {
         pane_signup.setVisible(true);
         pane_login.setVisible(false);
     }
-
+    
     @FXML
     void login(ActionEvent event) {
         conn = DatabaseHandler.getConnection(); // get db connection
@@ -71,7 +71,7 @@ public class LoginController implements Initializable {
             pst.setString(1, username_lg.getText());
             pst.setString(2, password_lg.getText());
             rs = pst.executeQuery();
-
+            
             if (rs.next()) {
                 Main.clinician.setId(rs.getInt(1));
                 Main.clinician.setUsername(rs.getString(2));
@@ -84,6 +84,7 @@ public class LoginController implements Initializable {
                 window.setScene(toDashboardScene);
                 window.centerOnScreen();
                 window.show();
+                window.setTitle("UConDSS - " + Main.clinician.getId() + " : " + Main.clinician.getUsername());
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid Username or Password");
             }
@@ -91,10 +92,10 @@ public class LoginController implements Initializable {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-
+    
     @FXML // SKAL UNDER DATABASEHANDLER!
     void addUsers(ActionEvent event) throws SQLException {
-
+        
         if (username_up.getText().length() > 2 && password_up.getText().length() > 2) {
             conn = DatabaseHandler.getConnection(); // get db connection
 
@@ -105,7 +106,7 @@ public class LoginController implements Initializable {
                 // sqlUser query to check for duplicates in database (username OR email)
                 String sqlUserDupe = "SELECT COUNT(*) FROM Clinician WHERE username LIKE \"" + username_up.getText() + "\""
                         + "        OR email LIKE \"" + email_up.getText() + "\"";
-
+                
                 Statement stDupe = conn.createStatement();
                 ResultSet userRes = stDupe.executeQuery(sqlUserDupe);
                 userRes.next();
@@ -133,5 +134,5 @@ public class LoginController implements Initializable {
             JOptionPane.showMessageDialog(null, "Username or password need to be at least 3 characters");
         }
     }
-
+    
 }
