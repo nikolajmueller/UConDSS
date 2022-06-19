@@ -21,6 +21,8 @@ public class DatabaseHandler {
     public static ObservableList<TreatmentSetting> ob_treatment = FXCollections.observableArrayList();
     public static ObservableList<TreatmentSetting> ob_treatmentRecommendation = FXCollections.observableArrayList();
 
+
+// metode til at skabe forbindelse til databasen
     public static Connection getConnection() {
 
         try {
@@ -40,8 +42,9 @@ public class DatabaseHandler {
 
     }
 
-    public static Patient readPatient() {
 
+// Fra database til program. Læser "PatientList" og gemmer data i en liste
+    public static Patient readPatient() {
         try {
             Connection conn = DatabaseHandler.getConnection();
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM PatientList WHERE clinicianID = ?");
@@ -57,6 +60,9 @@ public class DatabaseHandler {
         return null;
     }
 
+// metode til at gemme patient i databasen
+// tjekker først om patient allerede eksistere (CPR)
+// gemmer patientdata i databasen hvis patient ikke eksistere allerede
     public static void savePatientToDb(String CPR, String name, int age, String gender) {
         try {
             // Undersøger om CPR er registreret i DB
@@ -91,6 +97,10 @@ public class DatabaseHandler {
 
     }
 
+
+// gemmer symptomer fra klassen "Symptom" til databasen
+// tjekker først om patient allerede har symptomer gemt
+// hvis ja, så tælles symptomsIndex op med +1
     public static void saveSymptonsToDb() {
         try {
             Connection conn = DatabaseHandler.getConnection();
@@ -126,6 +136,9 @@ public class DatabaseHandler {
         }
     }
 
+
+// gemmer data fra klassen "TreatmentSetting" til databasen
+// tjekker først hvor mange behandlinder patienten har i forvejen og sætter "treatmentNumber" derefter
     public static void saveTreatmentToDb() {
         try {
             Connection conn = DatabaseHandler.getConnection();
@@ -180,7 +193,7 @@ public class DatabaseHandler {
         }
     }
 
-// SELECT * FROM SymptomsBaseline WHERE patientCPR =
+// læser symptomer fra databasen og gemmer dem i klassen "Symptom"
     public static void readSymptoms() {
 
         try {
@@ -206,6 +219,7 @@ public class DatabaseHandler {
         }
     }
 
+//Henter den seneste behandling fra databasen og gemmer den i klassen "TreatmentSetting"
     public static void readLatestTreatment() {
         try {
             Connection conn = DatabaseHandler.getConnection();
@@ -248,7 +262,6 @@ public class DatabaseHandler {
     }
 
     public static TreatmentSetting readTreatmentRecommendation() {
-
         try {
             String sqlQuery = "SELECT * FROM patientTreatment WHERE overallEffectivenessScore < -49 AND corectivenessScore = 1";
             ResultSet rs_treatment = getConnection().createStatement().executeQuery(sqlQuery);
@@ -263,6 +276,8 @@ public class DatabaseHandler {
         return null;
     }
 
+// gemmer effekten af behandlig til databasen
+// henter værdier fra klasserne: "SymptomEffect" og "TreatmentSetting".
     public static void saveEffectToDb() {
         try {
             Connection conn = DatabaseHandler.getConnection();
@@ -278,6 +293,8 @@ public class DatabaseHandler {
         }
     }
 
+// gemmer vurdering af UCon brugsdata i databasen
+// tager én inputparameter der sættes i controlleren "TreatmentEvaluationController".
     public static void saveCorrectivenessToDb(int usedCorrect) {
         try {
             Connection conn = DatabaseHandler.getConnection();
@@ -293,6 +310,7 @@ public class DatabaseHandler {
         }
     }
 
+// tjekker hvor i forløbet patienten er så den starter på den rigtige side hver gang
     public static int checkPatientStatus() {
         int patientStatus = 0;
         try {
